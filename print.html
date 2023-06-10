@@ -931,7 +931,7 @@ open_mode array open_mode = S_IRUSR, S_IWUSR, S_IXUSR, ...</p>
 <p><code>fd</code>: the return value will be stored here, to be later used on other 
 syscalls.</p>
 <p>for example: </p>
-<pre><code>read(fd fd, buf buffer[out], count len[buf])
+<pre><code class="language-sh">read(fd fd, buf buffer[out], count len[buf])
 write(fd fd, buf buffer[in], count len[buf])
 </code></pre>
 </li>
@@ -939,10 +939,10 @@ write(fd fd, buf buffer[in], count len[buf])
 <p>If instead of fd (file descriptior) we want to fuzz integer values from 0 to 500
 then we use syntax <code>int64[0:500]</code></p>
 <p>syzkaller provides generic descrption for <code>ioctl()</code></p>
-<pre><code>ioctl(fd fd, cmd intptr, arg buffer[in])
+<pre><code class="language-sh">ioctl(fd fd, cmd intptr, arg buffer[in])
 </code></pre>
 <p>and also provides specific ones like </p>
-<pre><code>ioctl$DRM_IOCTL_VERSION(fd fd_dri, cmd const[DRM_IOCTL_VERSION], arg ptr[in, drm_version])
+<pre><code class="language-sh">ioctl$DRM_IOCTL_VERSION(fd fd_dri, cmd const[DRM_IOCTL_VERSION], arg ptr[in, drm_version])
 ioctl$VIDIOC_QUERYCAP(fd fd_video, cmd const[VIDIOC_QUERYCAP], arg ptr[out, v4l2_capability])
 </code></pre>
 <p>See the refernce below for more. </p>
@@ -953,11 +953,86 @@ ioctl$VIDIOC_QUERYCAP(fd fd_video, cmd const[VIDIOC_QUERYCAP], arg ptr[out, v4l2
 <ol>
 <li>Use different defconfigs </li>
 <li>Limit the syscalls to 3-4 chosen, by adding the below in config.config
-<pre><code>&quot;enable_syscalls&quot;: [ &quot;ptrace&quot;, &quot;getpid&quot; ],
+<pre><code class="language-sh">&quot;enable_syscalls&quot;: [ &quot;ptrace&quot;, &quot;getpid&quot; ],
 </code></pre>
 </li>
 </ol>
-<h2 id=""><a class="header" href="#"></a></h2>
+<h2 id="fuzzing-your-patch-changes-in-syzkaller"><a class="header" href="#fuzzing-your-patch-changes-in-syzkaller">Fuzzing your patch changes in syzkaller</a></h2>
+<p>If you make a change in kernel and want to fuzz your changes in syzkaller, this 
+can be done by following the steps below: </p>
+<ol>
+<li>Modify the kernel and compile. </li>
+<li>Add a new syscall description in syzkaller and generate fuzzers for it. </li>
+<li>Run the syzkaller with new syscall </li>
+</ol>
+<h3 id="steps-2"><a class="header" href="#steps-2">Steps</a></h3>
+<ol>
+<li>
+<p>Modify the kernel code, for eg : we will modify ptrace syscall </p>
+<pre><code class="language-c">diff --git a/kernel/ptrace.c b/kernel/ptrace.c
+index 43d6179508d6..8e4e92931d5f 100644
+--- a/kernel/ptrace.c
++++ b/kernel/ptrace.c
+@@ -1245,6 +1245,9 @@ SYSCALL_DEFINE4(ptrace, long, request, long, pid, unsigned long, addr,
+     struct task_struct *child;
+     long ret;
+
++    if (pid == 0xdeadbeaf)
++            BUG();
++
+     if (request == PTRACE_TRACEME) {
+         ret = ptrace_traceme();
+         if (!ret)
+</code></pre>
+<p>The compile the kernel with modified code. </p>
+</li>
+<li>
+<p>Navigate to the syzkaller dir and modify the file <code>sys/linux/sys.txt</code></p>
+<pre><code class="language-sh">ptrace$broken(req int64, pid const[0xdeadbeaf])
+</code></pre>
+</li>
+<li>
+<p>Generate fuzzer for the new syscall </p>
+<pre><code>make bin/syz-extract
+./bin/syz-extract -os=linux -sourcedir=$KSRC -arch=amd64 sys.txt
+make generate
+make
+</code></pre>
+<ul>
+<li>Note: I was not able to do this step because it gives errors. 
+<img src="kernel/debugging/" alt="error" /></li>
+</ul>
+</li>
+<li>
+<p>Enable the newly added syscall in config.cfg </p>
+<pre><code class="language-json">&quot;enable_syscalls&quot;: [ &quot;ptrace$broken&quot;]
+</code></pre>
+</li>
+<li>
+<p>Run syzkaller</p>
+<pre><code class="language-sh">./bin/syz-manager -config=config.cfg
+</code></pre>
+</li>
+</ol>
+<h2 id="fuzzing-complex-subsystems-in-kernel"><a class="header" href="#fuzzing-complex-subsystems-in-kernel">Fuzzing complex subsystems in kernel</a></h2>
+<ul>
+<li>Syzkaller comes with set of system calls for linux -
+https://github.com/google/syzkaller/tree/master/sys/linux</li>
+<li>Some subsystems are better supported (like USB, socket-related syscalls) 
+than others. </li>
+<li>To fuzz these complex sub-systems, we use a combination of techniques like,
+<ol>
+<li>Using syzkaller resources to, define an order to syscalls and to store 
+the device state and data. </li>
+<li>Using udev (in rfs) to symlink drivers so that a particular driver is 
+targeted by the syzkaller. (Syzkaller may not be able to send syscalls
+to <code>/dev/video0</code> so syzkaller sends it to <code>/dev/vim2m</code> which is symlinked 
+to video0 )</li>
+<li>Using pseudo-syscalls - Allows syzkaller to run custom c functions defined 
+as pseudo-syscalls. </li>
+</ol>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-programming-course"><a class="header" href="#rust-programming-course">Rust programming Course</a></h1>
 <p>Chapter contains notes on the Rust programming. Mostly basic syntax and Usage.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-data-types"><a class="header" href="#rust-data-types">Rust: Data Types</a></h1>
