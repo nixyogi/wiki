@@ -1,19 +1,9 @@
-# Index 
+# Summary 
 
--  [Yocto]()
--  [Buildroot]()
--  [Coding Styles]()
--  [Coding Standards]()
--  [QT]()
--  [Gstreamer]()
--  [OpenCv]()
--  [OpenMp]()
--  [Dbus]()
--  [Ubus]()
--  [Zmq]()
--  [Shell Scripting]()
--  [Python]()
--  [Gitlab CI]()
+[Introduction](README.md)
+
+# Linux Kernel
+
 -  [Linux kernel](kernel/Kernel.md)
     -  [Development](kernel/development/Development.md)
         -  [Debugging](kernel/development/debugging/Debugging.md)
@@ -23,17 +13,3 @@
                 -   [How to use syzkaller](kernel/development/debugging/How-To-use-syzkaller.md)
                 -   [Tools-and-Techniques-to-Debug-an-Linux-System](kernel/development/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.md)
                 -   [Tools-and-Techniques-to-Debug-an-Linux-System](kernel/development/debugging/Understanding-Linux-Kernel-Oops.md)
-    -  [Camera Drivers]()
-    -  [Wifi Drivers]()
-    -  [Staging development]()
--  [IoT Peripherals]()
-    -  [GPIO]()
-    -  [I2C]()
-    -  [SPI]()
-    -  [UART]()
-    -  [PWM]()
-    -  [ADC]()
--  [IoT Protocols]()
-    -  [MQTT]()
-    -  [AMQP]()
-    -  [HTTP]()
