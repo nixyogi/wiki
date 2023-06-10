@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tools-and-Techniques-to-Debug-an-Linux-System - Personal Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Site for Personal wiki">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Yocto</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Buildroot</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Coding Styles</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Coding Standards</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> QT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Gstreamer</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> OpenCv</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> OpenMp</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Dbus</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.</strong> Ubus</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.</strong> Zmq</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">12.</strong> Shell Scripting</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">13.</strong> Python</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.</strong> Gitlab CI</div></li><li class="chapter-item expanded "><a href="../../../kernel/Kernel.html"><strong aria-hidden="true">15.</strong> Linux kernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/Development.html"><strong aria-hidden="true">15.1.</strong> Development</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Debugging.html"><strong aria-hidden="true">15.1.1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Debugging.html"><strong aria-hidden="true">15.1.1.1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">15.1.1.1.1.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">15.1.1.1.2.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">15.1.1.1.3.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">15.1.1.1.4.</strong> Tools-and-Techniques-to-Debug-an-Linux-System</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Understanding-Linux-Kernel-Oops.html" class="active"><strong aria-hidden="true">15.1.1.1.5.</strong> Tools-and-Techniques-to-Debug-an-Linux-System</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.2.</strong> Camera Drivers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.3.</strong> Wifi Drivers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.4.</strong> Staging development</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> IoT Peripherals</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">16.1.</strong> GPIO</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.2.</strong> I2C</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.3.</strong> SPI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.4.</strong> UART</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.5.</strong> PWM</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.6.</strong> ADC</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> IoT Protocols</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">17.1.</strong> MQTT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> AMQP</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.3.</strong> HTTP</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Personal Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="understanding-linux-kernel-oops"><a class="header" href="#understanding-linux-kernel-oops">Understanding Linux kernel Oops</a></h1>
+<p>Kernel panic is when there is a fatal error from which the kernel cannot recover.
+So it forces the system into controlled system hang/reboot.</p>
+<p>There are 2 types of panics </p>
+<ol>
+<li>Hard panics (Aiee!)</li>
+<li>Soft panics (Oops!)</li>
+</ol>
+<h2 id="oops"><a class="header" href="#oops">Oops</a></h2>
+<p>On faulty code execution or when an exception occurs kernel throws Oops. </p>
+<p>When Oops occurs it dumps the message on the console. Message contains the 
+CPU registers &amp; the processor status of when the Oops occured. </p>
+<p>The process that triggered the Oops gets killed ungracefully. There is a chance
+that the system may not resume from the Oops.</p>
+<h2 id="understanding-oops-dump"><a class="header" href="#understanding-oops-dump">Understanding Oops Dump</a></h2>
+<p>We will be using the sample Oops dump below, this oops is generated from 
+the kernel panic module from the Task of the mentorship.</p>
+<pre><code>[   96.106469] panic_msg: loading out-of-tree module taints kernel.
+[   96.106525] panic_msg: module verification failed: signature and/or required key missing - tainting kernel
+[   96.106710] Panic module init.
+[   96.106713] BUG: kernel NULL pointer dereference, address: 0000000000000001
+[   96.106718] #PF: supervisor read access in kernel mode
+[   96.106721] #PF: error_code(0x0000) - not-present page
+[   96.106723] PGD 0 P4D 0
+[   96.106728] Oops: 0000 [#1] SMP NOPTI
+[   96.106732] CPU: 1 PID: 7403 Comm: insmod Kdump: loaded Tainted: G       	OE 	5.15.0-72-generic #79~20.04.1-Ubuntu
+[   96.106737] Hardware name: ASUSTeK COMPUTER INC. ROG Zephyrus G14 GA401IH_GA401IH/GA401IH, BIOS GA401IH.212 03/14/2022
+[   96.106740] RIP: 0010:panic_module_init+0x15/0x1000 [panic_msg]
+[   96.106749] Code: Unable to access opcode bytes at RIP 0xffffffffc1470feb.
+[   96.106752] RSP: 0018:ffffaa368299bbb8 EFLAGS: 00010246
+[   96.106755] RAX: 0000000000000012 RBX: 0000000000000000 RCX: 0000000000000027
+[   96.106758] RDX: 0000000000000000 RSI: ffffaa368299ba00 RDI: ffff88d4d7460588
+[   96.106761] RBP: ffffaa368299bbb8 R08: ffff88d4d7460580 R09: 0000000000000001
+[   96.106763] R10: 696e6920656c7564 R11: 6f6d2063696e6150 R12: ffffffffc1471000
+[   96.106766] R13: ffff88cfd734d390 R14: 0000000000000000 R15: ffffffffc1884000
+[   96.106768] FS:  00007f241ee73740(0000) GS:ffff88d4d7440000(0000) knlGS:0000000000000000
+[   96.106772] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   96.106775] CR2: ffffffffc1470feb CR3: 000000023ecac000 CR4: 0000000000350ee0
+[   96.106778] Call Trace:
+[   96.106780]  &lt;TASK&gt;
+[   96.106784]  do_one_initcall+0x48/0x1e0
+[   96.106791]  ? __cond_resched+0x19/0x40
+[   96.106797]  ? kmem_cache_alloc_trace+0x15a/0x420
+[   96.106804]  do_init_module+0x52/0x230
+[   96.106810]  load_module+0x1294/0x1500
+[   96.106819]  __do_sys_finit_module+0xbf/0x120
+[   96.106823]  ? __do_sys_finit_module+0xbf/0x120
+[   96.106830]  __x64_sys_finit_module+0x1a/0x20
+[   96.106835]  do_syscall_64+0x5c/0xc0
+[   96.106840]  ? exit_to_user_mode_prepare+0x3d/0x1c0
+[   96.106845]  ? syscall_exit_to_user_mode+0x27/0x50
+[   96.106849]  ? __x64_sys_mmap+0x33/0x50
+[   96.106853]  ? do_syscall_64+0x69/0xc0
+[   96.106857]  ? syscall_exit_to_user_mode+0x27/0x50
+[   96.106861]  ? __x64_sys_read+0x1a/0x20
+[   96.106865]  ? do_syscall_64+0x69/0xc0
+[   96.106870]  ? irqentry_exit+0x1d/0x30
+[   96.106874]  ? exc_page_fault+0x89/0x170
+[   96.106879]  entry_SYSCALL_64_after_hwframe+0x61/0xcb
+[   96.106885] RIP: 0033:0x7f241efa0a3d
+[   96.106889] Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 &lt;48&gt; 3d 01 f0 ff ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48
+[   96.106894] RSP: 002b:00007ffdbfab5128 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+[   96.106899] RAX: ffffffffffffffda RBX: 000055fd2f8b4780 RCX: 00007f241efa0a3d
+[   96.106903] RDX: 0000000000000000 RSI: 000055fd2e243358 RDI: 0000000000000003
+[   96.106906] RBP: 0000000000000000 R08: 0000000000000000 R09: 00007f241f0a3180
+[   96.106909] R10: 0000000000000003 R11: 0000000000000246 R12: 000055fd2e243358
+[   96.106912] R13: 0000000000000000 R14: 000055fd2f8b7b40 R15: 0000000000000000
+[   96.106918]  &lt;/TASK&gt;
+</code></pre>
+<p>Let's try to understand the Oops dump.</p>
+<ol>
+<li>
+<p><code>BUG: kernel NULL pointer dereference, address: 0000000000000001</code></p>
+<ul>
+<li>This indicates why the kernel crashed i.e it was because of NULL pointer
+dereference. </li>
+</ul>
+</li>
+<li>
+<p><code>IP:</code></p>
+<ul>
+<li>IP shows the address of the instruction pointer. 
+The above dump does not have IP. So in some cases IP maybe missing.</li>
+</ul>
+</li>
+<li>
+<p><code>Oops: 0000 [#1] SMP NOPTI</code></p>
+<ul>
+<li>
+<p><code>0000</code> - is the error code value in Hex , where </p>
+<ol>
+<li>bit 0 - 0 means no page found, 1 means protection fault </li>
+<li>bit 1 - 0 means read, 1 means write</li>
+<li>bit 2 - 0 means kernelspace, 1 means userspace</li>
+</ol>
+<p>The above code denotes that while reading there was no page found in 
+kerenelspace i.e NULL pointer dereference.</p>
+</li>
+<li>
+<p><code>[#1]</code> - Number of Oops occured. There can be multiple Oops as cascading
+effect. 1 Oops occured.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>CPU: 1 PID: 7403 Comm: insmod Kdump: loaded Tainted: G</code></p>
+<ul>
+<li>
+<p><code>CPU 1</code> - Which CPU the error occured</p>
+</li>
+<li>
+<p><code>Tainted: G</code> - Tainted flag</p>
+<ol>
+<li>P, G — Proprietary module has been loaded.</li>
+<li>F — Module has been forcibly loaded.</li>
+<li>S — SMP with a CPU not designed for SMP.</li>
+<li>R — User forced a module unload.</li>
+<li>M — System experienced a machine check exception.</li>
+<li>B — System has hit bad_page.</li>
+<li>U — Userspace-defined naughtiness.</li>
+<li>A — ACPI table overridden.</li>
+<li>W — Taint on warning.</li>
+</ol>
+<p>Ref: https://github.com/torvalds/linux/blob/master/kernel/panic.c</p>
+<p>This shows that the proprietary module has been loaded. </p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>RIP: 0010:panic_module_init+0x15/0x1000 [panic_msg]</code></p>
+<ul>
+<li><code>RIP</code> - CPU register containing addr of the instruction getting executed. </li>
+<li><code>0010</code> - Code segment register value. </li>
+<li><code>panic_module_init+0x15/0x1000</code> - <symbol> + offset/ length</li>
+</ul>
+</li>
+<li>
+<p>CPU register contents</p>
+<pre><code>RSP: 0018:ffffaa368299bbb8 EFLAGS: 00010246
+RAX: 0000000000000012 RBX: 0000000000000000 RCX: 0000000000000027
+RDX: 0000000000000000 RSI: ffffaa368299ba00 RDI: ffff88d4d7460588
+RBP: ffffaa368299bbb8 R08: ffff88d4d7460580 R09: 0000000000000001
+R10: 696e6920656c7564 R11: 6f6d2063696e6150 R12: ffffffffc1471000
+R13: ffff88cfd734d390 R14: 0000000000000000 R15: ffffffffc1884000
+FS:  00007f241ee73740(0000) GS:ffff88d4d7440000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffc1470feb CR3: 000000023ecac000 CR4: 0000000000350ee0
+</code></pre>
+</li>
+<li>
+<p><code>Stack:</code> - This is the stack trace. </p>
+<ul>
+<li>But as you can see it is missing from the dump. This might be because 
+the kernel is not configured correctly, but I am currently unable 
+to get the exact config which enables stack.</li>
+</ul>
+</li>
+<li>
+<p><code>Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 &lt;48&gt; 3d 01 f0 ff  ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48</code></p>
+<ul>
+<li>This is a hex-dump of the section of machine code that was being run 
+at the time the Oops occurred.</li>
+</ul>
+</li>
+</ol>
+<h2 id="debugging-the-oops"><a class="header" href="#debugging-the-oops">Debugging the Oops</a></h2>
+<p>The aim here is to find out the Address where the Oops occured, so that 
+we can use GDB to get the exact line of the code where the kernel Oops occured.</p>
+<h3 id="method-1-using-the-oops-dump--gdb"><a class="header" href="#method-1-using-the-oops-dump--gdb">Method 1: Using the Oops dump + GDB</a></h3>
+<h4 id="logic-behind-this-method"><a class="header" href="#logic-behind-this-method">Logic behind this method</a></h4>
+<ol>
+<li>RIP/PC - Instruction pointer or Program counter will give the instruction address
+and offset. Addresss + offset = Instruction Addr where Oops occured. </li>
+<li>Use GDB to dissassemble the function (this we get in the RIP line of Oops dump)</li>
+<li>Once we get the address then use GDB <code>list</code> to get to the line of the code.</li>
+</ol>
+<h4 id="steps"><a class="header" href="#steps">Steps:</a></h4>
+<ol>
+<li>Load the module in GDB </li>
+<li>Add the symbol-file in GDB </li>
+<li>Disassemble the function mentioned in the <code>RIP</code> section in the above dump. </li>
+<li>To get the exact line we use (RIP instruction addr + offset)</li>
+<li>Then we run list *(RIP instruction addr + offest) to give the offending code. </li>
+</ol>
+<p>Honestly this method seems to be a bit complex, a simpler way would be to use
+<code>addr2line</code> to convert the address to line. For more see the video </p>
+<ul>
+<li>https://youtu.be/X5uygywNcPI?t=1159</li>
+</ul>
+<h3 id="method-2-using-systemmap--gdb"><a class="header" href="#method-2-using-systemmap--gdb">Method 2: Using System.map + GDB</a></h3>
+<p>System.map is the list of symbols and their addr in the kernel.</p>
+<h4 id="logic-behind-this-method-1"><a class="header" href="#logic-behind-this-method-1">Logic behind this method</a></h4>
+<ol>
+<li>Using the function name from the Oops dump, get the symbol address from the
+System.map. we call it Fun_Addr</li>
+<li>Get the exact instruction address by Fun_Addr + Offset (from oops dump) </li>
+<li>Dissassemble the function to get to the exact instruction where it failed.</li>
+<li>To get to the line number use GDB <code>list</code> &amp; pass it Fun_Addr + Offset.</li>
+</ol>
+<h4 id="steps-1"><a class="header" href="#steps-1">Steps</a></h4>
+<ol>
+<li>Identify the PC/RIP (Addr &amp; offset) from the Oops dump.</li>
+<li>Identify the function where the Oops occured from the Oops dump. </li>
+<li>Get the exact instruction address by Fun_Addr + Offset (from oops dump) </li>
+<li>Dissassemble the function to get to the exact instruction where it failed.</li>
+<li>To get to the line number use GDB <code>list</code> &amp; pass it Fun_Addr + Offset.</li>
+</ol>
+<h2 id="ways-of-dissassembling"><a class="header" href="#ways-of-dissassembling">Ways of Dissassembling</a></h2>
+<ol>
+<li>Using <code>objdump</code></li>
+<li>Using <code>gdb</code></li>
+</ol>
+<h4 id="objdump"><a class="header" href="#objdump">objdump</a></h4>
+<pre><code>objdump -D -S --show-raw-insn --prefix-addresses --line-numbers vmlinux 
+</code></pre>
+<h4 id="gdb"><a class="header" href="#gdb">gdb</a></h4>
+<pre><code class="language-sh"># Run gdb
+gdb –silent vmlinux
+# Inside gdb run the command 
+dissassemble &lt;function-name&gt;
+</code></pre>
+<h2 id="tldr-summary"><a class="header" href="#tldr-summary">TLDR; Summary</a></h2>
+<p><img src="assets/kernedebug.drawio.png" alt="summary1" /></p>
+<h4 id="references"><a class="header" href="#references">References</a></h4>
+<p>Ref: https://www.opensourceforu.com/2011/01/understanding-a-kernel-oops/
+Ref: https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../kernel/development/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../kernel/development/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

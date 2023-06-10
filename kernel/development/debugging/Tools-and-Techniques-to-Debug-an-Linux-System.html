@@ -1,0 +1,492 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tools-and-Techniques-to-Debug-an-Linux-System - Personal Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Site for Personal wiki">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><div><strong aria-hidden="true">1.</strong> Yocto</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Buildroot</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Coding Styles</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Coding Standards</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> QT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Gstreamer</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> OpenCv</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> OpenMp</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">9.</strong> Dbus</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">10.</strong> Ubus</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">11.</strong> Zmq</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">12.</strong> Shell Scripting</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">13.</strong> Python</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">14.</strong> Gitlab CI</div></li><li class="chapter-item expanded "><a href="../../../kernel/Kernel.html"><strong aria-hidden="true">15.</strong> Linux kernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/Development.html"><strong aria-hidden="true">15.1.</strong> Development</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Debugging.html"><strong aria-hidden="true">15.1.1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Debugging.html"><strong aria-hidden="true">15.1.1.1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">15.1.1.1.1.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">15.1.1.1.2.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">15.1.1.1.3.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html" class="active"><strong aria-hidden="true">15.1.1.1.4.</strong> Tools-and-Techniques-to-Debug-an-Linux-System</a></li><li class="chapter-item expanded "><a href="../../../kernel/development/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">15.1.1.1.5.</strong> Tools-and-Techniques-to-Debug-an-Linux-System</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.2.</strong> Camera Drivers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.3.</strong> Wifi Drivers</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.4.</strong> Staging development</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.</strong> IoT Peripherals</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">16.1.</strong> GPIO</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.2.</strong> I2C</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.3.</strong> SPI</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.4.</strong> UART</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.5.</strong> PWM</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">16.6.</strong> ADC</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.</strong> IoT Protocols</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">17.1.</strong> MQTT</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.2.</strong> AMQP</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">17.3.</strong> HTTP</div></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Personal Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="tools-and-techniques-to-debug-an-embedded-linux-system"><a class="header" href="#tools-and-techniques-to-debug-an-embedded-linux-system">Tools and Techniques to Debug an Embedded Linux System</a></h1>
+<h2 id="process-of-debugging"><a class="header" href="#process-of-debugging">Process of debugging</a></h2>
+<ol>
+<li>Understand the problem.</li>
+<li>Reproduce the problem.</li>
+<li>Identify the root cause.</li>
+<li>Apply the fix.</li>
+<li>Test it. If fixed, celebrate! If not, go back to step 1.</li>
+</ol>
+<h2 id="types-of-problems-in-software"><a class="header" href="#types-of-problems-in-software">Types of problems in Software</a></h2>
+<p>We can classify them into 5 major categories </p>
+<ol>
+<li>Crash. - Fatal exceptions</li>
+<li>Lockup/Hang. - Race conditions, Deadlocks</li>
+<li>Logic/implementation. - Logical errors</li>
+<li>Resource leakage. - Memory leaks</li>
+<li>(Lack of) performance. - Program is not performing as expected.</li>
+</ol>
+<h2 id="tools--techniques-available-for-developers-to-solve-these-problems"><a class="header" href="#tools--techniques-available-for-developers-to-solve-these-problems">Tools &amp; Techniques available for developers to solve these problems</a></h2>
+<ol>
+<li>Our brain (aka knowledge).</li>
+<li>Post mortem analysis (logging analysis, memory dump analysis, etc).</li>
+<li>Tracing/profiling (specialized logging).</li>
+<li>Interactive debugging (eg: GDB).</li>
+<li>Debugging frameworks (eg: Valgrind).</li>
+</ol>
+<h2 id="post-mortem-analysis"><a class="header" href="#post-mortem-analysis">Post mortem analysis</a></h2>
+<p>This type of analysis is done using the information exported by the system i.e 
+logs, memory dumps etc. </p>
+<h3 id="for-kernel-crashes"><a class="header" href="#for-kernel-crashes">For Kernel Crashes</a></h3>
+<h4 id="method1-addr2line"><a class="header" href="#method1-addr2line">Method1: addr2line</a></h4>
+<ol>
+<li>
+<p>Get the address from the memory dump. address of the <code>pc</code> (program counter)
+can be used to get the line where kernel crashed.</p>
+<pre><code class="language-sh">[ 17.201436] PC is at storage_probe+0x60/0x1a0
+[ 17.205810] LR is at storage_probe+0x48/0x1a0
+[ 17.210175] pc : [&lt;c06a21cc&gt;] lr : [&lt;c06a21b4&gt;] psr: 60000013
+</code></pre>
+</li>
+<li>
+<p>You need the <code>vmlinux</code> file which is in ELF format with debug info </p>
+<pre><code>file vmlinux
+vmlinux: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, BuildID[sha1]
+ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
+</code></pre>
+</li>
+<li>
+<p>Run the addr2line command with these inputs </p>
+<pre><code class="language-sh">addr2line -f -p -e vmlinux 0xc06a21cc
+</code></pre>
+<p>This will give you the line number where the kernel crashed. </p>
+<p>for eg: </p>
+<p>storage_probe at /opt/labs/ex/linux/drivers/usb/storage/usb.c:1118</p>
+</li>
+</ol>
+<h4 id="method2-gdb-list"><a class="header" href="#method2-gdb-list">Method2: gdb list</a></h4>
+<ol>
+<li>
+<p>Get the function name + offset from the memory dump.</p>
+<pre><code class="language-sh">[ 17.201436] PC is at storage_probe+0x60/0x1a0
+[ 17.205810] LR is at storage_probe+0x48/0x1a0
+[ 17.210175] pc : [&lt;c06a21cc&gt;] lr : [&lt;c06a21b4&gt;] psr: 60000013
+</code></pre>
+<p>i.e <code>storage_probe+0x60</code></p>
+</li>
+<li>
+<p>You need the <code>vmlinux</code> file which is in ELF format with debug info </p>
+<pre><code>file vmlinux
+vmlinux: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, BuildID[sha1]
+ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
+</code></pre>
+</li>
+<li>
+<p>Run gdb on the vmlinux file, inside gdb run the command </p>
+<pre><code>(gdb) list *(storage_probe+0x60)
+</code></pre>
+<p>This will show you the line where the kernel crashed.</p>
+</li>
+</ol>
+<h3 id="for-userspace-crashes"><a class="header" href="#for-userspace-crashes">For Userspace Crashes</a></h3>
+<p>Use the core dump from the segfault to find the line at which the segfault
+occurred.</p>
+<ol>
+<li>
+<p>Set the system limits to unlimited</p>
+<pre><code class="language-sh"># ulimit -c unlimited
+</code></pre>
+</li>
+<li>
+<p>Run the program untill it crashes, the crash will generate a file called
+<code>core</code> which contains the core dump. </p>
+</li>
+<li>
+<p>Run the gdb on the core file and the program with debug symbols</p>
+<pre><code>gdb &lt;program-here&gt; -c core
+</code></pre>
+</li>
+<li>
+<p>In gdb run the command <code>list</code> to go to the line where the program crashed.</p>
+<ul>
+<li><code>p</code> to print the specific variables. </li>
+</ul>
+</li>
+</ol>
+<h2 id="tracing"><a class="header" href="#tracing">Tracing</a></h2>
+<p>Tracing is a special form of logging, where data about the state and execution of
+a program (or the kernel) is collected and stored for runtime (or later) analysis.</p>
+<p>Using print() or printk() statements to log the state and variables is also a 
+form of tracing. </p>
+<h3 id="for-kernel-crashes-1"><a class="header" href="#for-kernel-crashes-1">For kernel crashes</a></h3>
+<ol>
+<li>
+<p>for kernel tracing we need to configure the kernel tracing options</p>
+<pre><code>zcat /proc/config.gz | grep TRACER=y
+CONFIG_NOP_TRACER=y
+CONFIG_HAVE_FUNCTION_TRACER=y
+CONFIG_HAVE_FUNCTION_GRAPH_TRACER=y
+CONFIG_CONTEXT_SWITCH_TRACER=y
+CONFIG_GENERIC_TRACER=y
+CONFIG_FUNCTION_TRACER=y
+CONFIG_FUNCTION_GRAPH_TRACER=y
+CONFIG_STACK_TRACER=y
+CONFIG_IRQSOFF_TRACER=y
+CONFIG_SCHED_TRACER=y
+CONFIG_HWLAT_TRACER=y
+CONFIG_OSNOISE_TRACER=y
+CONFIG_TIMERLAT_TRACER=y
+</code></pre>
+</li>
+<li>
+<p>Mount the tracefs into the fs </p>
+<pre><code class="language-sh">mount -t tracefs tracefs /sys/kernel/tracing/
+</code></pre>
+</li>
+<li>
+<p>Record the traces of the function getting executed</p>
+<pre><code>trace-cmd record -p function_graph -F &lt;module&gt;/&lt;sysfs trigger to a module&gt;
+</code></pre>
+</li>
+<li>
+<p>Generate the report of the tracing </p>
+<pre><code>trace-cmd report &gt; trace.log
+</code></pre>
+</li>
+<li>
+<p>Examine the trace.log to see the traces of the function. </p>
+</li>
+</ol>
+<p><strong>Note</strong>: This is dynamic tracing i.e the tracing is enabled at runtime as long 
+as the kernel is compiled with the correct configuration. </p>
+<h3 id="for-userspace-crashes-1"><a class="header" href="#for-userspace-crashes-1">For userspace crashes</a></h3>
+<h4 id="method-1-strace"><a class="header" href="#method-1-strace">Method 1: strace</a></h4>
+<p>Using strace we can trace all the system calls the program is running to debug
+the program.</p>
+<p>Run a userspace program with strace </p>
+<pre><code># strace &lt;program&gt;
+</code></pre>
+<h4 id="method-2-uprobe"><a class="header" href="#method-2-uprobe">Method 2: Uprobe</a></h4>
+<p>This is used to trace the functions in the program. </p>
+<ol>
+<li>
+<p>Kernel needs to be configured with the below options </p>
+<pre><code>zcat /proc/config.gz | grep CONFIG_UPROBE
+CONFIG_UPROBES=y
+CONFIG_UPROBE_EVENTS=y
+</code></pre>
+</li>
+<li>
+<p>Add the tracepoints to all the functions </p>
+<pre><code class="language-sh"># for f in `perf probe -F -x &lt;program&gt;`; \
+    do perf probe -q -x &lt;program&gt; $f; done
+</code></pre>
+</li>
+<li>
+<p>List the tracepoints to know the tracepoint names</p>
+<pre><code># perf probe -l | tee
+</code></pre>
+</li>
+<li>
+<p>Run the application and capture the tracepoints. </p>
+<pre><code># perf record -e &lt;tracepoint_name&gt;:* -aR -- &lt;program&gt; &lt;args&gt;
+</code></pre>
+</li>
+<li>
+<p>Run the command to parse the trace</p>
+<pre><code>perf script | tee
+</code></pre>
+</li>
+</ol>
+<h2 id="interactive-debugging"><a class="header" href="#interactive-debugging">Interactive Debugging</a></h2>
+<p>An interactive debugging tool allows us to interact with the application at runtime.
+It can execute the code step-by-step, set breakpoints,
+display information (variables, stack, etc), list function call history (backtrace), etc.</p>
+<p>GDB is the go to tool for Interactive debugging. </p>
+<h3 id="for-kernel-space"><a class="header" href="#for-kernel-space">For kernel space</a></h3>
+<p><strong>Note</strong>: If running on embedded, you need a gdbserver running on the target device
+and a gdb client on the host device. </p>
+<ol>
+<li>
+<p>Enable KGDB in the kernel </p>
+<pre><code># zcat /proc/config.gz | grep ^CONFIG_KGDB
+CONFIG_KGDB=y
+CONFIG_KGDB_HONOUR_BLOCKLIST=y
+CONFIG_KGDB_SERIAL_CONSOLE=y
+</code></pre>
+<p>KGDB has registered serial console as the port for communication. But we 
+can use kgdb/agent-proxy to forward text console over IP. </p>
+<p>Details on how to connect can be found here - https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy/+/refs/heads/master/README.TXT</p>
+</li>
+<li>
+<p>On target machine, Put the kernel in debugging mode </p>
+<pre><code class="language-sh"># Enable the serial port for kgdb communication
+# echo ttymxc0 &gt; /sys/module/kgdboc/parameters/kgdboc
+# Put the kernel in debug mode
+# echo g &gt; /proc/sysrq-trigger
+</code></pre>
+</li>
+<li>
+<p>On host machine, run gdb with the kernel ELF </p>
+<pre><code> gdb vmlinux -tui
+</code></pre>
+<ul>
+<li><code>-tui</code> option opens the TUI which shows the code and line number in gdb</li>
+</ul>
+</li>
+<li>
+<p>In gdb prompt, run the command to connect to the target machine</p>
+<pre><code>(gdb) target remote localhost:5551
+</code></pre>
+</li>
+<li>
+<p>This will connect and open up the gdb for debugging, now you can set breakpoints
+get backtraces using gdb commands. </p>
+</li>
+</ol>
+<h3 id="for-userspace-crashes-2"><a class="header" href="#for-userspace-crashes-2">For userspace crashes</a></h3>
+<p><strong>Note</strong>: If running on embedded, you need a gdbserver running on the target device
+and a gdb client on the host device. </p>
+<ol>
+<li>
+<p>Start the gdbserver, on target device</p>
+<pre><code>gdbserver :1234 &lt;program&gt;
+</code></pre>
+</li>
+<li>
+<p>On the host device, run gdb with the program in ELF format </p>
+<pre><code>gdb &lt;program&gt; -tui
+</code></pre>
+</li>
+<li>
+<p>In gdb prompt, connect to the target device </p>
+<pre><code>(gdb) target remote &lt;IP&gt;:1234
+</code></pre>
+</li>
+<li>
+<p>Now we can set breakpoints and see the backtrace of the program running 
+on the target machine.</p>
+</li>
+</ol>
+<h2 id="debugging-frameworks"><a class="header" href="#debugging-frameworks">Debugging frameworks</a></h2>
+<p>Collection of tools when used to debug linux systems are called debugging frameworks. </p>
+<p>Kernel has several debugging frameworks to identify memory leaks,
+lockups, etc (see the &quot;Kernel Hacking&quot; configuration menu)</p>
+<p>In user space, there is Valgrind for debugging memory leaks, race conditions 
+and profiling etc.</p>
+<h3 id="for-kernel-crashes-2"><a class="header" href="#for-kernel-crashes-2">For kernel crashes</a></h3>
+<ol>
+<li>
+<p>Enable the detections in the kernel configuration </p>
+<pre><code># zcat /proc/config.gz | grep &quot;CONFIG_SOFTLOCKUP_DETECTOR\|CONFIG_DETECT_HUNG_TASK&quot;
+CONFIG_SOFTLOCKUP_DETECTOR=y
+CONFIG_DETECT_HUNG_TASK=y
+</code></pre>
+</li>
+<li>
+<p>Once enabled, when something hangs for 30s or more, kernel will throw an 
+oops. </p>
+</li>
+<li>
+<p>After this we can use the steps in post mortem analysis to debug. </p>
+</li>
+</ol>
+<h3 id="for-userspace-crashes-3"><a class="header" href="#for-userspace-crashes-3">For userspace crashes</a></h3>
+<p>We use valgring to check for memory leaks, profiling , etc</p>
+<p>For eg: </p>
+<pre><code>valgrind --leak-check=full &lt;program&gt;
+</code></pre>
+<p>This will check for leaks etc.. </p>
+<h2 id="which-tool-to-use-while-debugging-"><a class="header" href="#which-tool-to-use-while-debugging-">Which tool to use while debugging ?</a></h2>
+<p>This depends on what type of problem you are debugging.</p>
+<p><img src="assets/which-tool-best-for-debugging.png" alt="summary2" /></p>
+<h4 id="references"><a class="header" href="#references">References</a></h4>
+<p>Ref: https://www.youtube.com/watch?v=Paf-1I7ZUTo </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../kernel/development/debugging/How-To-use-syzkaller.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../kernel/development/debugging/Understanding-Linux-Kernel-Oops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../kernel/development/debugging/How-To-use-syzkaller.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../kernel/development/debugging/Understanding-Linux-Kernel-Oops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
