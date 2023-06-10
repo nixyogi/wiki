@@ -37,7 +37,7 @@ open(file ptr[in, filename], flags flags[open_flags], mode flags[open_mode]) fd
     syscalls.
 
     for example: 
-    ```
+    ```sh
     read(fd fd, buf buffer[out], count len[buf])
     write(fd fd, buf buffer[in], count len[buf])
     ```
@@ -46,11 +46,11 @@ If instead of fd (file descriptior) we want to fuzz integer values from 0 to 500
 then we use syntax `int64[0:500]`
 
 syzkaller provides generic descrption for `ioctl()`
-```
+```sh
 ioctl(fd fd, cmd intptr, arg buffer[in])
 ```
 and also provides specific ones like 
-```
+```sh
 ioctl$DRM_IOCTL_VERSION(fd fd_dri, cmd const[DRM_IOCTL_VERSION], arg ptr[in, drm_version])
 ioctl$VIDIOC_QUERYCAP(fd fd_video, cmd const[VIDIOC_QUERYCAP], arg ptr[out, v4l2_capability])
 ```
@@ -66,8 +66,80 @@ Follow the steps given here to setup syzkaller - https://github.com/google/syzka
 Tips for running syzkaller
 1.  Use different defconfigs 
 2.  Limit the syscalls to 3-4 chosen, by adding the below in config.config
-    ```
+    ```sh
     "enable_syscalls": [ "ptrace", "getpid" ],
     ```
     
-## 
+## Fuzzing your patch changes in syzkaller 
+
+If you make a change in kernel and want to fuzz your changes in syzkaller, this 
+can be done by following the steps below: 
+
+1.  Modify the kernel and compile. 
+2.  Add a new syscall description in syzkaller and generate fuzzers for it. 
+3.  Run the syzkaller with new syscall 
+
+### Steps 
+
+1.  Modify the kernel code, for eg : we will modify ptrace syscall 
+    ```c 
+    diff --git a/kernel/ptrace.c b/kernel/ptrace.c
+    index 43d6179508d6..8e4e92931d5f 100644
+    --- a/kernel/ptrace.c
+    +++ b/kernel/ptrace.c
+    @@ -1245,6 +1245,9 @@ SYSCALL_DEFINE4(ptrace, long, request, long, pid, unsigned long, addr,
+         struct task_struct *child;
+         long ret;
+ 
+    +    if (pid == 0xdeadbeaf)
+    +            BUG();
+    +
+         if (request == PTRACE_TRACEME) {
+             ret = ptrace_traceme();
+             if (!ret)
+    ```
+    
+    The compile the kernel with modified code. 
+1.  Navigate to the syzkaller dir and modify the file `sys/linux/sys.txt`
+    ```sh
+    ptrace$broken(req int64, pid const[0xdeadbeaf])
+    ```
+
+1.  Generate fuzzer for the new syscall 
+    ```
+    make bin/syz-extract
+    ./bin/syz-extract -os=linux -sourcedir=$KSRC -arch=amd64 sys.txt
+    make generate
+    make
+    ```
+    -   Note: I was not able to do this step because it gives errors. 
+        ![error]()
+
+
+1.  Enable the newly added syscall in config.cfg 
+    ```json
+    "enable_syscalls": [ "ptrace$broken"]
+    ```
+
+1.  Run syzkaller
+    ```sh
+    ./bin/syz-manager -config=config.cfg
+    ```
+
+## Fuzzing complex subsystems in kernel 
+
+-   Syzkaller comes with set of system calls for linux -
+    https://github.com/google/syzkaller/tree/master/sys/linux
+-   Some subsystems are better supported (like USB, socket-related syscalls) 
+    than others. 
+-   To fuzz these complex sub-systems, we use a combination of techniques like,
+    1.  Using syzkaller resources to, define an order to syscalls and to store 
+        the device state and data. 
+    1.  Using udev (in rfs) to symlink drivers so that a particular driver is 
+        targeted by the syzkaller. (Syzkaller may not be able to send syscalls
+        to `/dev/video0` so syzkaller sends it to `/dev/vim2m` which is symlinked 
+        to video0 )
+    1.  Using pseudo-syscalls - Allows syzkaller to run custom c functions defined 
+        as pseudo-syscalls. 
+
+
