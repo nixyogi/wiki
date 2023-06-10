@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Development - Personal Wiki</title>
+        <title>Decision Making - Personal Wiki</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="../../kernel/Kernel.html"><strong aria-hidden="true">1.</strong> Linux kernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/development/Development.html" class="active"><strong aria-hidden="true">1.1.</strong> Development</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/development/debugging/Debugging.html"><strong aria-hidden="true">1.1.1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/development/debugging/Debugging.html"><strong aria-hidden="true">1.1.1.1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/development/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.1.1.1.1.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../kernel/development/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.1.1.1.2.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../kernel/development/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.1.1.1.3.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/development/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">1.1.1.1.4.</strong> Tools-and-Techniques-to-Debug-an-Linux-System</a></li><li class="chapter-item expanded "><a href="../../kernel/development/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.1.1.5.</strong> Tools-and-Techniques-to-Debug-an-Linux-System</a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="../../kernel/debugging/index.html"><strong aria-hidden="true">1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.</strong> Understanding Kernel Oops</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">1.2.</strong> Tools & Techniques to Debug a LinuxSystem</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.3.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.4.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.5.</strong> How to use syzkaller</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Programming</li><li class="chapter-item expanded "><a href="../../programming/rust/index.html"><strong aria-hidden="true">2.</strong> Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Data-Types.html"><strong aria-hidden="true">2.1.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Variables-and-Immutability.html"><strong aria-hidden="true">2.2.</strong> Variables & Imutability</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Functions.html"><strong aria-hidden="true">2.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Closures.html"><strong aria-hidden="true">2.4.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Strings.html"><strong aria-hidden="true">2.5.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Decision-Making.html" class="active"><strong aria-hidden="true">2.6.</strong> Decision Making</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Loops.html"><strong aria-hidden="true">2.7.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Struct.html"><strong aria-hidden="true">2.8.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Enums.html"><strong aria-hidden="true">2.9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Function-on-Types.html"><strong aria-hidden="true">2.10.</strong> Impl</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Collections.html"><strong aria-hidden="true">2.11.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Modules-imports-use-statements.html"><strong aria-hidden="true">2.12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Slices.html"><strong aria-hidden="true">2.13.</strong> Slices</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-iterators.html"><strong aria-hidden="true">2.14.</strong> Iterators</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -144,18 +144,98 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="development"><a class="header" href="#development">Development</a></h1>
-<p>This page is a placeholder, so that each folder has an page. </p>
+                        <h1 id="rust-decision-making"><a class="header" href="#rust-decision-making">Rust: Decision Making</a></h1>
+<p>Status: Courses
+Tags: Rust</p>
+<h2 id="if-else-construct"><a class="header" href="#if-else-construct">if-else construct</a></h2>
+<ol>
+<li>
+<p><code>if-else</code> in Rust is not a statement but an expression.</p>
+<ol>
+<li>Statements do not return any value</li>
+<li>Expressions return value. </li>
+</ol>
+</li>
+<li>
+<p>Hence <code>if else</code> in Rust return value which can be ignored or assigned to a variable </p>
+</li>
+<li>
+<p><strong>Both <code>if</code> and <code>else</code> branches should return the same type of value. Because Rust does not allow multiple types to be stored in a variable.</strong></p>
+</li>
+<li>
+<p>For example:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// Simple example 
+if i &lt; 10 {
+   // the statement with semicolon hence the return value is ()
+	println!(&quot;Value is less than 10&quot;);
+} else {
+   println!(&quot;Value is more than 10&quot;);
+}
+
+// complex example
+let result = if i &lt; 10 {
+   // the statement without semicolon is considered as return value
+   1
+} else {
+   // 0 is returned, and type is kept same
+   0
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="match-expression"><a class="header" href="#match-expression">match expression</a></h2>
+<ol>
+<li>
+<p><code>match</code> in Rust is a replacement to <code>switch</code> and <code>case</code> in C. </p>
+</li>
+<li>
+<p>For Example:</p>
+<pre><pre class="playground"><code class="language-rust">// Simple match usage
+
+// Returns an HTTP status
+fn req_status() -&gt; u32 {
+	200
+}
+
+fn main() {
+	let status = req_status();
+	let result = match status {
+		200 =&gt; {
+			println!(&quot;HTTP Success!&quot;);	
+		},
+		404 =&gt; println!(&quot;Page not found!&quot;),
+    other =&gt; println!(&quot;Reequest Failed, Status code {}!&quot;, other);
+	}
+}</code></pre></pre>
+</li>
+<li>
+<p><code>match</code> statement has to have branches for all the possible cases <strong>(match exhaustively)</strong>. i.e in the Above case, we have to match against all the numbers until a maximum of u32. </p>
+</li>
+<li>
+<p><code>other</code> is used to catch all and store the value. </p>
+</li>
+<li>
+<p><code>_</code> is used to catch all and ignore the value.</p>
+</li>
+<li>
+<p><code>match</code> is an expression so it returns a value.</p>
+</li>
+<li>
+<p>Each branch in <code>match</code> should return the same <strong>type</strong> of value because Rust does not allow one variable to store multiple types.</p>
+</li>
+</ol>
+</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../kernel/Kernel.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../programming/rust/Rust-Strings.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../kernel/development/debugging/Debugging.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../programming/rust/Rust-Loops.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -165,11 +245,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../kernel/Kernel.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../programming/rust/Rust-Strings.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../kernel/development/debugging/Debugging.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../programming/rust/Rust-Loops.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
