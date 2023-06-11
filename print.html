@@ -1094,7 +1094,84 @@ $ qemu-system-x86_64 \
 <p>If there is no panic then the bug has been fixed. </p>
 </li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="event-tracing"><a class="header" href="#event-tracing">Event tracing</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="event-tracing"><a class="header" href="#event-tracing">Event Tracing</a></h1>
+<p>Tracepoints are point in code that act as hooks to call a function that 
+we can provide at runtime. </p>
+<p>Event tracing is tracepints which target certain events. </p>
+<p>Tracepoints can be turned on or off during runtime. This allows us to 
+debug events in the kernel. </p>
+<h2 id="how-to-enable-event-tracing"><a class="header" href="#how-to-enable-event-tracing">How to enable Event tracing</a></h2>
+<h3 id="method-1-using-set_event-interface"><a class="header" href="#method-1-using-set_event-interface">Method 1: using 'set_event' interface</a></h3>
+<ol>
+<li>
+<p>To see all the events available for Tracing </p>
+<pre><code class="language-sh"># cat sys/kernel/tracing/available_events
+</code></pre>
+</li>
+<li>
+<p>To enable a particular event trace </p>
+<pre><code class="language-sh"># echo module_load &gt;&gt; /sys/kernel/tracing/set_event
+</code></pre>
+</li>
+<li>
+<p>To disable a particular event trace</p>
+<pre><code class="language-sh"># echo '!sched_wakeup' &gt;&gt; /sys/kernel/tracing/set_event
+</code></pre>
+</li>
+</ol>
+<h3 id="method-2-using-enable-toggle"><a class="header" href="#method-2-using-enable-toggle">Method 2: using 'enable' toggle</a></h3>
+<ol>
+<li>
+<p>To enable an event trace </p>
+<pre><code class="language-sh"># echo 1 &gt; /sys/kernel/tracing/events/sched/sched_wakeup/enable
+</code></pre>
+</li>
+<li>
+<p>To disable an event trace </p>
+<pre><code class="language-sh"># echo 0 &gt; /sys/kernel/tracing/events/sched/sched_wakeup/enable
+</code></pre>
+</li>
+</ol>
+<h2 id="how-to-see-trace"><a class="header" href="#how-to-see-trace">How to see trace</a></h2>
+<p>To see the trace run the command <code>cat /sys/kernel/tracing/trace</code></p>
+<p>For example: 
+I have enabled 2 event traces <code>module_load</code> and <code>module_remove</code>. <code>hello_world</code> 
+module was loaded and unloaded twice to test. </p>
+<p>The trace output is </p>
+<pre><code class="language-sh">root@syzkaller:~# cat /sys/kernel/tracing/trace
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 8/8   #P:2
+#
+root@syzkaller:~# watch cat /sys/kernel/tracing/trace
+root@syzkaller:~# cat /sys/kernel/tracing/trace
+# tracer: nop
+#
+# entries-in-buffer/entries-written: 13/13   #P:2
+#
+#                                _-----=&gt; irqs-off/BH-disabled
+#                               / _----=&gt; need-resched
+#                              | / _---=&gt; hardirq/softirq
+#                              || / _--=&gt; preempt-depth
+#                              ||| / _-=&gt; migrate-disable
+#                              |||| /     delay
+#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
+#              | |         |   |||||     |         |
+          insmod-250     [000] d....   581.000597: console: module hello_world: .gnu.linkonce.this_module section size must match the kernel's built struct module size at run time
+         kauditd-24      [001] d....   581.000635: console: audit: type=1400 audit(1686476508.542:6): avc:  denied  { module_load } for  pid=250 comm=&quot;insmod&quot; path=&quot;/root/hello-world.ko&quot; dev=&quot;sda&quot; ino=16056 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+          insmod-258     [000] d....   651.462871: console: hello_world: loading out-of-tree module taints kernel.
+          insmod-258     [000] .....   651.466741: module_load: hello_world O
+          insmod-258     [000] d....   651.466766: console: Hello world
+          insmod-258     [000] ...1.   651.467500: module_put: hello_world call_site=do_init_module refcnt=1
+           rmmod-262     [001] d....   669.718308: console: Bye world
+           rmmod-262     [001] .....   669.718828: module_free: hello_world
+          insmod-305     [000] .....   893.023502: module_load: hello_world O
+          insmod-305     [000] d....   893.023520: console: Hello world
+          insmod-305     [000] ...1.   893.023876: module_put: hello_world call_site=do_init_module refcnt=1
+           rmmod-331     [001] d....   909.192664: console: Bye world
+           rmmod-331     [001] .....   909.193745: module_free: hello_world
+</code></pre>
+<p><img src="kernel/debugging/assets/event-tracing-output.png" alt="event-tracing-output" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-programming-course"><a class="header" href="#rust-programming-course">Rust programming Course</a></h1>
 <p>Chapter contains notes on the Rust programming. Mostly basic syntax and Usage.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-data-types"><a class="header" href="#rust-data-types">Rust: Data Types</a></h1>
