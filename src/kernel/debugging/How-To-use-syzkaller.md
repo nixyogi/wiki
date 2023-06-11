@@ -4,7 +4,8 @@ Syzkaller is an unsupervised kernel fuzzer that uses both structured fuzzing &
 coverage-guided fuzzing techniques to apply fuzzing to kernel syscalls.
 
 ## How it works
-![manager](assests/syzkaller-process_structure.png)
+
+![manager](assets/syzkaller-process_structure.png)
 
 Manager controls the test system, spwans vm's with fuzzers inside them
 which generate small programs which invoke syscalls. 
