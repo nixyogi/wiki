@@ -11,6 +11,7 @@
     -   [Fuzzing Linux Kernel](kernel/debugging/Fuzzing-Linux-Kernel.md)
     -   [How to use syzkaller](kernel/debugging/How-To-use-syzkaller.md)
     -   [Reproducing bugs from syzkaller](kernel/debugging/Reproducing-bugs-from-syzkaller.md)
+    -   [Event tracing](kernel/debugging/Event-Tracing.md)
 
 # Programming 
 
