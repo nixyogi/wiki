@@ -901,7 +901,7 @@ your own fuzzer. </p>
 <p>Syzkaller is an unsupervised kernel fuzzer that uses both structured fuzzing &amp;
 coverage-guided fuzzing techniques to apply fuzzing to kernel syscalls.</p>
 <h2 id="how-it-works"><a class="header" href="#how-it-works">How it works</a></h2>
-<p><img src="kernel/debugging/" alt="manager" /></p>
+<p><img src="kernel/debugging/assests/syzkaller-process_structure.png" alt="manager" /></p>
 <p>Manager controls the test system, spwans vm's with fuzzers inside them
 which generate small programs which invoke syscalls. </p>
 <p>VM's communication using RPC and log the coverage achieved and trace information
@@ -1000,7 +1000,7 @@ make
 </code></pre>
 <ul>
 <li>Note: I was not able to do this step because it gives errors. 
-<img src="kernel/debugging/" alt="error" /></li>
+<img src="kernel/debugging/assets/syzkaller-error.png" alt="error" /></li>
 </ul>
 </li>
 <li>
