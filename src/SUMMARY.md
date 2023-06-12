@@ -13,6 +13,25 @@
     -   [Reproducing bugs from syzkaller](kernel/debugging/Reproducing-bugs-from-syzkaller.md)
     -   [Event tracing](kernel/debugging/Event-Tracing.md)
 
+-   [Camera Driver](kernel/camera-driver/README.md)
+    -   [01](kernel/camera-driver/01.md)
+    -   [02](kernel/camera-driver/02.md)
+    -   [03](kernel/camera-driver/03.md)
+    -   [04](kernel/camera-driver/04.md)
+    -   [05](kernel/camera-driver/05.md)
+    -   [06](kernel/camera-driver/06.md)
+    -   [07](kernel/camera-driver/07.md)
+    -   [08](kernel/camera-driver/08.md)
+    -   [09](kernel/camera-driver/09.md)
+    -   [10](kernel/camera-driver/10.md)
+    -   [11](kernel/camera-driver/11.md)
+    -   [12](kernel/camera-driver/12.md)
+    -   [13](kernel/camera-driver/13.md)
+    -   [14](kernel/camera-driver/14.md)
+    -   [15](kernel/camera-driver/15.md)
+    -   [16](kernel/camera-driver/16.md)
+    -   [17](kernel/camera-driver/17.md)
+
 # Programming 
 
 -   [Rust](programming/rust/README.md)
