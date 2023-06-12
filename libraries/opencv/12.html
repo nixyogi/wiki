@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>12 - Personal Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Site for Personal wiki">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="../../kernel/debugging/index.html"><strong aria-hidden="true">1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.</strong> Understanding Kernel Oops</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">1.2.</strong> Tools & Techniques to Debug a LinuxSystem</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.3.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.4.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.5.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Reproducing-bugs-from-syzkaller.html"><strong aria-hidden="true">1.6.</strong> Reproducing bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Event-Tracing.html"><strong aria-hidden="true">1.7.</strong> Event tracing</a></li></ol></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/index.html"><strong aria-hidden="true">2.</strong> Camera Driver</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/camera-driver/01.html"><strong aria-hidden="true">2.1.</strong> 01</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/02.html"><strong aria-hidden="true">2.2.</strong> 02</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/03.html"><strong aria-hidden="true">2.3.</strong> 03</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/04.html"><strong aria-hidden="true">2.4.</strong> 04</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/05.html"><strong aria-hidden="true">2.5.</strong> 05</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/06.html"><strong aria-hidden="true">2.6.</strong> 06</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/07.html"><strong aria-hidden="true">2.7.</strong> 07</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/08.html"><strong aria-hidden="true">2.8.</strong> 08</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/09.html"><strong aria-hidden="true">2.9.</strong> 09</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/10.html"><strong aria-hidden="true">2.10.</strong> 10</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/11.html"><strong aria-hidden="true">2.11.</strong> 11</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/12.html"><strong aria-hidden="true">2.12.</strong> 12</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/13.html"><strong aria-hidden="true">2.13.</strong> 13</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/14.html"><strong aria-hidden="true">2.14.</strong> 14</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/15.html"><strong aria-hidden="true">2.15.</strong> 15</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/16.html"><strong aria-hidden="true">2.16.</strong> 16</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/17.html"><strong aria-hidden="true">2.17.</strong> 17</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Programming</li><li class="chapter-item expanded "><a href="../../programming/rust/index.html"><strong aria-hidden="true">3.</strong> Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Data-Types.html"><strong aria-hidden="true">3.1.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Variables-and-Immutability.html"><strong aria-hidden="true">3.2.</strong> Variables & Imutability</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Functions.html"><strong aria-hidden="true">3.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Closures.html"><strong aria-hidden="true">3.4.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Strings.html"><strong aria-hidden="true">3.5.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Decision-Making.html"><strong aria-hidden="true">3.6.</strong> Decision Making</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Loops.html"><strong aria-hidden="true">3.7.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Struct.html"><strong aria-hidden="true">3.8.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Enums.html"><strong aria-hidden="true">3.9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Function-on-Types.html"><strong aria-hidden="true">3.10.</strong> Impl</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Collections.html"><strong aria-hidden="true">3.11.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Modules-imports-use-statements.html"><strong aria-hidden="true">3.12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Slices.html"><strong aria-hidden="true">3.13.</strong> Slices</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-iterators.html"><strong aria-hidden="true">3.14.</strong> Iterators</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Libraries</li><li class="chapter-item expanded "><a href="../../libraries/opencv/index.html"><strong aria-hidden="true">4.</strong> OpenCV</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../libraries/opencv/01.html"><strong aria-hidden="true">4.1.</strong> 01</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/02.html"><strong aria-hidden="true">4.2.</strong> 02</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/03.html"><strong aria-hidden="true">4.3.</strong> 03</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/04.html"><strong aria-hidden="true">4.4.</strong> 04</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/05.html"><strong aria-hidden="true">4.5.</strong> 05</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/06.html"><strong aria-hidden="true">4.6.</strong> 06</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/07.html"><strong aria-hidden="true">4.7.</strong> 07</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/08.html"><strong aria-hidden="true">4.8.</strong> 08</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/09.html"><strong aria-hidden="true">4.9.</strong> 09</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/10.html"><strong aria-hidden="true">4.10.</strong> 10</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/11.html"><strong aria-hidden="true">4.11.</strong> 11</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/12.html" class="active"><strong aria-hidden="true">4.12.</strong> 12</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/13.html"><strong aria-hidden="true">4.13.</strong> 13</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/14.html"><strong aria-hidden="true">4.14.</strong> 14</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/15.html"><strong aria-hidden="true">4.15.</strong> 15</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/16.html"><strong aria-hidden="true">4.16.</strong> 16</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Personal Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="features"><a class="header" href="#features">Features</a></h1>
+<h2 id="interest-points"><a class="header" href="#interest-points">Interest points</a></h2>
+<p>Interest points are sudden changes in intensity in the region.
+These local features are usually classified as edges, blobs or corners. </p>
+<h2 id="list-of-methods-to-detect-features"><a class="header" href="#list-of-methods-to-detect-features">List of methods to detect features</a></h2>
+<p>List of methods in OpenCV to detect features or interest points or key points</p>
+<h3 id="normal-feature-detectors"><a class="header" href="#normal-feature-detectors">Normal Feature detectors</a></h3>
+<ol>
+<li>Harris corner detector </li>
+<li>FAST feature detector </li>
+<li>feature detector class </li>
+<li>Adapted feature detection </li>
+<li>Grid Adapted feature detection </li>
+<li>Pyramid Adapted feature detection </li>
+</ol>
+<h3 id="scale-invariance-feature-detectors"><a class="header" href="#scale-invariance-feature-detectors">Scale invariance Feature detectors</a></h3>
+<p>Detect same features regardless of scale of the image </p>
+<ol>
+<li>SIFT </li>
+<li>SURF </li>
+<li>BRISK (Binary Robust Invariant Scalable Keypoints) </li>
+<li>ORB (Oriented FAST Rotated BRISK) </li>
+</ol>
+<p>I have tried only 2 methods </p>
+<ol>
+<li>FAST </li>
+<li>BRISK </li>
+</ol>
+<h4 id="fast-feature-detector"><a class="header" href="#fast-feature-detector">FAST Feature Detector</a></h4>
+<p><strong>Working</strong> : 
+It works by selecting a candidate point the forming a circle using radius of 3 pixels </p>
+<p>then it tests all the pixels in the circle they should be either brighter or darker than the central point + threshold</p>
+<p>The speed is achieved by computing 4 points in the 
+circle with 90 deg separation (top, bottom, left, right)</p>
+<p>if 3 of such points are either brighter or darker 
+than the central point then only it proceeds forward</p>
+<p>if the condition fails then the central point is changed </p>
+<p>Usage : </p>
+<pre><code class="language-c">// vector of keypoints 
+std::vector&lt;cv::KeyPoint&gt; keypoints;
+// Construction of the Fast feature detector object  
+cv::Ptr&lt;cv::FeatureDetector&gt; fast =  FastFeatureDetector::create(30);  
+
+// feature point detection  
+fast-&gt;detect(Resize,keypoints);
+
+// Draw Keypoints on the original image 
+cv::drawKeypoints(Resize,    // original image 
+                keypoints,                // vector of keypoints 
+                out,                   // the output image 
+                cv::Scalar(255,255,255), // keypoint color (white)
+                cv::DrawMatchesFlags::DRAW_OVER_OUTIMG); //drawing flag 
+
+</code></pre>
+<h4 id="brisk-feature-detector"><a class="header" href="#brisk-feature-detector">BRISK Feature Detector</a></h4>
+<p><strong>Working</strong> : </p>
+<p>It creates a pyramid of images by down scaling 
+the input image by half each layer.
+In between these layers the image is again down 
+scaled by 1.5 </p>
+<p>Then FAST feature extraction is applied to each image
+of the pyramid.</p>
+<p>Then the key points are applied this criteria </p>
+<ol>
+<li>The key point must be local maximum comparing its strength 
+with 8 spatial neighbors </li>
+<li>Then the key point is compared with neighboring 
+points in the layers above and below 
+if the score is higher in scale as well then it is accepted 
+as an interest point.</li>
+</ol>
+<p>Usage : </p>
+<pre><code class="language-c">// vector of keypoints 
+std::vector&lt;cv::KeyPoint&gt; keypoints1;
+// Construction of the Fast feature detector object  
+cv::Ptr&lt;cv::BRISK&gt; brisk =  BRISK::create();  
+
+// feature point detection  
+brisk-&gt;detect(Resize,keypoints1);
+
+cv::drawKeypoints(Resize,    // original image 
+                keypoints1,                // vector of keypoints 
+                out1,                   // the output image 
+                cv::Scalar(255,255,255), // keypoint color 
+                cv::DrawMatchesFlags::DRAW_OVER_OUTIMG); //drawing flag 
+
+</code></pre>
+<h1 id="feature-descriptors"><a class="header" href="#feature-descriptors">Feature Descriptors</a></h1>
+<p>Feature Descriptors are methods which describe the location and neighborhood<br />
+of the feature in vectors or binary form </p>
+<p>Typically the Detectors themselves come with built-in descriptors.</p>
+<p>Few Descriptors are: </p>
+<ol>
+<li>SURF </li>
+<li>SIFT </li>
+</ol>
+<p>These descriptors are very rich and contain floating point vectors of dimension 64 or 128, These are costly, Hence I did not study them.</p>
+<p>There a new Descriptors called as binary descriptors 
+Examples are </p>
+<ol>
+<li>ORB </li>
+<li>BRISK </li>
+</ol>
+<h1 id="feature-matching"><a class="header" href="#feature-matching">Feature Matching</a></h1>
+<p>Feature Matching matching descriptors by calculating distance between the 
+descriptors using different techniques. </p>
+<p>Various Methods for Matching Descriptors are :</p>
+<ol>
+<li>
+<p><strong>BruteForce-L1</strong>: This is used for float descriptors. It uses L1 distance and is efficient and fast.</p>
+</li>
+<li>
+<p><strong>BruteForce</strong>: This is used for float descriptors. It uses L2 distance and can be better than L1, but it needs more CPU usage.</p>
+</li>
+<li>
+<p><strong>BruteForce-SL2</strong>: This is used for float descriptors and avoids square root computation from L2, which requires high CPU usage.</p>
+</li>
+<li>
+<p><strong>BruteForce-Hamming</strong>: This is used for binary descriptors and calculates the Hamming distance between the compared descriptors.</p>
+</li>
+<li>
+<p><strong>BruteForce-Hamming(2)</strong>: This is used for binary descriptors (2 bits version).</p>
+</li>
+<li>
+<p><strong>FlannBased</strong>: This is used for float descriptors and is faster than brute force at the cost of using more memory.</p>
+</li>
+</ol>
+<p>OpenCV encapsulates them all into one Function with various flags for 
+different methods</p>
+<h2 id="rejecting-matches"><a class="header" href="#rejecting-matches">Rejecting Matches</a></h2>
+<p>If we use simple Match then many key points get incorrectly matched.
+To reduce this we need to reject some matches</p>
+<ol>
+<li>
+<p>Cross-checking Matches 
+Match using all key points of 1st image to 2nd image 
+Repeat the match process with key points of 2nd image to the 1st image </p>
+</li>
+<li>
+<p>Ratio Test 
+Use knn to find the best 2 matches between the images </p>
+</li>
+<li>
+<p>Distance Thresholding 
+Reject Matches that have more distance between the vectors </p>
+</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../libraries/opencv/11.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../libraries/opencv/13.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../libraries/opencv/11.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../libraries/opencv/13.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

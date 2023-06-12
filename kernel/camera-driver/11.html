@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>11 - Personal Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Site for Personal wiki">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="../../kernel/debugging/index.html"><strong aria-hidden="true">1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.</strong> Understanding Kernel Oops</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">1.2.</strong> Tools & Techniques to Debug a LinuxSystem</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.3.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.4.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.5.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Reproducing-bugs-from-syzkaller.html"><strong aria-hidden="true">1.6.</strong> Reproducing bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Event-Tracing.html"><strong aria-hidden="true">1.7.</strong> Event tracing</a></li></ol></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/index.html"><strong aria-hidden="true">2.</strong> Camera Driver</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/camera-driver/01.html"><strong aria-hidden="true">2.1.</strong> 01</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/02.html"><strong aria-hidden="true">2.2.</strong> 02</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/03.html"><strong aria-hidden="true">2.3.</strong> 03</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/04.html"><strong aria-hidden="true">2.4.</strong> 04</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/05.html"><strong aria-hidden="true">2.5.</strong> 05</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/06.html"><strong aria-hidden="true">2.6.</strong> 06</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/07.html"><strong aria-hidden="true">2.7.</strong> 07</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/08.html"><strong aria-hidden="true">2.8.</strong> 08</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/09.html"><strong aria-hidden="true">2.9.</strong> 09</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/10.html"><strong aria-hidden="true">2.10.</strong> 10</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/11.html" class="active"><strong aria-hidden="true">2.11.</strong> 11</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/12.html"><strong aria-hidden="true">2.12.</strong> 12</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/13.html"><strong aria-hidden="true">2.13.</strong> 13</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/14.html"><strong aria-hidden="true">2.14.</strong> 14</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/15.html"><strong aria-hidden="true">2.15.</strong> 15</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/16.html"><strong aria-hidden="true">2.16.</strong> 16</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/17.html"><strong aria-hidden="true">2.17.</strong> 17</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Programming</li><li class="chapter-item expanded "><a href="../../programming/rust/index.html"><strong aria-hidden="true">3.</strong> Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Data-Types.html"><strong aria-hidden="true">3.1.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Variables-and-Immutability.html"><strong aria-hidden="true">3.2.</strong> Variables & Imutability</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Functions.html"><strong aria-hidden="true">3.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Closures.html"><strong aria-hidden="true">3.4.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Strings.html"><strong aria-hidden="true">3.5.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Decision-Making.html"><strong aria-hidden="true">3.6.</strong> Decision Making</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Loops.html"><strong aria-hidden="true">3.7.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Struct.html"><strong aria-hidden="true">3.8.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Enums.html"><strong aria-hidden="true">3.9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Function-on-Types.html"><strong aria-hidden="true">3.10.</strong> Impl</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Collections.html"><strong aria-hidden="true">3.11.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Modules-imports-use-statements.html"><strong aria-hidden="true">3.12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Slices.html"><strong aria-hidden="true">3.13.</strong> Slices</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-iterators.html"><strong aria-hidden="true">3.14.</strong> Iterators</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Libraries</li><li class="chapter-item expanded "><a href="../../libraries/opencv/index.html"><strong aria-hidden="true">4.</strong> OpenCV</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../libraries/opencv/01.html"><strong aria-hidden="true">4.1.</strong> 01</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/02.html"><strong aria-hidden="true">4.2.</strong> 02</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/03.html"><strong aria-hidden="true">4.3.</strong> 03</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/04.html"><strong aria-hidden="true">4.4.</strong> 04</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/05.html"><strong aria-hidden="true">4.5.</strong> 05</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/06.html"><strong aria-hidden="true">4.6.</strong> 06</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/07.html"><strong aria-hidden="true">4.7.</strong> 07</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/08.html"><strong aria-hidden="true">4.8.</strong> 08</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/09.html"><strong aria-hidden="true">4.9.</strong> 09</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/10.html"><strong aria-hidden="true">4.10.</strong> 10</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/11.html"><strong aria-hidden="true">4.11.</strong> 11</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/12.html"><strong aria-hidden="true">4.12.</strong> 12</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/13.html"><strong aria-hidden="true">4.13.</strong> 13</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/14.html"><strong aria-hidden="true">4.14.</strong> 14</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/15.html"><strong aria-hidden="true">4.15.</strong> 15</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/16.html"><strong aria-hidden="true">4.16.</strong> 16</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Personal Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="structure-of-the-camera-device-driver"><a class="header" href="#structure-of-the-camera-device-driver">Structure of the camera device driver</a></h1>
+<p>The camera device driver is very similar to a char device driver </p>
+<p>The key components that make up the camera device driver are </p>
+<ol>
+<li>Driver structure </li>
+<li>Device structure</li>
+<li>Initialization and Exit Functions</li>
+<li>Device operations structure</li>
+<li>Device operations functions </li>
+</ol>
+<h3 id="driver-structure"><a class="header" href="#driver-structure">Driver structure</a></h3>
+<p>Driver structure stores info, data and functions related to the the driver.<br />
+Every driver has this structure.</p>
+<p>For example:</p>
+<pre><code class="language-c">static struct i2c_driver ov5640_i2c_driver = {
+	.driver = {
+		.name  = &quot;ov5640&quot;,
+		.of_match_table	= ov5640_dt_ids,
+	},
+	.id_table = ov5640_id,
+	.probe    = ov5640_probe,
+	.remove   = ov5640_remove,
+};
+</code></pre>
+<p>Explanation :</p>
+<ol>
+<li>The structure is of type <code>struct i2c_driver</code></li>
+<li><code>.name</code> - Denotes the name of the i2c device.</li>
+<li><code>.of_match_table</code> - Link to the Device Tree compatible property.(Used to match with the compatible property in the Device Tree)</li>
+<li><code>.id_table</code> - Link to the ID table property (used to Initialize the device driver before Device Trees)</li>
+<li><code>.probe</code> - Function which executes when the kernel module initializes.</li>
+<li><code>.remove</code> - Function which executes when the kernel module exits.</li>
+</ol>
+<h3 id="device-structure"><a class="header" href="#device-structure">Device structure</a></h3>
+<p>Device structure stores all the info, data and functions which help manage the camera sensor device.</p>
+<pre><code class="language-c">struct ov5640_dev {
+	struct i2c_client *i2c_client;
+	struct v4l2_subdev sd;
+	struct media_pad pad;
+	struct v4l2_fwnode_endpoint ep; /* the parsed DT endpoint info */
+	struct clk *xclk; /* system clock to OV5640 */
+	u32 xclk_freq;
+
+	struct regulator_bulk_data supplies[OV5640_NUM_SUPPLIES];
+	struct gpio_desc *reset_gpio;
+	struct gpio_desc *pwdn_gpio;
+	bool   upside_down;
+
+	/* lock to protect all members below */
+	struct mutex lock;
+
+	int power_count;
+
+	struct v4l2_mbus_framefmt fmt;
+	bool pending_fmt_change;
+
+	const struct ov5640_mode_info *current_mode;
+	const struct ov5640_mode_info *last_mode;
+	enum ov5640_frame_rate current_fr;
+	struct v4l2_fract frame_interval;
+
+	struct ov5640_ctrls ctrls;
+
+	u32 prev_sysclk, prev_hts;
+	u32 ae_low, ae_high, ae_target;
+
+	bool pending_mode_change;
+	bool streaming;
+};
+</code></pre>
+<p>The key data structures are:</p>
+<ol>
+<li><code>struct i2c_client *i2c_client</code> - Used to store driver data related to the I2C device. (Since camera is an I2C device driver it is used to store all data related to I2C device driver) </li>
+<li><code>struct v4l2_subdev sd</code> - Used to store driver data related to the V4L2 device. (This driver is also an instance of V4L2 sub device)</li>
+<li><code>struct media_pad pad</code> - Used to store driver data related to the Media subsystem. (This driver is also an instance of a media device)</li>
+</ol>
+<h3 id="initialization-and-exit-functions"><a class="header" href="#initialization-and-exit-functions">Initialization and Exit Functions</a></h3>
+<p>The probe and remove functions are the Initialization and Exit Functions.</p>
+<h4 id="role-of-initialization-function"><a class="header" href="#role-of-initialization-function">Role of Initialization function</a></h4>
+<p>The role is to </p>
+<ol>
+<li>Initialize the data structures</li>
+<li>Initialize device operations</li>
+<li>Register the device driver module with the kernel.</li>
+</ol>
+<h4 id="role-of-exit-function"><a class="header" href="#role-of-exit-function">Role of Exit function</a></h4>
+<p>The role is to </p>
+<ol>
+<li>Terminate the data structures</li>
+<li>Terminate all device operations </li>
+<li>Un-register the device driver module with the kernel.</li>
+</ol>
+<h3 id="device-operations-structure"><a class="header" href="#device-operations-structure">Device operations structure</a></h3>
+<p>Device operation structure contains function pointers to store all possible operations(functions) that can be done on the device.</p>
+<pre><code class="language-c">static const struct v4l2_subdev_ops imx274_subdev_ops = {
+	.pad = &amp;imx274_pad_ops,
+	.video = &amp;imx274_video_ops,
+};
+</code></pre>
+<h3 id="device-operation-functions"><a class="header" href="#device-operation-functions">Device operation functions</a></h3>
+<p>All the <code>functions</code> inside the camera driver are <strong>device operation functions</strong> or <em>helper functions</em> which help the device operation functions.</p>
+<p>All these functions are responsible for performing specific operations on the demand of the user.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../kernel/camera-driver/10.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../kernel/camera-driver/12.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../kernel/camera-driver/10.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../kernel/camera-driver/12.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
