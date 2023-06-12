@@ -32,3 +32,24 @@
     -   [Iterators](programming/rust/Rust-iterators.md)
 
 
+# Libraries 
+
+-   [OpenCV](libraries/opencv/README.md)
+    -   [01](libraries/opencv/01.md)
+    -   [02](libraries/opencv/02.md)
+    -   [03](libraries/opencv/03.md)
+    -   [04](libraries/opencv/04.md)
+    -   [05](libraries/opencv/05.md)
+    -   [06](libraries/opencv/06.md)
+    -   [07](libraries/opencv/07.md)
+    -   [08](libraries/opencv/08.md)
+    -   [09](libraries/opencv/09.md)
+    -   [10](libraries/opencv/10.md)
+    -   [11](libraries/opencv/11.md)
+    -   [12](libraries/opencv/12.md)
+    -   [13](libraries/opencv/13.md)
+    -   [14](libraries/opencv/14.md)
+    -   [15](libraries/opencv/15.md)
+    -   [16](libraries/opencv/16.md)
+
+
