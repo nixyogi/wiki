@@ -1034,12 +1034,27 @@ as pseudo-syscalls. </li>
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-reproduce-bugs-from-syzkaller"><a class="header" href="#how-to-reproduce-bugs-from-syzkaller">How to reproduce bugs from syzkaller</a></h1>
+<h2 id="case-1-if-you-have-a-c-reproducer"><a class="header" href="#case-1-if-you-have-a-c-reproducer">Case 1: If you have a C reproducer</a></h2>
 <ol>
 <li>
-<p>Navigate to the syzkaller bug link and download </p>
+<p>Navigate to the syzkaller bug link </p>
+<ol>
+<li>
+<p>If the bug is found in the upstream kernel </p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images2.png" alt="download-images" /> </p>
+<p>then download the kernel-image from the link using <code>wget</code> </p>
+</li>
+<li>
+<p>If the bug is found not on the upstream kernel, then it is best 
+to download the <code>.config</code> file and build the latest upstream kernel </p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images3.png" alt="download-images" /> </p>
+</li>
+</ol>
+</li>
+<li>
+<p>Now that the kernel is downloaded and ready, download these artifacts too. </p>
 <ul>
 <li>disk image </li>
-<li>kernel image </li>
 <li>C repro, save as <code>.c</code> file </li>
 </ul>
 <p><img src="kernel/debugging/assets/syzkaller-download-images.png" alt="download-images" /> </p>
@@ -1055,18 +1070,7 @@ $ xz --decompress &lt;kernel-image&gt;
 <pre><code class="language-sh">$ export KERNEL_IMG=&lt;full-path-to-kernel-image&gt;
 $ export RFS_IMG=&lt;full-path-to-disk-image&gt;
 
-$ qemu-system-x86_64 \
-    -m 2G \ 
-    -smp 2 \
-    -kernel ${KERNEL_IMG} \
-    -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0&quot; \
-    -drive file=${RFS_IMG},format=raw \
-    -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
-    -net nic,model=e1000 \
-    -enable-kvm \
-    -nographic \
-    -pidfile vm.pid \
-    2&gt;&amp;1 | tee vm.log
+$ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0&quot; -drive file=${RFS_IMG},format=raw -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 -net nic,model=e1000 -enable-kvm -nographic -pidfile vm.pid 2&gt;&amp;1 | tee vm.log
 </code></pre>
 </li>
 <li>
@@ -1092,6 +1096,71 @@ $ qemu-system-x86_64 \
 </li>
 <li>
 <p>If there is no panic then the bug has been fixed. </p>
+</li>
+</ol>
+<h3 id="case-2-if-you-have-a-syz-reproducer"><a class="header" href="#case-2-if-you-have-a-syz-reproducer">Case 2: If you have a Syz reproducer</a></h3>
+<ol>
+<li>
+<p>Navigate to the syzkaller bug link </p>
+<ol>
+<li>
+<p>If the bug is found in the upstream kernel </p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images2.png" alt="download-images" /> </p>
+<p>then download the kernel-image from the link using <code>wget</code> </p>
+</li>
+<li>
+<p>If the bug is found not on the upstream kernel, then it is best 
+to download the <code>.config</code> file and build the latest upstream kernel </p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images3.png" alt="download-images" /> </p>
+</li>
+</ol>
+</li>
+<li>
+<p>Now that the kernel is downloaded and ready, download these artifacts too. </p>
+<ul>
+<li>
+<p>disk image </p>
+</li>
+<li>
+<p>syz repro, save as <code>.txt</code> file </p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images4.png" alt="download-images" /> </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Extract the disk image and kernel image </p>
+<pre><code class="language-sh">$ xz --decompress &lt;disk-image&gt; 
+$ xz --decompress &lt;kernel-image&gt; 
+</code></pre>
+</li>
+<li>
+<p>Start VM, by running commands </p>
+<pre><code class="language-sh">$ export KERNEL_IMG=&lt;full-path-to-kernel-image&gt;
+$ export RFS_IMG=&lt;full-path-to-disk-image&gt;
+
+$ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0&quot; -drive file=${RFS_IMG},format=raw -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 -net nic,model=e1000 -enable-kvm -nographic -pidfile vm.pid 2&gt;&amp;1 | tee vm.log
+</code></pre>
+</li>
+<li>
+<p>Copy the files <code>syz-executor</code> <code>syz-execprog</code> and <code>syz.txt</code> into vm </p>
+<pre><code class="language-sh">$ scp -P 10021 -r &lt;path-to-syzkaller&gt;/syzkaller/bin/linux_amd64/syz-executor &lt;path-to-syzkaller&gt;/syzkaller/bin/linux_amd64/syz-execprog ./syz.txt root@localhost:~/ 
+</code></pre>
+<p><strong>Note</strong>: files <code>syz-executor</code> and <code>syz-execprog</code> are part of syzkaller, 
+for this you have to compile the syzkaller on your machine. For instructions 
+on compiling syzkaller see <a href="https://github.com/google/syzkaller/blob/master/docs/linux/setup.md">link</a></p>
+</li>
+<li>
+<p>SSH into the VM and run the command </p>
+<pre><code class="language-sh">$ ssh root@localhost -p 10021 
+# ./syz-execprog -executor=./syz-executor -repeat=0 -procs=12 -cover=0 ./syz.txt 
+</code></pre>
+</li>
+<li>
+<p>If the bug is not fixed then it will give a kernel panic. </p>
+<p><img src="kernel/debugging/assets/syzkaller-panic.png" alt="syzkaller-panic" /> </p>
+</li>
+<li>
+<p>If there is no panic then the bug probably has been fixed. </p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="event-tracing"><a class="header" href="#event-tracing">Event Tracing</a></h1>
