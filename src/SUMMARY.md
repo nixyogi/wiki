@@ -15,24 +15,17 @@
     -   [Event tracing](kernel/debugging/Event-Tracing.md)
 
 -   [Camera Driver](kernel/camera-driver/README.md)
-    -   Capture Images from Userspace
         -   [Introduction to Gstreamer](kernel/camera-driver/03.md)
-    -   Working of the Camera
         -   [Color Formats RGB vs YUV](kernel/camera-driver/04.md)
         -   [Internal Working of the camera Sensor](kernel/camera-driver/05.md)
         -   [Image Processing Pipeline](kernel/camera-driver/06.md)
-    -   Understanding camera sensors
-        -   [Introduction to MIPI/CSI ports](kernel/camera-driver/15.md)
-        -   [Study of camera sensors](kernel/camera-driver/16.md)
-    -   Basics of device drivers
-        -   [Introduction to Device Drivers](kernel/camera-driver/01.md)
-        -   [Hello World Device Driver](kernel/camera-driver/09.md)
-        -   [Introduction to Char driver](kernel/camera-driver/10.md)
+    -   [Introduction to MIPI/CSI ports](kernel/camera-driver/15.md)
+    -   [Study of camera sensors](kernel/camera-driver/16.md)
+    -   [Introduction to Device Drivers](kernel/camera-driver/01.md)
+    -   [Hello World Device Driver](kernel/camera-driver/09.md)
+    -   [Introduction to Char driver](kernel/camera-driver/10.md)
     -   [Camera driver Architecture](kernel/camera-driver/02.md)
     -   [Structure of the camera device driver](kernel/camera-driver/11.md)
-        -   Internal structures
-        -   Internal operations
-        -   Cam driver entry and exit points
     -   [Introduction to Device Trees](kernel/camera-driver/07.md)
     -   [Write Device Tree for the camera module](kernel/camera-driver/12.md)
     -   [Camera driver power and startup block](kernel/camera-driver/13.md)
