@@ -59,7 +59,7 @@ Finally the issue was traced back to incorrect dts entry for clock.
 
 Fixing it dts entry and repeating the steps shows the correct operation of SDIO card. 
 
-[FinalOutput](assets/kernel-event-tracing2.png)
+![FinalOutput](assets/kernel-event-tracing2.png)
 
 ## Conclusion 
 
