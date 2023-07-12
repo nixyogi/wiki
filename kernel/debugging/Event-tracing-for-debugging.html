@@ -216,7 +216,7 @@ problem was that the driver despite loading did not detect RTL8821CS on SDIO. </
 <p>showed that the SDIO driver was stuck because external clock was not ready. </p>
 <p>Finally the issue was traced back to incorrect dts entry for clock. </p>
 <p>Fixing it dts entry and repeating the steps shows the correct operation of SDIO card. </p>
-<p><a href="assets/kernel-event-tracing2.png">FinalOutput</a></p>
+<p><img src="assets/kernel-event-tracing2.png" alt="FinalOutput" /></p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>Event tracing can be a great tool for debugging, it helps identify why the driver fails 
 whithout having to modify the driver code. </p>
