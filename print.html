@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Personal Wiki</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="Site for Personal wiki">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -25,26 +25,40 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -58,79 +72,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = null;
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="kernel/debugging/index.html"><strong aria-hidden="true">1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kernel/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.</strong> Understanding Kernel Oops</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">1.2.</strong> Tools & Techniques to Debug a LinuxSystem</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.3.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.4.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="kernel/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.5.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Reproducing-bugs-from-syzkaller.html"><strong aria-hidden="true">1.6.</strong> Reproducing bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Solving-syzkaller-bugs.html"><strong aria-hidden="true">1.7.</strong> Solving bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Event-Tracing.html"><strong aria-hidden="true">1.8.</strong> Event tracing</a></li><li class="chapter-item expanded "><a href="kernel/debugging/Event-tracing-for-debugging.html"><strong aria-hidden="true">1.9.</strong> Event tracing for Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="kernel/camera-driver/index.html"><strong aria-hidden="true">2.</strong> Camera Driver</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kernel/camera-driver/03.html"><strong aria-hidden="true">2.1.</strong> Introduction to Gstreamer</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/04.html"><strong aria-hidden="true">2.2.</strong> Color Formats RGB vs YUV</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/05.html"><strong aria-hidden="true">2.3.</strong> Internal Working of the camera Sensor</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/06.html"><strong aria-hidden="true">2.4.</strong> Image Processing Pipeline</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/15.html"><strong aria-hidden="true">2.5.</strong> Introduction to MIPI/CSI ports</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/16.html"><strong aria-hidden="true">2.6.</strong> Study of camera sensors</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/01.html"><strong aria-hidden="true">2.7.</strong> Introduction to Device Drivers</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/09.html"><strong aria-hidden="true">2.8.</strong> Hello World Device Driver</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/10.html"><strong aria-hidden="true">2.9.</strong> Introduction to Char driver</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/02.html"><strong aria-hidden="true">2.10.</strong> Camera driver Architecture</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/11.html"><strong aria-hidden="true">2.11.</strong> Structure of the camera device driver</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/07.html"><strong aria-hidden="true">2.12.</strong> Introduction to Device Trees</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/12.html"><strong aria-hidden="true">2.13.</strong> Write Device Tree for the camera module</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/13.html"><strong aria-hidden="true">2.14.</strong> Camera driver power and startup block</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/14.html"><strong aria-hidden="true">2.15.</strong> Camera driver Initialization</a></li><li class="chapter-item expanded "><a href="kernel/camera-driver/17.html"><strong aria-hidden="true">2.16.</strong> Combining all blocks</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Programming</li><li class="chapter-item expanded "><a href="programming/rust/index.html"><strong aria-hidden="true">3.</strong> Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="programming/rust/Rust-Data-Types.html"><strong aria-hidden="true">3.1.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Variables-and-Immutability.html"><strong aria-hidden="true">3.2.</strong> Variables & Imutability</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Functions.html"><strong aria-hidden="true">3.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Closures.html"><strong aria-hidden="true">3.4.</strong> Closures</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Strings.html"><strong aria-hidden="true">3.5.</strong> Strings</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Decision-Making.html"><strong aria-hidden="true">3.6.</strong> Decision Making</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Loops.html"><strong aria-hidden="true">3.7.</strong> Loops</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Struct.html"><strong aria-hidden="true">3.8.</strong> Struct</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Enums.html"><strong aria-hidden="true">3.9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Function-on-Types.html"><strong aria-hidden="true">3.10.</strong> Impl</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Collections.html"><strong aria-hidden="true">3.11.</strong> Collections</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Modules-imports-use-statements.html"><strong aria-hidden="true">3.12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-Slices.html"><strong aria-hidden="true">3.13.</strong> Slices</a></li><li class="chapter-item expanded "><a href="programming/rust/Rust-iterators.html"><strong aria-hidden="true">3.14.</strong> Iterators</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Libraries</li><li class="chapter-item expanded "><a href="libraries/opencv/index.html"><strong aria-hidden="true">4.</strong> OpenCV</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="libraries/opencv/01.html"><strong aria-hidden="true">4.1.</strong> Understanding Types of Digital Image representation in computers</a></li><li class="chapter-item expanded "><a href="libraries/opencv/02.html"><strong aria-hidden="true">4.2.</strong> CMOS Camera Sensor and its performance parameters</a></li><li class="chapter-item expanded "><a href="libraries/opencv/03.html"><strong aria-hidden="true">4.3.</strong> Basics of Photography</a></li><li class="chapter-item expanded "><a href="libraries/opencv/04.html"><strong aria-hidden="true">4.4.</strong> OpenCV - Basics</a></li><li class="chapter-item expanded "><a href="libraries/opencv/05.html"><strong aria-hidden="true">4.5.</strong> Reading/Writing an Image</a></li><li class="chapter-item expanded "><a href="libraries/opencv/06.html"><strong aria-hidden="true">4.6.</strong> Image Processing - Accessing Pixels, Transform Color Spaces</a></li><li class="chapter-item expanded "><a href="libraries/opencv/15.html"><strong aria-hidden="true">4.7.</strong> Image Processing - Image Transforms</a></li><li class="chapter-item expanded "><a href="libraries/opencv/07.html"><strong aria-hidden="true">4.8.</strong> Image Processing - Scaling and Cropping</a></li><li class="chapter-item expanded "><a href="libraries/opencv/08.html"><strong aria-hidden="true">4.9.</strong> Image Processing - Filtering Images</a></li><li class="chapter-item expanded "><a href="libraries/opencv/09.html"><strong aria-hidden="true">4.10.</strong> Image Processing - Histograms</a></li><li class="chapter-item expanded "><a href="libraries/opencv/10.html"><strong aria-hidden="true">4.11.</strong> Contour detection</a></li><li class="chapter-item expanded "><a href="libraries/opencv/11.html"><strong aria-hidden="true">4.12.</strong> Thresholding</a></li><li class="chapter-item expanded "><a href="libraries/opencv/12.html"><strong aria-hidden="true">4.13.</strong> Features detection, extraction and matching</a></li><li class="chapter-item expanded "><a href="libraries/opencv/13.html"><strong aria-hidden="true">4.14.</strong> Object Detection</a></li><li class="chapter-item expanded "><a href="libraries/opencv/14.html"><strong aria-hidden="true">4.15.</strong> Motion and Tracking</a></li><li class="chapter-item expanded "><a href="libraries/opencv/16.html"><strong aria-hidden="true">4.16.</strong> Detecting Depth</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
-
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -173,19 +173,19 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="understanding-linux-kernel-oops"><a class="header" href="#understanding-linux-kernel-oops">Understanding Linux kernel Oops</a></h1>
 <p>Kernel panic is when there is a fatal error from which the kernel cannot recover.
 So it forces the system into controlled system hang/reboot.</p>
-<p>There are 2 types of panics </p>
+<p>There are 2 types of panics</p>
 <ol>
 <li>Hard panics (Aiee!)</li>
 <li>Soft panics (Oops!)</li>
 </ol>
 <h2 id="oops"><a class="header" href="#oops">Oops</a></h2>
-<p>On faulty code execution or when an exception occurs kernel throws Oops. </p>
-<p>When Oops occurs it dumps the message on the console. Message contains the 
-CPU registers &amp; the processor status of when the Oops occured. </p>
+<p>On faulty code execution or when an exception occurs kernel throws Oops.</p>
+<p>When Oops occurs it dumps the message on the console. Message contains the
+CPU registers &amp; the processor status of when the Oops occured.</p>
 <p>The process that triggered the Oops gets killed ungracefully. There is a chance
 that the system may not resume from the Oops.</p>
 <h2 id="understanding-oops-dump"><a class="header" href="#understanding-oops-dump">Understanding Oops Dump</a></h2>
-<p>We will be using the sample Oops dump below, this oops is generated from 
+<p>We will be using the sample Oops dump below, this oops is generated from
 the kernel panic module from the Task of the mentorship.</p>
 <pre><code>[   96.106469] panic_msg: loading out-of-tree module taints kernel.
 [   96.106525] panic_msg: module verification failed: signature and/or required key missing - tainting kernel
@@ -245,13 +245,13 @@ the kernel panic module from the Task of the mentorship.</p>
 <p><code>BUG: kernel NULL pointer dereference, address: 0000000000000001</code></p>
 <ul>
 <li>This indicates why the kernel crashed i.e it was because of NULL pointer
-dereference. </li>
+dereference.</li>
 </ul>
 </li>
 <li>
 <p><code>IP:</code></p>
 <ul>
-<li>IP shows the address of the instruction pointer. 
+<li>IP shows the address of the instruction pointer.
 The above dump does not have IP. So in some cases IP maybe missing.</li>
 </ul>
 </li>
@@ -259,13 +259,13 @@ The above dump does not have IP. So in some cases IP maybe missing.</li>
 <p><code>Oops: 0000 [#1] SMP NOPTI</code></p>
 <ul>
 <li>
-<p><code>0000</code> - is the error code value in Hex , where </p>
+<p><code>0000</code> - is the error code value in Hex , where</p>
 <ol>
-<li>bit 0 - 0 means no page found, 1 means protection fault </li>
+<li>bit 0 - 0 means no page found, 1 means protection fault</li>
 <li>bit 1 - 0 means read, 1 means write</li>
 <li>bit 2 - 0 means kernelspace, 1 means userspace</li>
 </ol>
-<p>The above code denotes that while reading there was no page found in 
+<p>The above code denotes that while reading there was no page found in
 kerenelspace i.e NULL pointer dereference.</p>
 </li>
 <li>
@@ -294,15 +294,15 @@ effect. 1 Oops occured.</p>
 <li>W — Taint on warning.</li>
 </ol>
 <p>Ref: https://github.com/torvalds/linux/blob/master/kernel/panic.c</p>
-<p>This shows that the proprietary module has been loaded. </p>
+<p>This shows that the proprietary module has been loaded.</p>
 </li>
 </ul>
 </li>
 <li>
 <p><code>RIP: 0010:panic_module_init+0x15/0x1000 [panic_msg]</code></p>
 <ul>
-<li><code>RIP</code> - CPU register containing addr of the instruction getting executed. </li>
-<li><code>0010</code> - Code segment register value. </li>
+<li><code>RIP</code> - CPU register containing addr of the instruction getting executed.</li>
+<li><code>0010</code> - Code segment register value.</li>
 <li><code>panic_module_init+0x15/0x1000</code> - <symbol> + offset/ length</li>
 </ul>
 </li>
@@ -320,42 +320,42 @@ CR2: ffffffffc1470feb CR3: 000000023ecac000 CR4: 0000000000350ee0
 </code></pre>
 </li>
 <li>
-<p><code>Stack:</code> - This is the stack trace. </p>
+<p><code>Stack:</code> - This is the stack trace.</p>
 <ul>
-<li>But as you can see it is missing from the dump. This might be because 
-the kernel is not configured correctly, but I am currently unable 
+<li>But as you can see it is missing from the dump. This might be because
+the kernel is not configured correctly, but I am currently unable
 to get the exact config which enables stack.</li>
 </ul>
 </li>
 <li>
 <p><code>Code: 5b 41 5c c3 66 0f 1f 84 00 00 00 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 &lt;48&gt; 3d 01 f0 ff  ff 73 01 c3 48 8b 0d c3 a3 0f 00 f7 d8 64 89 01 48</code></p>
 <ul>
-<li>This is a hex-dump of the section of machine code that was being run 
+<li>This is a hex-dump of the section of machine code that was being run
 at the time the Oops occurred.</li>
 </ul>
 </li>
 </ol>
 <h2 id="debugging-the-oops"><a class="header" href="#debugging-the-oops">Debugging the Oops</a></h2>
-<p>The aim here is to find out the Address where the Oops occured, so that 
+<p>The aim here is to find out the Address where the Oops occured, so that
 we can use GDB to get the exact line of the code where the kernel Oops occured.</p>
 <h3 id="method-1-using-the-oops-dump--gdb"><a class="header" href="#method-1-using-the-oops-dump--gdb">Method 1: Using the Oops dump + GDB</a></h3>
 <h4 id="logic-behind-this-method"><a class="header" href="#logic-behind-this-method">Logic behind this method</a></h4>
 <ol>
 <li>RIP/PC - Instruction pointer or Program counter will give the instruction address
-and offset. Addresss + offset = Instruction Addr where Oops occured. </li>
+and offset. Addresss + offset = Instruction Addr where Oops occured.</li>
 <li>Use GDB to dissassemble the function (this we get in the RIP line of Oops dump)</li>
 <li>Once we get the address then use GDB <code>list</code> to get to the line of the code.</li>
 </ol>
 <h4 id="steps"><a class="header" href="#steps">Steps:</a></h4>
 <ol>
-<li>Load the module in GDB </li>
-<li>Add the symbol-file in GDB </li>
-<li>Disassemble the function mentioned in the <code>RIP</code> section in the above dump. </li>
+<li>Load the module in GDB</li>
+<li>Add the symbol-file in GDB</li>
+<li>Disassemble the function mentioned in the <code>RIP</code> section in the above dump.</li>
 <li>To get the exact line we use (RIP instruction addr + offset)</li>
-<li>Then we run list *(RIP instruction addr + offest) to give the offending code. </li>
+<li>Then we run list *(RIP instruction addr + offest) to give the offending code.</li>
 </ol>
 <p>Honestly this method seems to be a bit complex, a simpler way would be to use
-<code>addr2line</code> to convert the address to line. For more see the video </p>
+<code>addr2line</code> to convert the address to line. For more see the video</p>
 <ul>
 <li>https://youtu.be/X5uygywNcPI?t=1159</li>
 </ul>
@@ -365,15 +365,15 @@ and offset. Addresss + offset = Instruction Addr where Oops occured. </li>
 <ol>
 <li>Using the function name from the Oops dump, get the symbol address from the
 System.map. we call it Fun_Addr</li>
-<li>Get the exact instruction address by Fun_Addr + Offset (from oops dump) </li>
+<li>Get the exact instruction address by Fun_Addr + Offset (from oops dump)</li>
 <li>Dissassemble the function to get to the exact instruction where it failed.</li>
 <li>To get to the line number use GDB <code>list</code> &amp; pass it Fun_Addr + Offset.</li>
 </ol>
 <h4 id="steps-1"><a class="header" href="#steps-1">Steps</a></h4>
 <ol>
 <li>Identify the PC/RIP (Addr &amp; offset) from the Oops dump.</li>
-<li>Identify the function where the Oops occured from the Oops dump. </li>
-<li>Get the exact instruction address by Fun_Addr + Offset (from oops dump) </li>
+<li>Identify the function where the Oops occured from the Oops dump.</li>
+<li>Get the exact instruction address by Fun_Addr + Offset (from oops dump)</li>
 <li>Dissassemble the function to get to the exact instruction where it failed.</li>
 <li>To get to the line number use GDB <code>list</code> &amp; pass it Fun_Addr + Offset.</li>
 </ol>
@@ -406,7 +406,7 @@ Ref: https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/</p>
 <li>Test it. If fixed, celebrate! If not, go back to step 1.</li>
 </ol>
 <h2 id="types-of-problems-in-software"><a class="header" href="#types-of-problems-in-software">Types of problems in Software</a></h2>
-<p>We can classify them into 5 major categories </p>
+<p>We can classify them into 5 major categories</p>
 <ol>
 <li>Crash. - Fatal exceptions</li>
 <li>Lockup/Hang. - Race conditions, Deadlocks</li>
@@ -423,8 +423,8 @@ Ref: https://sanjeev1sharma.wordpress.com/tag/debug-kernel-panics/</p>
 <li>Debugging frameworks (eg: Valgrind).</li>
 </ol>
 <h2 id="post-mortem-analysis"><a class="header" href="#post-mortem-analysis">Post mortem analysis</a></h2>
-<p>This type of analysis is done using the information exported by the system i.e 
-logs, memory dumps etc. </p>
+<p>This type of analysis is done using the information exported by the system i.e
+logs, memory dumps etc.</p>
 <h3 id="for-kernel-crashes"><a class="header" href="#for-kernel-crashes">For Kernel Crashes</a></h3>
 <h4 id="method1-addr2line"><a class="header" href="#method1-addr2line">Method1: addr2line</a></h4>
 <ol>
@@ -437,18 +437,18 @@ can be used to get the line where kernel crashed.</p>
 </code></pre>
 </li>
 <li>
-<p>You need the <code>vmlinux</code> file which is in ELF format with debug info </p>
+<p>You need the <code>vmlinux</code> file which is in ELF format with debug info</p>
 <pre><code>file vmlinux
 vmlinux: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, BuildID[sha1]
 ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
 </code></pre>
 </li>
 <li>
-<p>Run the addr2line command with these inputs </p>
+<p>Run the addr2line command with these inputs</p>
 <pre><code class="language-sh">addr2line -f -p -e vmlinux 0xc06a21cc
 </code></pre>
-<p>This will give you the line number where the kernel crashed. </p>
-<p>for eg: </p>
+<p>This will give you the line number where the kernel crashed.</p>
+<p>for eg:</p>
 <p>storage_probe at /opt/labs/ex/linux/drivers/usb/storage/usb.c:1118</p>
 </li>
 </ol>
@@ -463,14 +463,14 @@ ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
 <p>i.e <code>storage_probe+0x60</code></p>
 </li>
 <li>
-<p>You need the <code>vmlinux</code> file which is in ELF format with debug info </p>
+<p>You need the <code>vmlinux</code> file which is in ELF format with debug info</p>
 <pre><code>file vmlinux
 vmlinux: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, BuildID[sha1]
 ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
 </code></pre>
 </li>
 <li>
-<p>Run gdb on the vmlinux file, inside gdb run the command </p>
+<p>Run gdb on the vmlinux file, inside gdb run the command</p>
 <pre><code>(gdb) list *(storage_probe+0x60)
 </code></pre>
 <p>This will show you the line where the kernel crashed.</p>
@@ -487,7 +487,7 @@ occurred.</p>
 </li>
 <li>
 <p>Run the program untill it crashes, the crash will generate a file called
-<code>core</code> which contains the core dump. </p>
+<code>core</code> which contains the core dump.</p>
 </li>
 <li>
 <p>Run the gdb on the core file and the program with debug symbols</p>
@@ -497,15 +497,15 @@ occurred.</p>
 <li>
 <p>In gdb run the command <code>list</code> to go to the line where the program crashed.</p>
 <ul>
-<li><code>p</code> to print the specific variables. </li>
+<li><code>p</code> to print the specific variables.</li>
 </ul>
 </li>
 </ol>
 <h2 id="tracing"><a class="header" href="#tracing">Tracing</a></h2>
 <p>Tracing is a special form of logging, where data about the state and execution of
 a program (or the kernel) is collected and stored for runtime (or later) analysis.</p>
-<p>Using print() or printk() statements to log the state and variables is also a 
-form of tracing. </p>
+<p>Using print() or printk() statements to log the state and variables is also a
+form of tracing.</p>
 <h3 id="for-kernel-crashes-1"><a class="header" href="#for-kernel-crashes-1">For kernel crashes</a></h3>
 <ol>
 <li>
@@ -527,7 +527,7 @@ CONFIG_TIMERLAT_TRACER=y
 </code></pre>
 </li>
 <li>
-<p>Mount the tracefs into the fs </p>
+<p>Mount the tracefs into the fs</p>
 <pre><code class="language-sh">mount -t tracefs tracefs /sys/kernel/tracing/
 </code></pre>
 </li>
@@ -537,35 +537,35 @@ CONFIG_TIMERLAT_TRACER=y
 </code></pre>
 </li>
 <li>
-<p>Generate the report of the tracing </p>
+<p>Generate the report of the tracing</p>
 <pre><code>trace-cmd report &gt; trace.log
 </code></pre>
 </li>
 <li>
-<p>Examine the trace.log to see the traces of the function. </p>
+<p>Examine the trace.log to see the traces of the function.</p>
 </li>
 </ol>
-<p><strong>Note</strong>: This is dynamic tracing i.e the tracing is enabled at runtime as long 
-as the kernel is compiled with the correct configuration. </p>
+<p><strong>Note</strong>: This is dynamic tracing i.e the tracing is enabled at runtime as long
+as the kernel is compiled with the correct configuration.</p>
 <h3 id="for-userspace-crashes-1"><a class="header" href="#for-userspace-crashes-1">For userspace crashes</a></h3>
 <h4 id="method-1-strace"><a class="header" href="#method-1-strace">Method 1: strace</a></h4>
 <p>Using strace we can trace all the system calls the program is running to debug
 the program.</p>
-<p>Run a userspace program with strace </p>
+<p>Run a userspace program with strace</p>
 <pre><code># strace &lt;program&gt;
 </code></pre>
 <h4 id="method-2-uprobe"><a class="header" href="#method-2-uprobe">Method 2: Uprobe</a></h4>
-<p>This is used to trace the functions in the program. </p>
+<p>This is used to trace the functions in the program.</p>
 <ol>
 <li>
-<p>Kernel needs to be configured with the below options </p>
+<p>Kernel needs to be configured with the below options</p>
 <pre><code>zcat /proc/config.gz | grep CONFIG_UPROBE
 CONFIG_UPROBES=y
 CONFIG_UPROBE_EVENTS=y
 </code></pre>
 </li>
 <li>
-<p>Add the tracepoints to all the functions </p>
+<p>Add the tracepoints to all the functions</p>
 <pre><code class="language-sh"># for f in `perf probe -F -x &lt;program&gt;`; \
     do perf probe -q -x &lt;program&gt; $f; done
 </code></pre>
@@ -576,7 +576,7 @@ CONFIG_UPROBE_EVENTS=y
 </code></pre>
 </li>
 <li>
-<p>Run the application and capture the tracepoints. </p>
+<p>Run the application and capture the tracepoints.</p>
 <pre><code># perf record -e &lt;tracepoint_name&gt;:* -aR -- &lt;program&gt; &lt;args&gt;
 </code></pre>
 </li>
@@ -590,24 +590,24 @@ CONFIG_UPROBE_EVENTS=y
 <p>An interactive debugging tool allows us to interact with the application at runtime.
 It can execute the code step-by-step, set breakpoints,
 display information (variables, stack, etc), list function call history (backtrace), etc.</p>
-<p>GDB is the go to tool for Interactive debugging. </p>
+<p>GDB is the go to tool for Interactive debugging.</p>
 <h3 id="for-kernel-space"><a class="header" href="#for-kernel-space">For kernel space</a></h3>
 <p><strong>Note</strong>: If running on embedded, you need a gdbserver running on the target device
-and a gdb client on the host device. </p>
+and a gdb client on the host device.</p>
 <ol>
 <li>
-<p>Enable KGDB in the kernel </p>
+<p>Enable KGDB in the kernel</p>
 <pre><code># zcat /proc/config.gz | grep ^CONFIG_KGDB
 CONFIG_KGDB=y
 CONFIG_KGDB_HONOUR_BLOCKLIST=y
 CONFIG_KGDB_SERIAL_CONSOLE=y
 </code></pre>
-<p>KGDB has registered serial console as the port for communication. But we 
-can use kgdb/agent-proxy to forward text console over IP. </p>
+<p>KGDB has registered serial console as the port for communication. But we
+can use kgdb/agent-proxy to forward text console over IP.</p>
 <p>Details on how to connect can be found here - https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy/+/refs/heads/master/README.TXT</p>
 </li>
 <li>
-<p>On target machine, Put the kernel in debugging mode </p>
+<p>On target machine, Put the kernel in debugging mode</p>
 <pre><code class="language-sh"># Enable the serial port for kgdb communication
 # echo ttymxc0 &gt; /sys/module/kgdboc/parameters/kgdboc
 # Put the kernel in debug mode
@@ -615,7 +615,7 @@ can use kgdb/agent-proxy to forward text console over IP. </p>
 </code></pre>
 </li>
 <li>
-<p>On host machine, run gdb with the kernel ELF </p>
+<p>On host machine, run gdb with the kernel ELF</p>
 <pre><code> gdb vmlinux -tui
 </code></pre>
 <ul>
@@ -629,12 +629,12 @@ can use kgdb/agent-proxy to forward text console over IP. </p>
 </li>
 <li>
 <p>This will connect and open up the gdb for debugging, now you can set breakpoints
-get backtraces using gdb commands. </p>
+get backtraces using gdb commands.</p>
 </li>
 </ol>
 <h3 id="for-userspace-crashes-2"><a class="header" href="#for-userspace-crashes-2">For userspace crashes</a></h3>
 <p><strong>Note</strong>: If running on embedded, you need a gdbserver running on the target device
-and a gdb client on the host device. </p>
+and a gdb client on the host device.</p>
 <ol>
 <li>
 <p>Start the gdbserver, on target device</p>
@@ -642,95 +642,95 @@ and a gdb client on the host device. </p>
 </code></pre>
 </li>
 <li>
-<p>On the host device, run gdb with the program in ELF format </p>
+<p>On the host device, run gdb with the program in ELF format</p>
 <pre><code>gdb &lt;program&gt; -tui
 </code></pre>
 </li>
 <li>
-<p>In gdb prompt, connect to the target device </p>
+<p>In gdb prompt, connect to the target device</p>
 <pre><code>(gdb) target remote &lt;IP&gt;:1234
 </code></pre>
 </li>
 <li>
-<p>Now we can set breakpoints and see the backtrace of the program running 
+<p>Now we can set breakpoints and see the backtrace of the program running
 on the target machine.</p>
 </li>
 </ol>
 <h2 id="debugging-frameworks"><a class="header" href="#debugging-frameworks">Debugging frameworks</a></h2>
-<p>Collection of tools when used to debug linux systems are called debugging frameworks. </p>
+<p>Collection of tools when used to debug linux systems are called debugging frameworks.</p>
 <p>Kernel has several debugging frameworks to identify memory leaks,
-lockups, etc (see the &quot;Kernel Hacking&quot; configuration menu)</p>
-<p>In user space, there is Valgrind for debugging memory leaks, race conditions 
+lockups, etc (see the "Kernel Hacking" configuration menu)</p>
+<p>In user space, there is Valgrind for debugging memory leaks, race conditions
 and profiling etc.</p>
 <h3 id="for-kernel-crashes-2"><a class="header" href="#for-kernel-crashes-2">For kernel crashes</a></h3>
 <ol>
 <li>
-<p>Enable the detections in the kernel configuration </p>
-<pre><code># zcat /proc/config.gz | grep &quot;CONFIG_SOFTLOCKUP_DETECTOR\|CONFIG_DETECT_HUNG_TASK&quot;
+<p>Enable the detections in the kernel configuration</p>
+<pre><code># zcat /proc/config.gz | grep "CONFIG_SOFTLOCKUP_DETECTOR\|CONFIG_DETECT_HUNG_TASK"
 CONFIG_SOFTLOCKUP_DETECTOR=y
 CONFIG_DETECT_HUNG_TASK=y
 </code></pre>
 </li>
 <li>
-<p>Once enabled, when something hangs for 30s or more, kernel will throw an 
-oops. </p>
+<p>Once enabled, when something hangs for 30s or more, kernel will throw an
+oops.</p>
 </li>
 <li>
-<p>After this we can use the steps in post mortem analysis to debug. </p>
+<p>After this we can use the steps in post mortem analysis to debug.</p>
 </li>
 </ol>
 <h3 id="for-userspace-crashes-3"><a class="header" href="#for-userspace-crashes-3">For userspace crashes</a></h3>
 <p>We use valgring to check for memory leaks, profiling , etc</p>
-<p>For eg: </p>
+<p>For eg:</p>
 <pre><code>valgrind --leak-check=full &lt;program&gt;
 </code></pre>
-<p>This will check for leaks etc.. </p>
+<p>This will check for leaks etc..</p>
 <h2 id="which-tool-to-use-while-debugging-"><a class="header" href="#which-tool-to-use-while-debugging-">Which tool to use while debugging ?</a></h2>
 <p>This depends on what type of problem you are debugging.</p>
 <p><img src="kernel/debugging/assets/which-tool-best-for-debugging.png" alt="summary2" /></p>
 <h4 id="references-1"><a class="header" href="#references-1">References</a></h4>
-<p>Ref: https://www.youtube.com/watch?v=Paf-1I7ZUTo </p>
+<p>Ref: https://www.youtube.com/watch?v=Paf-1I7ZUTo</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="dynamic-program-analysis"><a class="header" href="#dynamic-program-analysis">Dynamic Program analysis</a></h1>
 <h2 id="what-is-dynamic-program-analysis-"><a class="header" href="#what-is-dynamic-program-analysis-">What is Dynamic program analysis ?</a></h2>
-<p>It is analysis of the properties of a running program. The properties are </p>
+<p>It is analysis of the properties of a running program. The properties are</p>
 <ol>
-<li>Bugs </li>
-<li>performance </li>
+<li>Bugs</li>
+<li>performance</li>
 <li>code coverage</li>
-<li>data flow </li>
+<li>data flow</li>
 </ol>
-<p>These properties are valid for single execution </p>
+<p>These properties are valid for single execution</p>
 <h2 id="what-is-static-program-analysis-"><a class="header" href="#what-is-static-program-analysis-">What is static program analysis ?</a></h2>
-<p>It is analysis of properties of program code. 
-These properties are valid for all execution. </p>
+<p>It is analysis of properties of program code.
+These properties are valid for all execution.</p>
 <h2 id="why-dynamic-program-analysis-is-better-than-static-"><a class="header" href="#why-dynamic-program-analysis-is-better-than-static-">Why Dynamic program analysis is better than static ?</a></h2>
 <ol>
 <li>
 <p>Static program analysis is better for True positives, but it also generates
-alot of false positives. </p>
+alot of false positives.</p>
 </li>
 <li>
-<p>Dynamic program analysis is better to avoid false positives, hence the reports 
-are more true positives than static. </p>
+<p>Dynamic program analysis is better to avoid false positives, hence the reports
+are more true positives than static.</p>
 </li>
 </ol>
-<p>The problem with dynamic program analysis is that the coverage is not that good. </p>
+<p>The problem with dynamic program analysis is that the coverage is not that good.</p>
 <h2 id="diy-tools"><a class="header" href="#diy-tools">DIY Tools</a></h2>
-<p>Kernel provides some tools for dynamic program analysis, 
-Enable these configurations in the kernel config and kernel will analyse it for 
-us. If anything fails then we get a bug report in the console. </p>
+<p>Kernel provides some tools for dynamic program analysis,
+Enable these configurations in the kernel config and kernel will analyse it for
+us. If anything fails then we get a bug report in the console.</p>
 <ol>
-<li>CONFIG_DEBUG_LIST=y , adds debug checks for link listss </li>
-<li>CONFIG_FORTIFY_SOURCE=y, finds out of bounds access for simple codes </li>
+<li>CONFIG_DEBUG_LIST=y , adds debug checks for link listss</li>
+<li>CONFIG_FORTIFY_SOURCE=y, finds out of bounds access for simple codes</li>
 <li>BUG_ON(condition) Check if your assumptions in code are true.</li>
 <li>WARN_ON(condition) Check if your assumptions in code are true.</li>
-<li>scrpits/decode_stacktrace.sh - this is usefull for finding line numbers 
-from kernel oops. </li>
+<li>scrpits/decode_stacktrace.sh - this is usefull for finding line numbers
+from kernel oops.</li>
 </ol>
-<p>There are more configs which can be loaded full list is 
+<p>There are more configs which can be loaded full list is
 here - https://events.linuxfoundation.org/wp-content/uploads/2022/10/Dmitry-Vyukov-Dynamic-program-analysis_-LF-Mentorship.pdf (see page 23-25)</p>
 <h2 id="kasan-kernel-address-sanatizer"><a class="header" href="#kasan-kernel-address-sanatizer">KASAN (Kernel Address Sanatizer)</a></h2>
-<p>It is used to detect these type of bugs in the kernel </p>
+<p>It is used to detect these type of bugs in the kernel</p>
 <ul>
 <li>Out-Of-Bounds</li>
 <li>Use-After-Free</li>
@@ -741,89 +741,89 @@ here - https://events.linuxfoundation.org/wp-content/uploads/2022/10/Dmitry-Vyuk
 <ol>
 <li>
 <p>Shadow bytes
-For every 8 bytes of kernel memory, it allocates 1 shadow byte. This shadow 
+For every 8 bytes of kernel memory, it allocates 1 shadow byte. This shadow
 byte contains 0 if all bytes can be access (good bytes), 7 if 1 byte out of 8 bytes
-cannot be accessed (bad byte) and -1 if all the bytes cannot be accessed. </p>
+cannot be accessed (bad byte) and -1 if all the bytes cannot be accessed.</p>
 <p><img src="kernel/debugging/assets/shadow-byte.png" alt="quarantine" /></p>
 <p>The shadow bytes are stored in a virtual memory section called KASAN shadow.</p>
 </li>
 <li>
 <p>Red-zones around heap objects (to detect out-of-bound errors)</p>
 <p><img src="kernel/debugging/assets/quarantine.png" alt="quarantine" /></p>
-<p>If we try to access the redzones then bug is triggered. </p>
+<p>If we try to access the redzones then bug is triggered.</p>
 </li>
 <li>
 <p>Quarantine for heap objects (to detect Use-After-Free)</p>
-<p>This delays the reuse of heap blocks, so if the kernel tries to access 
-this block in quarantine then it is Use-After-Free bug. </p>
+<p>This delays the reuse of heap blocks, so if the kernel tries to access
+this block in quarantine then it is Use-After-Free bug.</p>
 <p><img src="kernel/debugging/assets/quarantine.png" alt="quarantine" /></p>
 </li>
 <li>
 <p>Compiler instrumentation: shadow check before memory access</p>
 <p>Compiler adds a code check before any memory access which checks the shadow
-byte is appropriate (i.e 0 for 8 byte access &amp; 4 for 4 byte access), 
+byte is appropriate (i.e 0 for 8 byte access &amp; 4 for 4 byte access),
 if incorrect then it is a bug.</p>
 </li>
 </ol>
-<p>This has an overhead, causing 2x slowdown and 2x more memory usage. </p>
+<p>This has an overhead, causing 2x slowdown and 2x more memory usage.</p>
 <h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
-<p>In kernel development, </p>
+<p>In kernel development,</p>
 <ol>
 <li>enable DEBUG_XXX, LOCKDEP, KASAN kernel configuration files</li>
 <li>For new code, try to insert BUG_ON / WARN_ON</li>
 <li>add/run kernel tests</li>
-<li>Use scripts/decode_stacktrace.sh to debug </li>
+<li>Use scripts/decode_stacktrace.sh to debug</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fuzzing-linux-kernel"><a class="header" href="#fuzzing-linux-kernel">Fuzzing Linux Kernel</a></h1>
 <h2 id="what-is-fuzzing-"><a class="header" href="#what-is-fuzzing-">What is Fuzzing ?</a></h2>
-<p>Feeding random inputs untill program crashes. </p>
+<p>Feeding random inputs untill program crashes.</p>
 <p><img src="kernel/debugging/assets/fuzzing-img.png" alt="fuzzing" /></p>
-<p>for Fuzzing we need to answer these questions </p>
+<p>for Fuzzing we need to answer these questions</p>
 <ol>
-<li>How do we execute the program ? </li>
+<li>How do we execute the program ?</li>
 <li>How do we inject inputs ?</li>
 <li>How do we generate inputs ?</li>
 <li>How do we detect program crashes ?</li>
-<li>How do we automate the whole process ? </li>
+<li>How do we automate the whole process ?</li>
 </ol>
 <p>except for #3 all others depend on the program that we are Fuzzing.</p>
 <h2 id="how-do-we-generate-inputs-"><a class="header" href="#how-do-we-generate-inputs-">How do we generate inputs ?</a></h2>
-<p>Just generating random data does not always work, </p>
-<p>for example: if we are fuzzing an xml parser, the just to generate header 
-<code>&lt;xml</code> it will take ~2^32 guesses. </p>
-<p>So random data does not always work </p>
-<p>So there are 3 approaches to generate better inputs </p>
+<p>Just generating random data does not always work,</p>
+<p>for example: if we are fuzzing an xml parser, the just to generate header
+<code>&lt;xml</code> it will take ~2^32 guesses.</p>
+<p>So random data does not always work</p>
+<p>So there are 3 approaches to generate better inputs</p>
 <ol>
 <li>Structured inputs (structure-aware-fuzzing)
 <ul>
-<li>We build a grammar for inputs and fuzz them. </li>
+<li>We build a grammar for inputs and fuzz them.</li>
 </ul>
 </li>
 <li>Guided generation (coverage-guided-fuzzing)
 <img src="kernel/debugging/assets/guided-generation-fuzzing.png" alt="fuzzing" />
 <ul>
 <li>We use an existing pool of corpus input or a random input</li>
-<li>We mutate (change) it </li>
+<li>We mutate (change) it</li>
 <li>We use it as an input and execute the program</li>
-<li>We check if covers new code ? 
+<li>We check if covers new code ?
 <ul>
-<li>If yes then we add it to Corpus inputs pool </li>
-<li>else we start again from random input. </li>
+<li>If yes then we add it to Corpus inputs pool</li>
+<li>else we start again from random input.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Collecting corpus samples and mutating them 
+<li>Collecting corpus samples and mutating them
 <ul>
 <li>We can scrape the internet and collect inputs.</li>
-<li>These inputs can be mutated and fed into the program. </li>
+<li>These inputs can be mutated and fed into the program.</li>
 </ul>
 </li>
 </ol>
 <p>These approaches can be combined with each other to create new inputs for fuzzing.</p>
 <h2 id="kernel-fuzzing"><a class="header" href="#kernel-fuzzing">Kernel fuzzing</a></h2>
 <h3 id="how-to-inject-inputs-to-kernel-"><a class="header" href="#how-to-inject-inputs-to-kernel-">How to inject inputs to kernel ?</a></h3>
-<p>To inject inputs we need to understand what inputs does kernel have. </p>
+<p>To inject inputs we need to understand what inputs does kernel have.</p>
 <h4 id="what-kind-of-inputs-does-kernel-have"><a class="header" href="#what-kind-of-inputs-does-kernel-have">What kind of inputs does kernel have</a></h4>
 <ol>
 <li>
@@ -834,14 +834,14 @@ if incorrect then it is a bug.</p>
 </ul>
 </li>
 <li>
-<p>external inputs i.e usb dev, network packets, firmware etc. </p>
+<p>external inputs i.e usb dev, network packets, firmware etc.</p>
 <p><img src="kernel/debugging/assets/kernel-inputs-external.png" alt="fuzzing" /></p>
 <ul>
 <li>
 <p>We can use userspace or hypervisor/emulator to give external inputs</p>
-<p>for ex: </p>
+<p>for ex:</p>
 <ol>
-<li>for usb we can use <code>/dev/raw-gadget</code> + Dummy UDC </li>
+<li>for usb we can use <code>/dev/raw-gadget</code> + Dummy UDC</li>
 <li>for network we can use <code>/dev/tun</code></li>
 </ol>
 </li>
@@ -849,29 +849,29 @@ if incorrect then it is a bug.</p>
 </li>
 </ol>
 <h3 id="how-to-generate-inputs-for-kernel-"><a class="header" href="#how-to-generate-inputs-for-kernel-">How to generate inputs for kernel ?</a></h3>
-<p>Kernel does not accept data as inputs it accepts syscalls. </p>
-<p>Most syscalls are used as API i.e </p>
+<p>Kernel does not accept data as inputs it accepts syscalls.</p>
+<p>Most syscalls are used as API i.e</p>
 <ul>
-<li>It is always a sequence of calls </li>
-<li>Argumets to the calls are structured </li>
-<li>Return values or struct are used as inputs in next calls </li>
+<li>It is always a sequence of calls</li>
+<li>Argumets to the calls are structured</li>
+<li>Return values or struct are used as inputs in next calls</li>
 </ul>
 <p>sequence of calls in the input to the kernel</p>
-<p>API-aware fuzzing </p>
+<p>API-aware fuzzing</p>
 <ul>
-<li>inputs are api call sequences </li>
+<li>inputs are api call sequences</li>
 <li>these are generated and mutated accordingly</li>
 </ul>
-<p>External inputs are also similar to API's. </p>
-<p>So most common input structures are </p>
+<p>External inputs are also similar to API's.</p>
+<p>So most common input structures are</p>
 <ol>
-<li>API </li>
-<li>API with callbacks </li>
-<li>Scripts </li>
+<li>API</li>
+<li>API with callbacks</li>
+<li>Scripts</li>
 <li>USB-like stuff</li>
 </ol>
 <h2 id="tools-used-for-fuzzing-the-kernel"><a class="header" href="#tools-used-for-fuzzing-the-kernel">Tools used for Fuzzing the kernel</a></h2>
-<p>There are other tools but most common are </p>
+<p>There are other tools but most common are</p>
 <ol>
 <li>Trinity - finds less bugs but easier to deploy</li>
 <li>Syzkaller - goes deeper but finds more bugs and easier to extend</li>
@@ -880,7 +880,7 @@ if incorrect then it is a bug.</p>
 <ul>
 <li>Building kernel code as userspace program and fuzzing that
 <ul>
-<li>Works for code that is separable from kernel, but some kernel code 
+<li>Works for code that is separable from kernel, but some kernel code
 cannot be separated.</li>
 </ul>
 </li>
@@ -891,7 +891,7 @@ cannot be separated.</li>
 </li>
 <li>Using syzkaller
 <ul>
-<li>Good for fuzzing kernel API </li>
+<li>Good for fuzzing kernel API</li>
 </ul>
 </li>
 <li>Writing a fuzzer from scratch
@@ -906,17 +906,17 @@ cannot be separated.</li>
 <p>Don't just fuzz mainline with the default config</p>
 <ul>
 <li>fuzz with different configs</li>
-<li>fuzz a small number of related syscalls 
+<li>fuzz a small number of related syscalls
 i.e fuzz 3 or 4 syscall related to networking</li>
 <li>Fuzz distro kernels</li>
 </ul>
 </li>
 <li>
-<p>Build your fuzzer on top of syzkaller, extend syzkaller rather than writing 
-your own fuzzer. </p>
+<p>Build your fuzzer on top of syzkaller, extend syzkaller rather than writing
+your own fuzzer.</p>
 </li>
 <li>
-<p>Reuse parts of the syzkaller for your fuzzer. </p>
+<p>Reuse parts of the syzkaller for your fuzzer.</p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-use-syzkaller"><a class="header" href="#how-to-use-syzkaller">How to use syzkaller</a></h1>
@@ -925,34 +925,34 @@ coverage-guided fuzzing techniques to apply fuzzing to kernel syscalls.</p>
 <h2 id="how-it-works"><a class="header" href="#how-it-works">How it works</a></h2>
 <p><img src="kernel/debugging/assets/syzkaller-process_structure.png" alt="manager" /></p>
 <p>Manager controls the test system, spwans vm's with fuzzers inside them
-which generate small programs which invoke syscalls. </p>
+which generate small programs which invoke syscalls.</p>
 <p>VM's communication using RPC and log the coverage achieved and trace information
-which is stored in the database. </p>
+which is stored in the database.</p>
 <h2 id="describing-syscalls"><a class="header" href="#describing-syscalls">Describing syscalls</a></h2>
-<p>Syzkaller has a separate language for Describing syscalls. </p>
+<p>Syzkaller has a separate language for Describing syscalls.</p>
 <p>For example: the open() syscall below</p>
 <pre><code class="language-cpp">int open(const char *pathname, int flags, mode_t mode);
 </code></pre>
-<p>is described in syzkaller as: </p>
+<p>is described in syzkaller as:</p>
 <pre><code class="language-sh">open(file ptr[in, filename], flags flags[open_flags], mode flags[open_mode]) fd
 </code></pre>
 <ul>
 <li>
-<p><code>file ptr[in, filename]</code>: the first argument, called file, is an input pointer 
+<p><code>file ptr[in, filename]</code>: the first argument, called file, is an input pointer
 containing a filename string.</p>
 </li>
 <li>
-<p><code>flags flags[open_flags]</code>: the flags argument is any of the flags defined at 
+<p><code>flags flags[open_flags]</code>: the flags argument is any of the flags defined at
 open_flags array open_flags = O_WRONLY, O_RDWR, O_APPEND, ...</p>
 </li>
 <li>
-<p><code>mode flags[open_mode]</code>: mode argument is any of the flags defined at 
+<p><code>mode flags[open_mode]</code>: mode argument is any of the flags defined at
 open_mode array open_mode = S_IRUSR, S_IWUSR, S_IXUSR, ...</p>
 </li>
 <li>
-<p><code>fd</code>: the return value will be stored here, to be later used on other 
+<p><code>fd</code>: the return value will be stored here, to be later used on other
 syscalls.</p>
-<p>for example: </p>
+<p>for example:</p>
 <pre><code class="language-sh">read(fd fd, buf buffer[out], count len[buf])
 write(fd fd, buf buffer[in], count len[buf])
 </code></pre>
@@ -963,34 +963,34 @@ then we use syntax <code>int64[0:500]</code></p>
 <p>syzkaller provides generic descrption for <code>ioctl()</code></p>
 <pre><code class="language-sh">ioctl(fd fd, cmd intptr, arg buffer[in])
 </code></pre>
-<p>and also provides specific ones like </p>
+<p>and also provides specific ones like</p>
 <pre><code class="language-sh">ioctl$DRM_IOCTL_VERSION(fd fd_dri, cmd const[DRM_IOCTL_VERSION], arg ptr[in, drm_version])
 ioctl$VIDIOC_QUERYCAP(fd fd_video, cmd const[VIDIOC_QUERYCAP], arg ptr[out, v4l2_capability])
 </code></pre>
-<p>See the refernce below for more. </p>
+<p>See the refernce below for more.</p>
 <p>Ref: https://github.com/google/syzkaller/blob/master/docs/syscall_descriptions_syntax.md</p>
 <h2 id="setting-up-syzkaller"><a class="header" href="#setting-up-syzkaller">Setting up syzkaller</a></h2>
 <p>Follow the steps given here to setup syzkaller - https://github.com/google/syzkaller/blob/master/docs/linux/setup.md</p>
 <p>Tips for running syzkaller</p>
 <ol>
-<li>Use different defconfigs </li>
+<li>Use different defconfigs</li>
 <li>Limit the syscalls to 3-4 chosen, by adding the below in config.config
-<pre><code class="language-sh">&quot;enable_syscalls&quot;: [ &quot;ptrace&quot;, &quot;getpid&quot; ],
+<pre><code class="language-sh">"enable_syscalls": [ "ptrace", "getpid" ],
 </code></pre>
 </li>
 </ol>
 <h2 id="fuzzing-your-patch-changes-in-syzkaller"><a class="header" href="#fuzzing-your-patch-changes-in-syzkaller">Fuzzing your patch changes in syzkaller</a></h2>
-<p>If you make a change in kernel and want to fuzz your changes in syzkaller, this 
-can be done by following the steps below: </p>
+<p>If you make a change in kernel and want to fuzz your changes in syzkaller, this
+can be done by following the steps below:</p>
 <ol>
-<li>Modify the kernel and compile. </li>
-<li>Add a new syscall description in syzkaller and generate fuzzers for it. </li>
-<li>Run the syzkaller with new syscall </li>
+<li>Modify the kernel and compile.</li>
+<li>Add a new syscall description in syzkaller and generate fuzzers for it.</li>
+<li>Run the syzkaller with new syscall</li>
 </ol>
 <h3 id="steps-2"><a class="header" href="#steps-2">Steps</a></h3>
 <ol>
 <li>
-<p>Modify the kernel code, for eg : we will modify ptrace syscall </p>
+<p>Modify the kernel code, for eg : we will modify ptrace syscall</p>
 <pre><code class="language-c">diff --git a/kernel/ptrace.c b/kernel/ptrace.c
 index 43d6179508d6..8e4e92931d5f 100644
 --- a/kernel/ptrace.c
@@ -1006,7 +1006,7 @@ index 43d6179508d6..8e4e92931d5f 100644
          ret = ptrace_traceme();
          if (!ret)
 </code></pre>
-<p>The compile the kernel with modified code. </p>
+<p>The compile the kernel with modified code.</p>
 </li>
 <li>
 <p>Navigate to the syzkaller dir and modify the file <code>sys/linux/sys.txt</code></p>
@@ -1014,20 +1014,20 @@ index 43d6179508d6..8e4e92931d5f 100644
 </code></pre>
 </li>
 <li>
-<p>Generate fuzzer for the new syscall </p>
+<p>Generate fuzzer for the new syscall</p>
 <pre><code>make bin/syz-extract
 ./bin/syz-extract -os=linux -sourcedir=$KSRC -arch=amd64 sys.txt
 make generate
 make
 </code></pre>
 <ul>
-<li>Note: I was not able to do this step because it gives errors. 
+<li>Note: I was not able to do this step because it gives errors.
 <img src="kernel/debugging/assets/syzkaller-error.png" alt="error" /></li>
 </ul>
 </li>
 <li>
-<p>Enable the newly added syscall in config.cfg </p>
-<pre><code class="language-json">&quot;enable_syscalls&quot;: [ &quot;ptrace$broken&quot;]
+<p>Enable the newly added syscall in config.cfg</p>
+<pre><code class="language-json">"enable_syscalls": [ "ptrace$broken"]
 </code></pre>
 </li>
 <li>
@@ -1040,18 +1040,18 @@ make
 <ul>
 <li>Syzkaller comes with set of system calls for linux -
 https://github.com/google/syzkaller/tree/master/sys/linux</li>
-<li>Some subsystems are better supported (like USB, socket-related syscalls) 
-than others. </li>
+<li>Some subsystems are better supported (like USB, socket-related syscalls)
+than others.</li>
 <li>To fuzz these complex sub-systems, we use a combination of techniques like,
 <ol>
-<li>Using syzkaller resources to, define an order to syscalls and to store 
-the device state and data. </li>
-<li>Using udev (in rfs) to symlink drivers so that a particular driver is 
+<li>Using syzkaller resources to, define an order to syscalls and to store
+the device state and data.</li>
+<li>Using udev (in rfs) to symlink drivers so that a particular driver is
 targeted by the syzkaller. (Syzkaller may not be able to send syscalls
-to <code>/dev/video0</code> so syzkaller sends it to <code>/dev/vim2m</code> which is symlinked 
+to <code>/dev/video0</code> so syzkaller sends it to <code>/dev/vim2m</code> which is symlinked
 to video0 )</li>
-<li>Using pseudo-syscalls - Allows syzkaller to run custom c functions defined 
-as pseudo-syscalls. </li>
+<li>Using pseudo-syscalls - Allows syzkaller to run custom c functions defined
+as pseudo-syscalls.</li>
 </ol>
 </li>
 </ul>
@@ -1059,40 +1059,40 @@ as pseudo-syscalls. </li>
 <h2 id="case-1-if-you-have-a-c-reproducer"><a class="header" href="#case-1-if-you-have-a-c-reproducer">Case 1: If you have a C reproducer</a></h2>
 <ol>
 <li>
-<p>Navigate to the syzkaller bug link </p>
+<p>Navigate to the syzkaller bug link</p>
 <ol>
 <li>
-<p>If the bug is found in the upstream kernel </p>
-<p><img src="kernel/debugging/assets/syzkaller-download-images2.png" alt="download-images" /> </p>
-<p>then download the kernel-image from the link using <code>wget</code> </p>
+<p>If the bug is found in the upstream kernel</p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images2.png" alt="download-images" /></p>
+<p>then download the kernel-image from the link using <code>wget</code></p>
 </li>
 <li>
-<p>If the bug is found not on the upstream kernel, then it is best 
-to download the <code>.config</code> file and build the latest upstream kernel </p>
-<p><img src="kernel/debugging/assets/syzkaller-download-images3.png" alt="download-images" /> </p>
+<p>If the bug is found not on the upstream kernel, then it is best
+to download the <code>.config</code> file and build the latest upstream kernel</p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images3.png" alt="download-images" /></p>
 </li>
 </ol>
 </li>
 <li>
-<p>Now that the kernel is downloaded and ready, download these artifacts too. </p>
+<p>Now that the kernel is downloaded and ready, download these artifacts too.</p>
 <ul>
-<li>disk image </li>
-<li>C repro, save as <code>.c</code> file </li>
+<li>disk image</li>
+<li>C repro, save as <code>.c</code> file</li>
 </ul>
-<p><img src="kernel/debugging/assets/syzkaller-download-images.png" alt="download-images" /> </p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images.png" alt="download-images" /></p>
 </li>
 <li>
-<p>Extract the disk image and kernel image </p>
+<p>Extract the disk image and kernel image</p>
 <pre><code class="language-sh">$ xz --decompress &lt;disk-image&gt; 
 $ xz --decompress &lt;kernel-image&gt; 
 </code></pre>
 </li>
 <li>
-<p>Start VM, by running commands </p>
+<p>Start VM, by running commands</p>
 <pre><code class="language-sh">$ export KERNEL_IMG=&lt;full-path-to-kernel-image&gt;
 $ export RFS_IMG=&lt;full-path-to-disk-image&gt;
 
-$ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0&quot; -drive file=${RFS_IMG},format=raw -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 -net nic,model=e1000 -enable-kvm -nographic -pidfile vm.pid 2&gt;&amp;1 | tee vm.log
+$ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append "console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0" -drive file=${RFS_IMG},format=raw -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 -net nic,model=e1000 -enable-kvm -nographic -pidfile vm.pid 2&gt;&amp;1 | tee vm.log
 </code></pre>
 </li>
 <li>
@@ -1102,158 +1102,158 @@ $ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append &quot;console=tt
 <p><strong>Note</strong>: Cross compile for arch other than x86_64</p>
 </li>
 <li>
-<p>Copy the compiled executable file into vm </p>
+<p>Copy the compiled executable file into vm</p>
 <pre><code class="language-sh">$ scp -P 10021 -r ./repro1 root@localhost:~/  
 </code></pre>
 </li>
 <li>
-<p>SSH into the VM and run the compiled program </p>
+<p>SSH into the VM and run the compiled program</p>
 <pre><code class="language-sh">$ ssh root@localhost -p 10021 
 # ./repro1 
 </code></pre>
 </li>
 <li>
-<p>If the bug is not fixed then it will give a kernel panic. </p>
-<p><img src="kernel/debugging/assets/syzkaller-panic.png" alt="syzkaller-panic" /> </p>
+<p>If the bug is not fixed then it will give a kernel panic.</p>
+<p><img src="kernel/debugging/assets/syzkaller-panic.png" alt="syzkaller-panic" /></p>
 </li>
 <li>
-<p>If there is no panic then the bug has been fixed. </p>
+<p>If there is no panic then the bug has been fixed.</p>
 </li>
 </ol>
 <h3 id="case-2-if-you-have-a-syz-reproducer"><a class="header" href="#case-2-if-you-have-a-syz-reproducer">Case 2: If you have a Syz reproducer</a></h3>
 <ol>
 <li>
-<p>Navigate to the syzkaller bug link </p>
+<p>Navigate to the syzkaller bug link</p>
 <ol>
 <li>
-<p>If the bug is found in the upstream kernel </p>
-<p><img src="kernel/debugging/assets/syzkaller-download-images2.png" alt="download-images" /> </p>
-<p>then download the kernel-image from the link using <code>wget</code> </p>
+<p>If the bug is found in the upstream kernel</p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images2.png" alt="download-images" /></p>
+<p>then download the kernel-image from the link using <code>wget</code></p>
 </li>
 <li>
-<p>If the bug is found not on the upstream kernel, then it is best 
-to download the <code>.config</code> file and build the latest upstream kernel </p>
-<p><img src="kernel/debugging/assets/syzkaller-download-images3.png" alt="download-images" /> </p>
+<p>If the bug is found not on the upstream kernel, then it is best
+to download the <code>.config</code> file and build the latest upstream kernel</p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images3.png" alt="download-images" /></p>
 </li>
 </ol>
 </li>
 <li>
-<p>Now that the kernel is downloaded and ready, download these artifacts too. </p>
+<p>Now that the kernel is downloaded and ready, download these artifacts too.</p>
 <ul>
 <li>
-<p>disk image </p>
+<p>disk image</p>
 </li>
 <li>
-<p>syz repro, save as <code>.txt</code> file </p>
-<p><img src="kernel/debugging/assets/syzkaller-download-images4.png" alt="download-images" /> </p>
+<p>syz repro, save as <code>.txt</code> file</p>
+<p><img src="kernel/debugging/assets/syzkaller-download-images4.png" alt="download-images" /></p>
 </li>
 </ul>
 </li>
 <li>
-<p>Extract the disk image and kernel image </p>
+<p>Extract the disk image and kernel image</p>
 <pre><code class="language-sh">$ xz --decompress &lt;disk-image&gt; 
 $ xz --decompress &lt;kernel-image&gt; 
 </code></pre>
 </li>
 <li>
-<p>Start VM, by running commands </p>
+<p>Start VM, by running commands</p>
 <pre><code class="language-sh">$ export KERNEL_IMG=&lt;full-path-to-kernel-image&gt;
 $ export RFS_IMG=&lt;full-path-to-disk-image&gt;
 
-$ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0&quot; -drive file=${RFS_IMG},format=raw -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 -net nic,model=e1000 -enable-kvm -nographic -pidfile vm.pid 2&gt;&amp;1 | tee vm.log
+$ qemu-system-x86_64 -m 2G -smp 2 -kernel ${KERNEL_IMG} -append "console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0" -drive file=${RFS_IMG},format=raw -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 -net nic,model=e1000 -enable-kvm -nographic -pidfile vm.pid 2&gt;&amp;1 | tee vm.log
 </code></pre>
 </li>
 <li>
-<p>Copy the files <code>syz-executor</code> <code>syz-execprog</code> and <code>syz.txt</code> into vm </p>
+<p>Copy the files <code>syz-executor</code> <code>syz-execprog</code> and <code>syz.txt</code> into vm</p>
 <pre><code class="language-sh">$ scp -P 10021 -r &lt;path-to-syzkaller&gt;/syzkaller/bin/linux_amd64/syz-executor &lt;path-to-syzkaller&gt;/syzkaller/bin/linux_amd64/syz-execprog ./syz.txt root@localhost:~/ 
 </code></pre>
-<p><strong>Note</strong>: files <code>syz-executor</code> and <code>syz-execprog</code> are part of syzkaller, 
-for this you have to compile the syzkaller on your machine. For instructions 
+<p><strong>Note</strong>: files <code>syz-executor</code> and <code>syz-execprog</code> are part of syzkaller,
+for this you have to compile the syzkaller on your machine. For instructions
 on compiling syzkaller see <a href="https://github.com/google/syzkaller/blob/master/docs/linux/setup.md">link</a></p>
 </li>
 <li>
-<p>SSH into the VM and run the command </p>
+<p>SSH into the VM and run the command</p>
 <pre><code class="language-sh">$ ssh root@localhost -p 10021 
 # ./syz-execprog -executor=./syz-executor -repeat=0 -procs=12 -cover=0 ./syz.txt 
 </code></pre>
 </li>
 <li>
-<p>If the bug is not fixed then it will give a kernel panic. </p>
-<p><img src="kernel/debugging/assets/syzkaller-panic.png" alt="syzkaller-panic" /> </p>
+<p>If the bug is not fixed then it will give a kernel panic.</p>
+<p><img src="kernel/debugging/assets/syzkaller-panic.png" alt="syzkaller-panic" /></p>
 </li>
 <li>
-<p>If there is no panic then the bug probably has been fixed. </p>
+<p>If there is no panic then the bug probably has been fixed.</p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="solving-syzkaller-bugs"><a class="header" href="#solving-syzkaller-bugs">Solving syzkaller bugs</a></h1>
 <h2 id="mistakes-i-made-while-choosing-bugs-to-solve-from-syzkaller"><a class="header" href="#mistakes-i-made-while-choosing-bugs-to-solve-from-syzkaller">Mistakes I made while choosing bugs to solve from syzkaller</a></h2>
 <ol>
 <li>
-<p>I started by choosing a subsystem and trying to solve bugs from that subsystem. </p>
+<p>I started by choosing a subsystem and trying to solve bugs from that subsystem.</p>
 <p><img src="kernel/debugging/assets/old-bug.png" alt="old-bug" /></p>
 <ul>
 <li>
 <p>The problem with approach is</p>
 <ol>
-<li>Some subsystems have very few bugs (eg: i2c) and most of these bugs are trivial or </li>
+<li>Some subsystems have very few bugs (eg: i2c) and most of these bugs are trivial or</li>
 <li>Some subsystems have very active contributers, who solve the bugs within few days of occuring,
-competing with them becomes hard. </li>
+competing with them becomes hard.</li>
 </ol>
 </li>
 <li>
-<p>Don't limit yourself to one subsystem, try to solve bugs and help improve the code. 
-You may have to learn and understand different subsystems, but that is what makes this fun. </p>
+<p>Don't limit yourself to one subsystem, try to solve bugs and help improve the code.
+You may have to learn and understand different subsystems, but that is what makes this fun.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs which do not have C or syz reproducers </p>
+<p>Choosing bugs which do not have C or syz reproducers</p>
 <p><img src="kernel/debugging/assets/noreproducers.png" alt="noreproducers" /></p>
 <ul>
-<li>It is very hard to reproduce a bug locally without C or syz reproducers. 
-If you cannot reproduce then chance of solving the bug becomes very small. </li>
+<li>It is very hard to reproduce a bug locally without C or syz reproducers.
+If you cannot reproduce then chance of solving the bug becomes very small.</li>
 </ul>
 </li>
 <li>
-<p>Reproducers are for old kernel versions </p>
+<p>Reproducers are for old kernel versions</p>
 <p><img src="kernel/debugging/assets/reproducer-old.png" alt="reproducer-old" /></p>
 <ul>
-<li>Again you may not be able to reproduce the bug. </li>
+<li>Again you may not be able to reproduce the bug.</li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs which last occured more than 30 days </p>
+<p>Choosing bugs which last occured more than 30 days</p>
 <p><img src="kernel/debugging/assets/old-bug.png" alt="old-bug" /></p>
 <ul>
-<li>If the bug is not occuring for more that 30 days then it is probably solved. </li>
+<li>If the bug is not occuring for more that 30 days then it is probably solved.</li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs which are marked WONTFIX or a false positive. </p>
+<p>Choosing bugs which are marked WONTFIX or a false positive.</p>
 <ul>
 <li>
-<p>Some bugs are false positives or some bugs the subsystem maintainer does not want to solve <code>WONTFIX</code>. </p>
+<p>Some bugs are false positives or some bugs the subsystem maintainer does not want to solve <code>WONTFIX</code>.</p>
 <p><img src="kernel/debugging/assets/wontfix1.png" alt="wont-fix1" /></p>
 <p><img src="kernel/debugging/assets/wontfix2.png" alt="wont-fix2" /></p>
 </li>
 <li>
-<p>False positive patches will get rejected. </p>
+<p>False positive patches will get rejected.</p>
 </li>
 <li>
-<p>For WONTFIX bug, you may have to give a solid reason why this patch needs to be accepted. </p>
+<p>For WONTFIX bug, you may have to give a solid reason why this patch needs to be accepted.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs for which the patches are work in progress or have been submitted but not accepted. </p>
+<p>Choosing bugs for which the patches are work in progress or have been submitted but not accepted.</p>
 <ul>
 <li>
-<p>You will see that someone has already test their patch in syzkaller and will most likely 
-submit the patch or the patch is in review. </p>
+<p>You will see that someone has already test their patch in syzkaller and will most likely
+submit the patch or the patch is in review.</p>
 <p><img src="kernel/debugging/assets/patched-bug.png" alt="patched-bug" /></p>
 </li>
 <li>
-<p>90 % times the patches will get accepted, hence treat these bugs as solved bugs. </p>
+<p>90 % times the patches will get accepted, hence treat these bugs as solved bugs.</p>
 </li>
 </ul>
 </li>
@@ -1261,30 +1261,30 @@ submit the patch or the patch is in review. </p>
 <h2 id="process-for-solving-a-syzkaller-bug"><a class="header" href="#process-for-solving-a-syzkaller-bug">Process for solving a syzkaller bug</a></h2>
 <ol>
 <li>
-<p>Choosing the right bug to solve </p>
+<p>Choosing the right bug to solve</p>
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
 Bug should be recent (Last &lt; 7d)</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Syz reproducer exists for the upstream (latest) version of the kernel. </li>
+Syz reproducer exists for the upstream (latest) version of the kernel.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Disk and kernel image exists for the bug. </li>
+Disk and kernel image exists for the bug.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-.config file exists for the bug. </li>
+.config file exists for the bug.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Last patch testing requests is empty or last patches testing all failed. </li>
+Last patch testing requests is empty or last patches testing all failed.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Check the Discussions to see if the bug is not marked as WONTFIX or NOTABUG </li>
+Check the Discussions to see if the bug is not marked as WONTFIX or NOTABUG</li>
 </ul>
 </li>
 <li>
-<p>Try to reproduce the bug on the latest kernel </p>
+<p>Try to reproduce the bug on the latest kernel</p>
 <ol>
 <li>
 <p>Download the .config file from <a href="https://syzkaller.appspot.com">syzkaller</a></p>
 </li>
 <li>
-<p>Download the latest kernel </p>
+<p>Download the latest kernel</p>
 <pre><code class="language-sh">git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git -b master
 </code></pre>
 </li>
@@ -1295,7 +1295,7 @@ Check the Discussions to see if the bug is not marked as WONTFIX or NOTABUG </li
 <p>Download the Disk image from <a href="https://syzkaller.appspot.com">syzkaller</a></p>
 </li>
 <li>
-<p>Run the kernel with disk image by using the script below </p>
+<p>Run the kernel with disk image by using the script below</p>
 <pre><code class="language-sh">#!/bin/bash
 
 KERNEL_IMG_PATH=$1
@@ -1305,7 +1305,7 @@ qemu-system-x86_64 \
     -m 2G \
     -smp 2 \
     -kernel ${KERNEL_IMG_PATH} \
-    -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0 nokaslr&quot; \
+    -append "console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0 nokaslr" \
     -drive file=${RFS_IMG_PATH},format=raw \
     -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
     -net nic,model=e1000 \
@@ -1319,28 +1319,28 @@ qemu-system-x86_64 \
 </code></pre>
 </li>
 <li>
-<p>Follow the steps in the <a href="kernel/debugging/./Reproducing-bugs-from-syzkaller.html">doc</a> to reproduce the bug. </p>
+<p>Follow the steps in the <a href="kernel/debugging/./Reproducing-bugs-from-syzkaller.html">doc</a> to reproduce the bug.</p>
 <ul>
-<li>Syz reproducer is preffered over C reproducer. </li>
+<li>Syz reproducer is preffered over C reproducer.</li>
 </ul>
 </li>
 </ol>
 </li>
 <li>
-<p>Solve the bug, Use the tools and techniques from the <a href="kernel/debugging/./Tools-and-Techniques-to-Debug-an-Linux-System.html">doc</a> 
-to solve the bug. </p>
+<p>Solve the bug, Use the tools and techniques from the <a href="kernel/debugging/./Tools-and-Techniques-to-Debug-an-Linux-System.html">doc</a>
+to solve the bug.</p>
 </li>
 <li>
-<p>Test the patch localy, by following the step 2. </p>
+<p>Test the patch localy, by following the step 2.</p>
 </li>
 <li>
-<p>Send the patch for testing to syzkaller. </p>
+<p>Send the patch for testing to syzkaller.</p>
 <ol>
 <li>
-<p>Send an email to syzbot <code>syzbot+a6d6b8fffa294705dbd8@syzkaller.appspotmail.com</code> and syzkaller google groups (syzkaller-bugs@googlegroups.com). </p>
+<p>Send an email to syzbot <code>syzbot+a6d6b8fffa294705dbd8@syzkaller.appspotmail.com</code> and syzkaller google groups (syzkaller-bugs@googlegroups.com).</p>
 </li>
 <li>
-<p>Email body should have </p>
+<p>Email body should have</p>
 <pre><code class="language-sh">#syz test: &lt;git rep&gt; &lt;git repo branch&gt;
 
 =================================
@@ -1348,7 +1348,7 @@ to solve the bug. </p>
 Your patch 
 
 </code></pre>
-<p><strong>Note</strong>: It is better to send patch as attachment rather than inline, but I have not figured out how to do it yet. </p>
+<p><strong>Note</strong>: It is better to send patch as attachment rather than inline, but I have not figured out how to do it yet.</p>
 </li>
 </ol>
 </li>
@@ -1360,21 +1360,21 @@ Your patch
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="event-tracing"><a class="header" href="#event-tracing">Event Tracing</a></h1>
-<p>Tracepoints are point in code that act as hooks to call a function that 
-we can provide at runtime. </p>
-<p>Event tracing is tracepints which target certain events. </p>
-<p>Tracepoints can be turned on or off during runtime. This allows us to 
-debug events in the kernel. </p>
+<p>Tracepoints are point in code that act as hooks to call a function that
+we can provide at runtime.</p>
+<p>Event tracing is tracepints which target certain events.</p>
+<p>Tracepoints can be turned on or off during runtime. This allows us to
+debug events in the kernel.</p>
 <h2 id="how-to-enable-event-tracing"><a class="header" href="#how-to-enable-event-tracing">How to enable Event tracing</a></h2>
 <h3 id="method-1-using-set_event-interface"><a class="header" href="#method-1-using-set_event-interface">Method 1: using 'set_event' interface</a></h3>
 <ol>
 <li>
-<p>To see all the events available for Tracing </p>
+<p>To see all the events available for Tracing</p>
 <pre><code class="language-sh"># cat sys/kernel/tracing/available_events
 </code></pre>
 </li>
 <li>
-<p>To enable a particular event trace </p>
+<p>To enable a particular event trace</p>
 <pre><code class="language-sh"># echo module_load &gt;&gt; /sys/kernel/tracing/set_event
 </code></pre>
 </li>
@@ -1387,22 +1387,22 @@ debug events in the kernel. </p>
 <h3 id="method-2-using-enable-toggle"><a class="header" href="#method-2-using-enable-toggle">Method 2: using 'enable' toggle</a></h3>
 <ol>
 <li>
-<p>To enable an event trace </p>
+<p>To enable an event trace</p>
 <pre><code class="language-sh"># echo 1 &gt; /sys/kernel/tracing/events/sched/sched_wakeup/enable
 </code></pre>
 </li>
 <li>
-<p>To disable an event trace </p>
+<p>To disable an event trace</p>
 <pre><code class="language-sh"># echo 0 &gt; /sys/kernel/tracing/events/sched/sched_wakeup/enable
 </code></pre>
 </li>
 </ol>
 <h2 id="how-to-see-trace"><a class="header" href="#how-to-see-trace">How to see trace</a></h2>
 <p>To see the trace run the command <code>cat /sys/kernel/tracing/trace</code></p>
-<p>For example: 
-I have enabled 2 event traces <code>module_load</code> and <code>module_remove</code>. <code>hello_world</code> 
-module was loaded and unloaded twice to test. </p>
-<p>The trace output is </p>
+<p>For example:
+I have enabled 2 event traces <code>module_load</code> and <code>module_remove</code>. <code>hello_world</code>
+module was loaded and unloaded twice to test.</p>
+<p>The trace output is</p>
 <pre><code class="language-sh">root@syzkaller:~# cat /sys/kernel/tracing/trace
 # tracer: nop
 #
@@ -1423,7 +1423,7 @@ root@syzkaller:~# cat /sys/kernel/tracing/trace
 #           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
 #              | |         |   |||||     |         |
           insmod-250     [000] d....   581.000597: console: module hello_world: .gnu.linkonce.this_module section size must match the kernel's built struct module size at run time
-         kauditd-24      [001] d....   581.000635: console: audit: type=1400 audit(1686476508.542:6): avc:  denied  { module_load } for  pid=250 comm=&quot;insmod&quot; path=&quot;/root/hello-world.ko&quot; dev=&quot;sda&quot; ino=16056 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+         kauditd-24      [001] d....   581.000635: console: audit: type=1400 audit(1686476508.542:6): avc:  denied  { module_load } for  pid=250 comm="insmod" path="/root/hello-world.ko" dev="sda" ino=16056 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
           insmod-258     [000] d....   651.462871: console: hello_world: loading out-of-tree module taints kernel.
           insmod-258     [000] .....   651.466741: module_load: hello_world O
           insmod-258     [000] d....   651.466766: console: Hello world
@@ -1440,16 +1440,16 @@ root@syzkaller:~# cat /sys/kernel/tracing/trace
 <div style="break-before: page; page-break-before: always;"></div><h1 id="event-tracing-for-debugging"><a class="header" href="#event-tracing-for-debugging">Event tracing for debugging</a></h1>
 <h2 id="the-problem"><a class="header" href="#the-problem">The problem</a></h2>
 <p>I have a development board <a href="https://brainypi.com/">BrainyPi</a>, WiFi/BT chip on BrainyPi
-is RTL8821CS. The chip is connected over SDIO. RTL8821CS support was recently added 
-to the mainline kernel. </p>
-<p>I had been trying to run mainline kernel to make the RTL8821CS driver work. The 
-problem was that the driver despite loading did not detect RTL8821CS on SDIO. </p>
+is RTL8821CS. The chip is connected over SDIO. RTL8821CS support was recently added
+to the mainline kernel.</p>
+<p>I had been trying to run mainline kernel to make the RTL8821CS driver work. The
+problem was that the driver despite loading did not detect RTL8821CS on SDIO.</p>
 <h2 id="how-i-used-event-tracing-to-debug-sdio-device"><a class="header" href="#how-i-used-event-tracing-to-debug-sdio-device">How I used Event tracing to debug SDIO device</a></h2>
-<p>When SDIO device is detected it emits a kernel message </p>
+<p>When SDIO device is detected it emits a kernel message</p>
 <pre><code class="language-sh">mmc2 new high speed SDIO card at address 0001
 </code></pre>
-<p>This message was not present. </p>
-<p>To check if the mmc commands are being sent to the SDIO used event tracing, </p>
+<p>This message was not present.</p>
+<p>To check if the mmc commands are being sent to the SDIO used event tracing,</p>
 <ol>
 <li>
 <p>Enabled the mmc event tracing</p>
@@ -1457,7 +1457,7 @@ problem was that the driver despite loading did not detect RTL8821CS on SDIO. </
 </code></pre>
 </li>
 <li>
-<p>Filtered the messages with opcode 53 (opcode 53 means the card is working, no need to trace after the card is working) </p>
+<p>Filtered the messages with opcode 53 (opcode 53 means the card is working, no need to trace after the card is working)</p>
 <pre><code class="language-sh">echo 'cmd_opcode != 53' | sudo tee /sys/kernel/debug/tracing/events/mmc/mmc_request_done/filter
 </code></pre>
 </li>
@@ -1475,29 +1475,29 @@ problem was that the driver despite loading did not detect RTL8821CS on SDIO. </
 <p>Bind the mmc bus to enable the SDIO card</p>
 <pre><code class="language-sh">echo fe31000.mmc | sudo tee /sys/bus/platform/drivers/dmmc_rockchip/bind
 </code></pre>
-<p>This would help identify any mmc errors while initializing the SDIO card. </p>
+<p>This would help identify any mmc errors while initializing the SDIO card.</p>
 </li>
 </ol>
-<p>Despite running these commands the SDIO did not get detected. </p>
+<p>Despite running these commands the SDIO did not get detected.</p>
 <h2 id="eventual-solution"><a class="header" href="#eventual-solution">Eventual solution</a></h2>
-<p>The problem was identified when, I check for devices which were yet to be probed. </p>
-<p>Running the command </p>
+<p>The problem was identified when, I check for devices which were yet to be probed.</p>
+<p>Running the command</p>
 <pre><code class="language-sh">cat /sys/kernel/debug/devices_deferred 
 </code></pre>
-<p>showed that the SDIO driver was stuck because external clock was not ready. </p>
-<p>Finally the issue was traced back to incorrect dts entry for clock. </p>
-<p>Fixing it dts entry and repeating the steps shows the correct operation of SDIO card. </p>
+<p>showed that the SDIO driver was stuck because external clock was not ready.</p>
+<p>Finally the issue was traced back to incorrect dts entry for clock.</p>
+<p>Fixing it dts entry and repeating the steps shows the correct operation of SDIO card.</p>
 <p><img src="kernel/debugging/assets/kernel-event-tracing2.png" alt="FinalOutput" /></p>
 <h2 id="conclusion-1"><a class="header" href="#conclusion-1">Conclusion</a></h2>
-<p>Event tracing can be a great tool for debugging, it helps identify why the driver fails 
-whithout having to modify the driver code. </p>
-<p>The only downside is that it requires shell access to enable tracing and to check 
-the traces. </p>
+<p>Event tracing can be a great tool for debugging, it helps identify why the driver fails
+whithout having to modify the driver code.</p>
+<p>The only downside is that it requires shell access to enable tracing and to check
+the traces.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-csi-camera-driver-programming"><a class="header" href="#introduction-to-csi-camera-driver-programming">Introduction to CSI Camera Driver Programming</a></h1>
-<p>Welcome to the CSI Camera Driver Programming course! In this course, you will learn how 
-to develop camera drivers for CSI (Camera Serial Interface) devices in the Linux kernel. </p>
-<p>To provide you with a comprehensive understanding of CSI camera driver programming, 
-we have structured this course into several modules that cover various aspects 
+<p>Welcome to the CSI Camera Driver Programming course! In this course, you will learn how
+to develop camera drivers for CSI (Camera Serial Interface) devices in the Linux kernel.</p>
+<p>To provide you with a comprehensive understanding of CSI camera driver programming,
+we have structured this course into several modules that cover various aspects
 of camera driver development. Let's take a closer look at the contents of this course:</p>
 <h3 id="module-1-camera-driver-basics"><a class="header" href="#module-1-camera-driver-basics">Module 1: Camera Driver Basics</a></h3>
 <ul>
@@ -1533,15 +1533,15 @@ of camera driver development. Let's take a closer look at the contents of this c
 <ul>
 <li>Combining All Blocks: Put together all the knowledge gained in the previous modules to create a fully functional camera driver.</li>
 </ul>
-<p>By the end of this course, you will have an understanding of CSI camera driver programming, this course is not meant for 
-others and is primarly designed for my own understanding. Hence after this course it is expected that you will have 
-some loopholes in your knowledge. And it is expected that you will practice writing some camera sensor drivers and 
-this will fill all the gaps in your knowledge. </p>
+<p>By the end of this course, you will have an understanding of CSI camera driver programming, this course is not meant for
+others and is primarly designed for my own understanding. Hence after this course it is expected that you will have
+some loopholes in your knowledge. And it is expected that you will practice writing some camera sensor drivers and
+this will fill all the gaps in your knowledge.</p>
 <h2 id="additional-references"><a class="header" href="#additional-references">Additional references</a></h2>
-<p>Additional references are just there to add to the course, it is there incase there are knowledge holes 
+<p>Additional references are just there to add to the course, it is there incase there are knowledge holes
 still left buy the course.</p>
 <ol>
-<li><a href="https://docs.nvidia.com/jetson/archives/r34.1/DeveloperGuide/text/SD/CameraDevelopment.html?highlight=camera">Nvidia Jetson Camera driver docs</a> - Explains the camera driver development and porting in detail. </li>
+<li><a href="https://docs.nvidia.com/jetson/archives/r34.1/DeveloperGuide/text/SD/CameraDevelopment.html?highlight=camera">Nvidia Jetson Camera driver docs</a> - Explains the camera driver development and porting in detail.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gstreamer"><a class="header" href="#gstreamer">Gstreamer</a></h1>
 <ol>
@@ -1551,17 +1551,17 @@ still left buy the course.</p>
 <li>It has pipeline architecture which reduces processing time, by capturing another frame at same time when you are processing a frame.</li>
 </ol>
 <h1 id="gstreamer-internals"><a class="header" href="#gstreamer-internals">Gstreamer Internals</a></h1>
-<p><strong>Elements</strong> : 
-Elements are the basic building blocks for a media pipeline.An Element has one specific function. Which can be reading a data from a file, decoding data or outputting this data. By chaining together several elements We create a pipeline that can do specific task. 
+<p><strong>Elements</strong> :
+Elements are the basic building blocks for a media pipeline.An Element has one specific function. Which can be reading a data from a file, decoding data or outputting this data. By chaining together several elements We create a pipeline that can do specific task.
 In elements, We have sink elements and source elements.</p>
 <p><strong>Source elements</strong> generate data for use by a pipeline, for example reading from disk.Source elements do not accept data, they only generate data.</p>
 <p><strong>Sink elements</strong> are end points in a media pipeline. They accept data but do not produce anything.
-Basic concept of media handling in Gstreamer </p>
+Basic concept of media handling in Gstreamer</p>
 <p><img src="kernel/camera-driver/img/images__3_.png" alt="images__3_" /></p>
 <p>Here the output of the source element will be used as input for the filter-like element.The filter-like element will do something with the data and send the result to the final sink element.</p>
-<p>• <strong>Pads</strong> : 
+<p>• <strong>Pads</strong> :
 Pads are an element's input and output, where you can connect other elements. Pads can be port or plugs.</p>
-<p>• <strong>Bins</strong> : 
+<p>• <strong>Bins</strong> :
 A bin is a container for a collection of elements.</p>
 <p>• <strong>Pipelines</strong> :
 Elements arranged in particular sequence.</p>
@@ -1578,12 +1578,12 @@ Element types are separated by exclamation marks (!).
 GStreamer tries to link the output of each element to the input of the element appearing on its right in the description. If more than one input or output Pad is available, the Pad Caps are used to find two compatible Pads.
 By adding a dot plus the Pad name after the name of the element, we can specify the pad directly.</p>
 <p><strong>2. Gst-inspect-1.0</strong> -
-This tool is used To know about elements. Basically pad templates and Elements properties is needed. </p>
+This tool is used To know about elements. Basically pad templates and Elements properties is needed.</p>
 <p><strong>3. Gst-discoverer-1.0</strong> -
 To extract elements and to know their properties this tool is used.</p>
 <h1 id="practicals"><a class="header" href="#practicals">Practicals</a></h1>
 <ol>
-<li>Resize and Crop images or videos </li>
+<li>Resize and Crop images or videos</li>
 </ol>
 <p>To approach this we need to</p>
 <p>• First search for the plugins which is needed to crop our image or video.
@@ -1592,35 +1592,35 @@ To extract elements and to know their properties this tool is used.</p>
 <p><strong>So to Resize video</strong></p>
 <p>We have 3 plugins</p>
 <p><strong>1. videobox</strong></p>
-<p>This plugin crops or enlarges the image. It takes 4 values as input, a top, bottom, left and right offset. </p>
+<p>This plugin crops or enlarges the image. It takes 4 values as input, a top, bottom, left and right offset.</p>
 <p><strong>2. Videoscale</strong></p>
 <p>This element resizes video frames.</p>
 <p><strong>3. Videocrop</strong></p>
 <p>This element crops video frames, meaning it can remove parts of the picture on the left, right, top or bottom of the picture and output a smaller picture than the input picture, with the unwanted parts at the border removed. Its main goal is to support a multitude of formats as efficiently as possible. Unlike videbox, it cannot add borders to the picture and unlike videbox it will always output images in exactly the same format as the input image.</p>
-<p><strong>For Image</strong> : </p>
+<p><strong>For Image</strong> :</p>
 <p>Command :</p>
 <pre><code class="language-sh">gst - launch - 1.0 v4l2src num - buffers=1 !  videobox top=100 bottom =100 left =100 right= 100 ! jpegenc ! filesink location =./test.jpg
 </code></pre>
-<p>Here Elements are v4l2src jpgenc and filesink </p>
+<p>Here Elements are v4l2src jpgenc and filesink</p>
 <p>They all create pipeline</p>
 <blockquote>
-<p>Here we should keep in mind that the sequence of the elements matters as it follows a pipeline structure the output of one will be the input of another element. </p>
+<p>Here we should keep in mind that the sequence of the elements matters as it follows a pipeline structure the output of one will be the input of another element.</p>
 </blockquote>
 <p><strong>For video</strong> :</p>
-<p>Command : </p>
+<p>Command :</p>
 <pre><code class="language-sh">gst - launch - 1.0 v4l2src ! videobox top=0 bottom = 0 left = 0 right = 0 ! xvimagesink
 </code></pre>
 <ol start="2">
 <li>Add Time overlay for video :</li>
 </ol>
-<p>Plugin used is Timeoverlay </p>
+<p>Plugin used is Timeoverlay</p>
 <p>Command :</p>
-<pre><code class="language-sh">gst - launch-1.0 v4l2src ! timeoverlay halignment=right valignment=bottom text=&quot;Stream time:&quot; shaded-background=true ! xvimagesink
+<pre><code class="language-sh">gst - launch-1.0 v4l2src ! timeoverlay halignment=right valignment=bottom text="Stream time:" shaded-background=true ! xvimagesink
 </code></pre>
 <p>•<strong>Text overlay for video</strong> :</p>
-<p>Plugin used is textoverlay </p>
+<p>Plugin used is textoverlay</p>
 <p>Command :</p>
-<pre><code>gst - launch - 1.0 v4l2src ! textoverlay text=&quot;Hello&quot; valignment=top halignment=left font-desc=&quot;Sans, 72&quot; ! xvimagesink
+<pre><code>gst - launch - 1.0 v4l2src ! textoverlay text="Hello" valignment=top halignment=left font-desc="Sans, 72" ! xvimagesink
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="image"><a class="header" href="#image">Image</a></h2>
 <p>An image is a collection of pixels.</p>
@@ -1648,10 +1648,10 @@ The above image shows how the same image is represented in both RGB vs YUV forma
 <div style="break-before: page; page-break-before: always;"></div><h2 id="working-of-camera"><a class="header" href="#working-of-camera">Working of Camera</a></h2>
 <p><img src="kernel/camera-driver/img/image3.png" alt="image3" /></p>
 <ol>
-<li>The light enters when shutter of the camera gets opened through lens and then it is stored in the form of photons. </li>
-<li>Then these photons are converted into some electric signals having certain range of voltage say 0 to 5 V. </li>
-<li>The brighter the light, the more photons are collected, and a higher electrical charge is generated. </li>
-<li>Initially image is obtained in black &amp; white form. </li>
+<li>The light enters when shutter of the camera gets opened through lens and then it is stored in the form of photons.</li>
+<li>Then these photons are converted into some electric signals having certain range of voltage say 0 to 5 V.</li>
+<li>The brighter the light, the more photons are collected, and a higher electrical charge is generated.</li>
+<li>Initially image is obtained in black &amp; white form.</li>
 <li>In order to make this image colorful a particular color filter is put on top of the sensor so that only one color passes through. Hence one sensor provides output for only one color.</li>
 <li>Filtering is done by Bayer's Transformation.</li>
 <li>In Bayer's Transformation each pixel has 4 color sensors in which 2 are of green and one of red and blue each, G is double because green is more sensible to human eye.</li>
@@ -1659,17 +1659,17 @@ The above image shows how the same image is represented in both RGB vs YUV forma
 <div style="break-before: page; page-break-before: always;"></div><h2 id="image-processing-pipeline"><a class="header" href="#image-processing-pipeline">Image Processing Pipeline</a></h2>
 <p>Image processing Pipeline is a method used to convert an image into digital form while performing some operations on them, in order to get an enhanced image or to extract some useful information.</p>
 <p><img src="kernel/camera-driver/img/image4.png" alt="image4" /></p>
-<p><strong>White Balancing:</strong> 
-White balancing (WB) is the process of removing unrealistic color, so that the objects that appear white are rendered white in the image. There are two different methods of white balancing: </p>
+<p><strong>White Balancing:</strong>
+White balancing (WB) is the process of removing unrealistic color, so that the objects that appear white are rendered white in the image. There are two different methods of white balancing:</p>
 <ol>
 <li>Manual White balance</li>
-<li>Auto White balance </li>
+<li>Auto White balance</li>
 </ol>
-<p><strong>Demosiacing:</strong> 
+<p><strong>Demosiacing:</strong>
 In short demosiacing can be defined as the process of converting independent R, G, or B to form RGB as a whole.</p>
 <p><strong>Denoising:</strong>
 Removal of noise(here unwanted pixels) from the image is defined as denoising. There are two different methods of denoising: a)Mean filtering b)Median filtering.</p>
-<p><strong>Tone Reproduction:</strong> 
+<p><strong>Tone Reproduction:</strong>
 Tone reproduction can be defined as the changing of tones or we can say producing different shades in brightness of an image. It is also called as gamma correction.</p>
 <p><strong>Auto Exposure:-</strong>
 Exposure is the amount of light that reaches a camera which will define how bright and dark your picture is. This can be controlled by shutter speed and aperture.
@@ -1700,7 +1700,7 @@ It is just the conversion from RGB to YUV</p>
 <li>Power supply – uses one lane</li>
 </ul>
 <ol>
-<li>Image data is where you get the image output </li>
+<li>Image data is where you get the image output</li>
 <li>I2C is where you give the command to the sensor for control.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="officially-supported-camera-sensors-in-rpi"><a class="header" href="#officially-supported-camera-sensors-in-rpi">Officially supported camera sensors in RPI</a></h2>
@@ -1717,10 +1717,10 @@ It is just the conversion from RGB to YUV</p>
 The flow of the camera is</p>
 <ol>
 <li>driver sends commands via <strong>I2C</strong> and these commands get stored in a control register (memory)</li>
-<li>This activates the camera sensor which captures the image and processes it and produces the final output at the <strong>MIPI/CSI</strong> port. </li>
+<li>This activates the camera sensor which captures the image and processes it and produces the final output at the <strong>MIPI/CSI</strong> port.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kernel-and-its-components"><a class="header" href="#kernel-and-its-components">Kernel and its components</a></h1>
-<p>Linux kernel can be divided into these components </p>
+<p>Linux kernel can be divided into these components</p>
 <ol>
 <li>Process Management - Process communication, scheduling etc..</li>
 <li>Memory Management - Allocation of memory and virtual addresses and conversion of virtual addresses into physical addresses</li>
@@ -1738,7 +1738,7 @@ The flow of the camera is</p>
 <li><code>network device</code> - device which is able to exchange data with other devices</li>
 </ol>
 <h3 id="role-of-a-device-driver"><a class="header" href="#role-of-a-device-driver">Role of a device driver:</a></h3>
-<p>Any computer program can be divided into 2 parts </p>
+<p>Any computer program can be divided into 2 parts</p>
 <ol>
 <li>Mechanism - Actual implementation of a particular task</li>
 <li>Policy - How such tasks can be used to create different applications</li>
@@ -1748,8 +1748,8 @@ OR
 Expose all functionality provided by the Hardware to the user.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="hello-world-example-of-the-camera-driver"><a class="header" href="#hello-world-example-of-the-camera-driver">Hello world example of the camera driver</a></h2>
 <ol>
-<li>module init </li>
-<li>module exit </li>
+<li>module init</li>
+<li>module exit</li>
 </ol>
 <h2 id="application-programming-vs-module-programming"><a class="header" href="#application-programming-vs-module-programming">Application programming Vs Module programming</a></h2>
 <p>Application programming is sequential and kernel module programming is concurrent.
@@ -1782,14 +1782,14 @@ Character device driver is made to read and write a stream of char data to/from 
 <li>ISP driver - Responsible for low level management of the ISP hardware.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="structure-of-the-camera-device-driver"><a class="header" href="#structure-of-the-camera-device-driver">Structure of the camera device driver</a></h1>
-<p>The camera device driver is very similar to a char device driver </p>
-<p>The key components that make up the camera device driver are </p>
+<p>The camera device driver is very similar to a char device driver</p>
+<p>The key components that make up the camera device driver are</p>
 <ol>
-<li>Driver structure </li>
+<li>Driver structure</li>
 <li>Device structure</li>
 <li>Initialization and Exit Functions</li>
 <li>Device operations structure</li>
-<li>Device operations functions </li>
+<li>Device operations functions</li>
 </ol>
 <h3 id="driver-structure"><a class="header" href="#driver-structure">Driver structure</a></h3>
 <p>Driver structure stores info, data and functions related to the the driver.<br />
@@ -1797,7 +1797,7 @@ Every driver has this structure.</p>
 <p>For example:</p>
 <pre><code class="language-c">static struct i2c_driver ov5640_i2c_driver = {
 	.driver = {
-		.name  = &quot;ov5640&quot;,
+		.name  = "ov5640",
 		.of_match_table	= ov5640_dt_ids,
 	},
 	.id_table = ov5640_id,
@@ -1853,24 +1853,24 @@ Every driver has this structure.</p>
 </code></pre>
 <p>The key data structures are:</p>
 <ol>
-<li><code>struct i2c_client *i2c_client</code> - Used to store driver data related to the I2C device. (Since camera is an I2C device driver it is used to store all data related to I2C device driver) </li>
+<li><code>struct i2c_client *i2c_client</code> - Used to store driver data related to the I2C device. (Since camera is an I2C device driver it is used to store all data related to I2C device driver)</li>
 <li><code>struct v4l2_subdev sd</code> - Used to store driver data related to the V4L2 device. (This driver is also an instance of V4L2 sub device)</li>
 <li><code>struct media_pad pad</code> - Used to store driver data related to the Media subsystem. (This driver is also an instance of a media device)</li>
 </ol>
 <h3 id="initialization-and-exit-functions"><a class="header" href="#initialization-and-exit-functions">Initialization and Exit Functions</a></h3>
 <p>The probe and remove functions are the Initialization and Exit Functions.</p>
 <h4 id="role-of-initialization-function"><a class="header" href="#role-of-initialization-function">Role of Initialization function</a></h4>
-<p>The role is to </p>
+<p>The role is to</p>
 <ol>
 <li>Initialize the data structures</li>
 <li>Initialize device operations</li>
 <li>Register the device driver module with the kernel.</li>
 </ol>
 <h4 id="role-of-exit-function"><a class="header" href="#role-of-exit-function">Role of Exit function</a></h4>
-<p>The role is to </p>
+<p>The role is to</p>
 <ol>
 <li>Terminate the data structures</li>
-<li>Terminate all device operations </li>
+<li>Terminate all device operations</li>
 <li>Un-register the device driver module with the kernel.</li>
 </ol>
 <h3 id="device-operations-structure"><a class="header" href="#device-operations-structure">Device operations structure</a></h3>
@@ -1895,7 +1895,7 @@ So for a long time the solution for this by describing the hardware inside the s
 <h2 id="disadvantages-of-the-method"><a class="header" href="#disadvantages-of-the-method">Disadvantages of the method</a></h2>
 <ol>
 <li>Change hardware change the kernel</li>
-<li>no standard </li>
+<li>no standard</li>
 <li>Too much duplicated code</li>
 </ol>
 <h2 id="device-tree"><a class="header" href="#device-tree">Device Tree</a></h2>
@@ -1908,8 +1908,8 @@ The text file is compiled to dtb.</p>
 </ol>
 <p>dtsi file - include file for the dts</p>
 <h2 id="compiling-the-dts"><a class="header" href="#compiling-the-dts">Compiling the DTS</a></h2>
-<p>There is a tool called as dtc which can be used to compile the dts files 
-the command for the kernel compilation is </p>
+<p>There is a tool called as dtc which can be used to compile the dts files
+the command for the kernel compilation is</p>
 <pre><code class="language-sh">make dtbs 
 </code></pre>
 <h2 id="passing-the-dtb-to-the-kernel"><a class="header" href="#passing-the-dtb-to-the-kernel">Passing the DTB to the kernel</a></h2>
@@ -1926,58 +1926,58 @@ the command for the kernel compilation is </p>
 node1 is the label
 </code></pre>
 <p>Properties are data structures used to store a value.</p>
-<p>Different types of properties </p>
+<p>Different types of properties</p>
 <ol>
-<li>String </li>
+<li>String</li>
 <li>list of string</li>
-<li>byte-string </li>
-<li>cell-property </li>
+<li>byte-string</li>
+<li>cell-property</li>
 </ol>
-<p>Main property of the DT </p>
+<p>Main property of the DT</p>
 <ol>
-<li>compatible - Shows which device driver is the node compatible with </li>
+<li>compatible - Shows which device driver is the node compatible with</li>
 <li>status - enables or disables the node in the device tree
 default status is enabled.</li>
 </ol>
-<p>Address and memory mapping </p>
+<p>Address and memory mapping</p>
 <ol>
-<li>address cells - defines the format of the reg cells </li>
+<li>address cells - defines the format of the reg cells</li>
 <li>size-cells - defines the size of the the reg cells</li>
 <li>reg -</li>
 </ol>
-<p>Ranges are used to define the hardware which have their own address spaces and don't use the CPU's address space </p>
+<p>Ranges are used to define the hardware which have their own address spaces and don't use the CPU's address space</p>
 <p>Hence we need a mapping of the parent address space and the child address space</p>
-<p>The driver uses the of_match_table to match the compatible property 
+<p>The driver uses the of_match_table to match the compatible property
 and once it matches the probe function is called.</p>
 <ul>
 <li>model = describes the h/w model</li>
-<li>compatible = identifies the device driver of the </li>
+<li>compatible = identifies the device driver of the</li>
 <li>aliases - another name for the same node.</li>
-<li>chosen - is used to pass to the kernel command line </li>
-<li>phandle - So that the node can be referenced from the property </li>
+<li>chosen - is used to pass to the kernel command line</li>
+<li>phandle - So that the node can be referenced from the property</li>
 </ul>
 <p>Device trees are split into multiple files to make it more modular
 the dtsi files are the include files which contains the dts which is split.</p>
-<p>The mechanism is overlay mechanism, that means the properties can be changed by changing them in another file and including that file later in the file. </p>
+<p>The mechanism is overlay mechanism, that means the properties can be changed by changing them in another file and including that file later in the file.</p>
 <p>The compatible string and the properties are documented in the file called as the device tree bindings.</p>
 <p>Documentation/devicetree/bindings</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="general-concept"><a class="header" href="#general-concept">General Concept</a></h1>
 <h2 id="capturing-video-or-picture-usually-consists-of"><a class="header" href="#capturing-video-or-picture-usually-consists-of">Capturing video or picture usually consists of</a></h2>
 <ol>
-<li>external devices e.g. camera sensors </li>
-<li>internal SOC blocks e.g. ISP's or video DMA engines or video processors </li>
+<li>external devices e.g. camera sensors</li>
+<li>internal SOC blocks e.g. ISP's or video DMA engines or video processors</li>
 </ol>
-<p>All of these need to be represented correctly in the Devicetree for the 
+<p>All of these need to be represented correctly in the Devicetree for the
 devices to work.</p>
 <h3 id="for-external-devices-camera-sensors"><a class="header" href="#for-external-devices-camera-sensors">For External devices (camera sensors)</a></h3>
 <p>SoC internal Blocks are represented as devicetree nodes and the external
-devices connected to them are represented as their <code>child</code> nodes of their 
-respective bus controller nodes. e.g. For MIPI CSI camera-sensors I2C, For USB 
+devices connected to them are represented as their <code>child</code> nodes of their
+respective bus controller nodes. e.g. For MIPI CSI camera-sensors I2C, For USB
 camera-sensors USB.</p>
 <p>Data interfaces on camera-sensors are represented as <code>port</code> child nodes.
-And the devices that this data interface gets connected to needs to be 
+And the devices that this data interface gets connected to needs to be
 represented as <code>endpoint</code> child nodes of the port node.</p>
-<p>Since these devices are the part of internal SoC Blocks they have their own 
+<p>Since these devices are the part of internal SoC Blocks they have their own
 devicetree nodes. Which will contain an 'port' node and an 'endpoint' node.</p>
 <p>We need to link the 2 endpoint nodes to each other using 'remote-endpoint' phandles for them to work.</p>
 <p>For Example:</p>
@@ -2000,8 +2000,8 @@ devicetree nodes. Which will contain an 'port' node and an 'endpoint' node.</p>
 <ol>
 <li>
 <p>If the camera-device connects to more than one internal SoC blocks on the
-<strong>same bus</strong> then separate <code>endpoint</code> nodes need to be provided for each 
-internal SoC block. </p>
+<strong>same bus</strong> then separate <code>endpoint</code> nodes need to be provided for each
+internal SoC block.</p>
 </li>
 <li>
 <p>All 'port' nodes can be grouped under optional 'ports' node, which allows to
@@ -2019,7 +2019,7 @@ and 'endpoint' nodes and any child device nodes a device might have.</p>
         imx074: camera@1a {
                 
                 /* Compatible property shows compatibility */
-                compatible = &quot;sony,imx074&quot;;
+                compatible = "sony,imx074";
                 
                 /* I2C device address */
                 reg = &lt;0x1a&gt;;
@@ -2033,7 +2033,7 @@ and 'endpoint' nodes and any child device nodes a device might have.</p>
                 
                 /* */
                 clocks = &lt;&amp;mclk 0&gt;;
-                clock-names = &quot;sysclk&quot;;
+                clock-names = "sysclk";
 
                 /* MIPI CSI Port connections */
                 port {
@@ -2051,7 +2051,7 @@ and 'endpoint' nodes and any child device nodes a device might have.</p>
 
 /* MIPI CSI controller node*/
 csi2: csi2@ffc90000 {
-        compatible = &quot;renesas,sh-mobile-csi2&quot;;
+        compatible = "renesas,sh-mobile-csi2";
         reg = &lt;0xffc90000 0x1000&gt;;
         interrupts = &lt;0x17a0&gt;;
         #address-cells = &lt;1&gt;;
@@ -2059,7 +2059,7 @@ csi2: csi2@ffc90000 {
 
         port@1 {
                 /* One of CSI2I and CSI2C. */
-                compatible = &quot;renesas,csi2c&quot;;   
+                compatible = "renesas,csi2c";   
                 reg = &lt;1&gt;;                      
                 csi2_1: endpoint {
                         clock-lanes = &lt;0&gt;;
@@ -2071,24 +2071,24 @@ csi2: csi2@ffc90000 {
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="power-on-sequence"><a class="header" href="#power-on-sequence">Power on sequence</a></h1>
 <p>Sequence of instructions that we follow to power on camera sensor.</p>
-<p>Sensor is said to be powered on when we can send initialization instructions 
+<p>Sensor is said to be powered on when we can send initialization instructions
 to the sensor via I2C.</p>
 <p>Every sensor has a unique power on sequence.</p>
 <p>Power on sequence for OV5647 (as mentioned in the datasheet)</p>
 <ol>
-<li>Supply power to the camera sensor </li>
+<li>Supply power to the camera sensor</li>
 <li>Wait for 5ms or more to stabilize the supply</li>
-<li>Provide clock with correct clock rate to the camera sensor </li>
+<li>Provide clock with correct clock rate to the camera sensor</li>
 <li>Wait for 1ms or more for the clock to stabilize the sensor.</li>
 <li>Wait 20 ms or more until the camera gets ready for accepting instructions via the I2C bus.</li>
 </ol>
 <h1 id="getting-and-setting-clock"><a class="header" href="#getting-and-setting-clock">Getting and Setting Clock</a></h1>
-<p>The clocks supplied to the camera sensor are all software controlled </p>
-<p>The kernel APIs to control the clock are </p>
+<p>The clocks supplied to the camera sensor are all software controlled</p>
+<p>The kernel APIs to control the clock are</p>
 <ol>
 <li>devm_clk_get - get the clock resource from the kernel</li>
 <li>clk_get_rate - get the current rate of the clock from the kernel</li>
-<li>clk_set_rate - set desired clock rate to the clock </li>
+<li>clk_set_rate - set desired clock rate to the clock</li>
 <li>clk_prepare - prepare for starting the clock</li>
 <li>clk_enable - enable the clock</li>
 <li>clk_disable - shutdown the clock</li>
@@ -2099,29 +2099,29 @@ to the sensor via I2C.</p>
 The Kernel API's to control the Voltage regulators are :</p>
 <ol>
 <li>devm_regualtor_bulk_get - get the regulator resource from the kernel</li>
-<li>regulator_bulk_enable - Enable the regulators (starts supplying voltage) </li>
+<li>regulator_bulk_enable - Enable the regulators (starts supplying voltage)</li>
 <li>regualtor_bulk_disable - Disable the regulators (stops supplying voltage)</li>
 <li>regulator_bulk_free - Free the regulator resources that have been allocated previously.</li>
 </ol>
 <h1 id="getting-and-setting-the-gpio-pins"><a class="header" href="#getting-and-setting-the-gpio-pins">Getting and setting the GPIO pins</a></h1>
-<p>Many camera's have a reset pin which can be controlled via GPIO, hence the 
+<p>Many camera's have a reset pin which can be controlled via GPIO, hence the
 driver needs to control these pins via GPIO</p>
-<p>The GPIO api for the kernel are </p>
+<p>The GPIO api for the kernel are</p>
 <ol>
-<li>devm_gpiod_get_optional - Initializes the gpio pins </li>
-<li>gpiod_set_cansleep - Set the gpio pins to HIGH or LOW when the kernel has a 
+<li>devm_gpiod_get_optional - Initializes the gpio pins</li>
+<li>gpiod_set_cansleep - Set the gpio pins to HIGH or LOW when the kernel has a
 possibility to sleep.</li>
 </ol>
 <h1 id="init-sequence"><a class="header" href="#init-sequence">Init Sequence</a></h1>
-<p>The init sequence depends upon the camera sensor and the sensor manufacturer, 
-This init sequence is a sequence of registers (memory locations) and their 
-values that need to be set to make the camera sensor ready for capturing the 
+<p>The init sequence depends upon the camera sensor and the sensor manufacturer,
+This init sequence is a sequence of registers (memory locations) and their
+values that need to be set to make the camera sensor ready for capturing the
 image.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="v4l2-subdevices"><a class="header" href="#v4l2-subdevices">V4l2 subdevices</a></h1>
-<p>Sub devices are treated as devices and they have their own device data 
+<p>Sub devices are treated as devices and they have their own device data
 structure and their own functions (operations)</p>
 <h1 id="v4l2-media-entity-init"><a class="header" href="#v4l2-media-entity-init">v4l2 media entity init</a></h1>
-<p>If we want to use a media framework with the v4l2 subdevice then we need to do initialize the media entity, using media entity init. </p>
+<p>If we want to use a media framework with the v4l2 subdevice then we need to do initialize the media entity, using media entity init.</p>
 <h1 id="v4l2-ctrl-handler"><a class="header" href="#v4l2-ctrl-handler">V4l2 ctrl handler</a></h1>
 <p>V4l2 ctrl handler is nothing but the controls provided by the device driver to the userspace.</p>
 <p>All the user operations are mapped to the driver functions in this v4l2 ctrl operations, and a switch case.</p>
@@ -2129,10 +2129,10 @@ structure and their own functions (operations)</p>
 <p>Registers the camera device driver with the kernel.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="v4l2-ops"><a class="header" href="#v4l2-ops">V4l2 ops</a></h1>
 <p>V4L2 operations contains function pointers to all the operations that the camera can perform for e.g. : Capture an image, capture a video, set the image capture frame size...</p>
-<p>These operations are divided into parts </p>
+<p>These operations are divided into parts</p>
 <ol>
 <li>core - core functions e.g. init, exit..</li>
-<li>video - operations related to the video e.g. capture stream of video or picture. </li>
+<li>video - operations related to the video e.g. capture stream of video or picture.</li>
 <li>pads - operations related to the media subsystem pads e.g. : set frame size...</li>
 </ol>
 <p>Each of these parts have their own structure.
@@ -2145,18 +2145,18 @@ These structure contain function pointers to respective functions.</p>
 Both the camera driver init block and the camera sensor init block that we have discussed in the previous modules are called one by one in the probe function.</p>
 <h1 id="remove-function"><a class="header" href="#remove-function">Remove function</a></h1>
 <p>The <code>remove</code> function is the function which cleans up the resources used by the driver when the driver exits.</p>
-<p>The remove function one by one cleans up all the </p>
+<p>The remove function one by one cleans up all the</p>
 <ol>
-<li>structures </li>
-<li>allocated memory </li>
-<li>operations </li>
+<li>structures</li>
+<li>allocated memory</li>
+<li>operations</li>
 </ol>
 <h1 id="match-table"><a class="header" href="#match-table">Match table</a></h1>
 <p>Match table is used to match the driver with the correct device tree node.</p>
 <p>This gives the driver its own identity.</p>
 <h1 id="conclusion-2"><a class="header" href="#conclusion-2">Conclusion</a></h1>
 <ol>
-<li>All the functions which perform operations are linked to the V4L2 ops structure. </li>
+<li>All the functions which perform operations are linked to the V4L2 ops structure.</li>
 <li>All the functions which perform initialization and exit of the camera driver are linked to the driver ops structure.</li>
 <li>Finally the camera driver is linked to the device tree via the match table.</li>
 </ol>
@@ -2167,22 +2167,22 @@ Both the camera driver init block and the camera sensor init block that we have 
 Tags: Rust</p>
 <h2 id="data-types-in-rust"><a class="header" href="#data-types-in-rust">Data Types in Rust</a></h2>
 <ol>
-<li>bool </li>
-<li>char </li>
+<li>bool</li>
+<li>char</li>
 <li>Integer
 <ol>
 <li>Signed - 8, 16,32,64,128 bit — represented as i8</li>
-<li>Unsigned - 8,16,32,64,128 bit — represented as  u8 </li>
+<li>Unsigned - 8,16,32,64,128 bit — represented as  u8</li>
 </ol>
 </li>
-<li>Float - f32 f64 </li>
-<li>Array 
+<li>Float - f32 f64</li>
+<li>Array
 <ol>
 <li>Fixed - [T, N] where T is type N is number of elements</li>
 <li>Dynamic size - [T]</li>
 </ol>
 </li>
-<li>Sequence - (T, U, ..) - Where both T and U are different types </li>
+<li>Sequence - (T, U, ..) - Where both T and U are different types</li>
 <li>fn(i32) → i32 - Function type which takes i32 as input and i32 as output.</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-variables-and-immutability"><a class="header" href="#rust-variables-and-immutability">Rust: Variables and Immutability</a></h1>
@@ -2199,7 +2199,7 @@ let var: i32 = 0
 <span class="boring">}</span></code></pre></pre>
 </li>
 <li>
-<p>By default, values in these variables cannot be changed or reassigned. So they are called immutable. </p>
+<p>By default, values in these variables cannot be changed or reassigned. So they are called immutable.</p>
 </li>
 <li>
 <p>To declare variables that can change you need to use <code>mut</code> keyword</p>
@@ -2218,7 +2218,7 @@ let mut var = 0;
 Tags: Rust</p>
 <ol>
 <li>
-<p>Functions are defined like this below </p>
+<p>Functions are defined like this below</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Simple increment function
@@ -2249,7 +2249,7 @@ fn function1( mut val: i32) -&gt; i32 {
 </ol>
 </li>
 <li>
-<p>For Example </p>
+<p>For Example</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Definition of the Closure
@@ -2265,7 +2265,7 @@ let five_plus_two = adder(5,2);
 <p>Status: Courses
 Tags: Rust</p>
 <ol>
-<li>2 types of strings 
+<li>2 types of strings
 <ol>
 <li>&amp;str ( <em>stir</em> )</li>
 <li>String</li>
@@ -2283,11 +2283,11 @@ Tags: Rust</p>
 <p><code>if-else</code> in Rust is not a statement but an expression.</p>
 <ol>
 <li>Statements do not return any value</li>
-<li>Expressions return value. </li>
+<li>Expressions return value.</li>
 </ol>
 </li>
 <li>
-<p>Hence <code>if else</code> in Rust return value which can be ignored or assigned to a variable </p>
+<p>Hence <code>if else</code> in Rust return value which can be ignored or assigned to a variable</p>
 </li>
 <li>
 <p><strong>Both <code>if</code> and <code>else</code> branches should return the same type of value. Because Rust does not allow multiple types to be stored in a variable.</strong></p>
@@ -2299,9 +2299,9 @@ Tags: Rust</p>
 </span>// Simple example 
 if i &lt; 10 {
    // the statement with semicolon hence the return value is ()
-	println!(&quot;Value is less than 10&quot;);
+	println!("Value is less than 10");
 } else {
-   println!(&quot;Value is more than 10&quot;);
+   println!("Value is more than 10");
 }
 
 // complex example
@@ -2316,7 +2316,7 @@ let result = if i &lt; 10 {
 <h2 id="match-expression"><a class="header" href="#match-expression">match expression</a></h2>
 <ol>
 <li>
-<p><code>match</code> in Rust is a replacement to <code>switch</code> and <code>case</code> in C. </p>
+<p><code>match</code> in Rust is a replacement to <code>switch</code> and <code>case</code> in C.</p>
 </li>
 <li>
 <p>For Example:</p>
@@ -2331,18 +2331,18 @@ fn main() {
 	let status = req_status();
 	let result = match status {
 		200 =&gt; {
-			println!(&quot;HTTP Success!&quot;);	
+			println!("HTTP Success!");	
 		},
-		404 =&gt; println!(&quot;Page not found!&quot;),
-    other =&gt; println!(&quot;Reequest Failed, Status code {}!&quot;, other);
+		404 =&gt; println!("Page not found!"),
+    other =&gt; println!("Reequest Failed, Status code {}!", other);
 	}
 }</code></pre></pre>
 </li>
 <li>
-<p><code>match</code> statement has to have branches for all the possible cases <strong>(match exhaustively)</strong>. i.e in the Above case, we have to match against all the numbers until a maximum of u32. </p>
+<p><code>match</code> statement has to have branches for all the possible cases <strong>(match exhaustively)</strong>. i.e in the Above case, we have to match against all the numbers until a maximum of u32.</p>
 </li>
 <li>
-<p><code>other</code> is used to catch all and store the value. </p>
+<p><code>other</code> is used to catch all and store the value.</p>
 </li>
 <li>
 <p><code>_</code> is used to catch all and ignore the value.</p>
@@ -2360,7 +2360,7 @@ fn main() {
 <p>Status: Courses
 Tags: Rust</p>
 <ol>
-<li>Repeating things in Rust can be done using 3 contructs 
+<li>Repeating things in Rust can be done using 3 contructs
 <ol>
 <li>loop</li>
 <li>while</li>
@@ -2381,14 +2381,14 @@ loop {
     // can also use continue in the loop
 		break; 
 	}
-	println!(&quot;{} more runs to go&quot;, x);
+	println!("{} more runs to go", x);
   // Decrement the runs
 	x -= 1; 
 }
 <span class="boring">}</span></code></pre></pre>
 </li>
 <li>
-<p>loop construct can be tagged </p>
+<p>loop construct can be tagged</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>'increment: loop {
@@ -2406,7 +2406,7 @@ loop {
 </span>// Nothing fancy, simple while loop
 let x = 1000;
 while x &gt; 0 {
-	println!(&quot;{} more runs to go&quot;, x);
+	println!("{} more runs to go", x);
 	x -= 1
 }
 <span class="boring">}</span></code></pre></pre>
@@ -2415,12 +2415,12 @@ while x &gt; 0 {
 </span><span class="boring">fn main() {
 </span>// Simple for loop, to print 0 to 9
 for i in 0..10 {
-	println!(&quot;{}&quot;, i);
+	println!("{}", i);
 }
 
 // Simple for loop to print 0 to 10
 for i in 0..=10 {
-	println!(&quot;{}&quot;, i)
+	println!("{}", i)
 }
 <span class="boring">}</span></code></pre></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-struct"><a class="header" href="#rust-struct">Rust: Struct</a></h1>
@@ -2429,7 +2429,7 @@ for i in 0..=10 {
 <li>3 forms of <code>struct</code>
 <ol>
 <li>unit struct</li>
-<li>tuple struct </li>
+<li>tuple struct</li>
 <li>C-like struct</li>
 </ol>
 </li>
@@ -2437,7 +2437,7 @@ for i in 0..=10 {
 <h2 id="unit-struct"><a class="header" href="#unit-struct">unit struct</a></h2>
 <ol>
 <li>Zero sized struct.</li>
-<li>Typically used to model errors or states with no data. </li>
+<li>Typically used to model errors or states with no data.</li>
 </ol>
 <pre><pre class="playground"><code class="language-rust">struct Dummy; 
 
@@ -2447,7 +2447,7 @@ fn main() {
 }</code></pre></pre>
 <h2 id="tuple-struct"><a class="header" href="#tuple-struct">tuple struct</a></h2>
 <ol>
-<li>Fields are not named but are referred by their positions </li>
+<li>Fields are not named but are referred by their positions</li>
 </ol>
 <pre><pre class="playground"><code class="language-rust">// Tuple struct 
 struct Color(u8,u8,u8)
@@ -2464,8 +2464,8 @@ fn main() {
   let Color(r, _, b) = white; // Green value is ignored
 }</code></pre></pre>
 <ol>
-<li>Fields have to be initialised in the order as defined. </li>
-<li>Typically used to model data that has 4-5 attributes </li>
+<li>Fields have to be initialised in the order as defined.</li>
+<li>Typically used to model data that has 4-5 attributes</li>
 </ol>
 <h2 id="c-like-structs"><a class="header" href="#c-like-structs">C-like structs</a></h2>
 <pre><pre class="playground"><code class="language-rust">// C-like struct definition 
@@ -2477,7 +2477,7 @@ struct Player {
 }
 
 fn main() {
-	let name = &quot;Alice&quot;.to_string();
+	let name = "Alice".to_string();
 	// C-like struct declaration 
 	let mut player1 = Player {
 		name,
@@ -2495,7 +2495,7 @@ fn main() {
 <p>Status: Courses</p>
 <ol>
 <li>
-<p>Typically used to model things that can be of different kinds. </p>
+<p>Typically used to model things that can be of different kinds.</p>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Simple Enum 
@@ -2508,7 +2508,7 @@ enum Direction {
 <span class="boring">}</span></code></pre></pre>
 </li>
 <li>
-<p>Variants can be defined with or without data. Data can be any type in Rust, see example below </p>
+<p>Variants can be defined with or without data. Data can be any type in Rust, see example below</p>
 <pre><pre class="playground"><code class="language-rust">// Simple Enum 
 enum Direction {
 	N, // These are called as variants 
@@ -2539,12 +2539,12 @@ fn main() {
 	match player1_action {
 		// Deconstruct direction and speed in this branch
 		PlayerAction::Move { direction, speed } =&gt; {
-		  println!(&quot;Player moved {:?} with speed {}.&quot;, direction, speed);
+		  println!("Player moved {:?} with speed {}.", direction, speed);
 		}, 
 		PlayerAction::Attack(direction) =&gt; {
-		  println!(&quot;Player Attacked {:?}&quot;, direction);
+		  println!("Player Attacked {:?}", direction);
 		}, 
-		PlayerAction::Wait =&gt; println!(&quot;Player Waits&quot;); 
+		PlayerAction::Wait =&gt; println!("Player Waits"); 
 	}
 }</code></pre></pre>
 </li>
@@ -2580,7 +2580,7 @@ impl Player {
 
 fn main() {
 	// Init with name
-	let player1 = Player::with_name(&quot;Joe&quot;);
+	let player1 = Player::with_name("Joe");
 	// Get the friends field
 	let player1_friends = player1.get_friends();
 	// Get the friends field another way. 
@@ -2588,12 +2588,12 @@ fn main() {
 }</code></pre></pre>
 </li>
 <li>
-<p>In <code>impl</code> block, there can be 2 types of functions </p>
+<p>In <code>impl</code> block, there can be 2 types of functions</p>
 <ol>
 <li>With <code>self</code> type as the first parameter - <strong>Instance Methods</strong>
 <ol>
 <li>The <strong>Instance Method can only be called on the existing variable of type.</strong> For ex: ****the ****<code>get_friends</code> function in the above code.</li>
-<li><strong>Instance Methods</strong> also have 3 variants 
+<li><strong>Instance Methods</strong> also have 3 variants
 <ol>
 <li><code>self</code> as the first parameter - Calling this method will consume the type, you cannot use the type anymore.</li>
 <li><code>&amp;self</code> as the first parameter - Provides read-only access to <code>self</code></li>
@@ -2613,20 +2613,20 @@ fn main() {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-collections"><a class="header" href="#rust-collections">Rust: Collections</a></h1>
 <p>Status: Courses</p>
 <ol>
-<li>Collections are types used to process multiple instances of data. </li>
-<li>Simple collections are 
+<li>Collections are types used to process multiple instances of data.</li>
+<li>Simple collections are
 <ol>
-<li>Array </li>
+<li>Array</li>
 <li>Tuples</li>
 </ol>
 </li>
-<li>Dynamic collections are 
+<li>Dynamic collections are
 <ol>
 <li>vectors (list of items)</li>
 <li>maps (key/value items)</li>
 </ol>
 </li>
-<li>References to collections are slices. </li>
+<li>References to collections are slices.</li>
 </ol>
 <h2 id="arrays"><a class="header" href="#arrays">arrays</a></h2>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
@@ -2634,13 +2634,13 @@ fn main() {
 </span>// Array with 10 elements
 let num: [u8, 10] = [1,2,3,4,5,6,7,8,9,10];
 
-println!(&quot;5 element is {}&quot;, num[5]);
+println!("5 element is {}", num[5]);
 <span class="boring">}</span></code></pre></pre>
 <h2 id="tuples"><a class="header" href="#tuples">tuples</a></h2>
 <pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>// Construct a tuple
-let num_and_str: (u8, &amp;str) = (40, &quot;Have a good day&quot;); 
+let num_and_str: (u8, &amp;str) = (40, "Have a good day"); 
 // Deconstruct a tuple 
 let (num, str1) = num_and_str; // num contains 40 and str1 contains Have a good day
 <span class="boring">}</span></code></pre></pre>
@@ -2660,22 +2660,22 @@ let _ = num_vec2.pop(); // Value is poped and ignored
 <h2 id="hashmaps"><a class="header" href="#hashmaps">Hashmaps</a></h2>
 <ol>
 <li>
-<p>Stores key-value data. </p>
+<p>Stores key-value data.</p>
 <pre><pre class="playground"><code class="language-rust">use std::collections::Hashmap;
 
 fn main() {
 	// Initialise map
 	let mut fruits = HashMap::new(); 
 	// Insert new value
-	fruits.insert(&quot;apple&quot;, 3);
+	fruits.insert("apple", 3);
 	// Iterate values 
 	for (key, value) in &amp;fruits {
-		println!(&quot;Key: {}, Value: {}&quot;, key, value);
+		println!("Key: {}, Value: {}", key, value);
 	}
 	// Get the value of a key 
-	println!(&quot;Value of apple: {}&quot;, fruits[&quot;apple&quot;]);
+	println!("Value of apple: {}", fruits["apple"]);
 	// Remove value
-	fruits.remove(&quot;apple&quot;);
+	fruits.remove("apple");
 }</code></pre></pre>
 </li>
 </ol>
@@ -2683,7 +2683,7 @@ fn main() {
 <p>Status: Courses</p>
 <ol>
 <li>Modules are used to split big code to multiple files</li>
-<li>Key-points are 
+<li>Key-points are
 <ol>
 <li>
 <p>Each Rust program needs a root module.</p>
@@ -2693,7 +2693,7 @@ fn main() {
 </ol>
 </li>
 <li>
-<p>Modules can be </p>
+<p>Modules can be</p>
 <ol>
 <li>Files</li>
 <li>Directories</li>
@@ -2767,7 +2767,7 @@ mod my_module;
 <li>Vector Image - Vector images are represented to the computer in a form of an recipe on how to draw the image.</li>
 </ol>
 <p>It is resolution independent.
-For example : </p>
+For example :</p>
 <pre><code>draw circle
      center        0.5, 0.5
      radius        0.4
@@ -2789,37 +2789,37 @@ draw line
 <p>Now each pixel in a (Raster) Image is represented using 1/0 (1 bit) then we will get an image which is black and white with no color.</p>
 <p><img src="libraries/opencv/img/7.02.gif" alt="7.02" /></p>
 <h1 id="color-image"><a class="header" href="#color-image">Color Image</a></h1>
-<p>Turns out you can build any color using the right amounts of Red, Green and 
-Blue colors. Thus each pixel in a (raster) image can be represented in amount 
+<p>Turns out you can build any color using the right amounts of Red, Green and
+Blue colors. Thus each pixel in a (raster) image can be represented in amount
 of red, green and blue to represent a color.</p>
 <p><img src="libraries/opencv/img/1_yD_h4W9iRlxaaV91Jx9jHA.png" alt="1_yD_h4W9iRlxaaV91Jx9jHA" /></p>
 <h1 id="how-are-images-represented-in-a-computer"><a class="header" href="#how-are-images-represented-in-a-computer">How are images represented in a computer</a></h1>
-<p>Raster images are an array of pixels, each of these pixels are represented using n-bits for black &amp; white and for color using n-bits per color. </p>
-<p>Lets say you use 24 bit to represent these pixels then the image will look like this </p>
+<p>Raster images are an array of pixels, each of these pixels are represented using n-bits for black &amp; white and for color using n-bits per color.</p>
+<p>Lets say you use 24 bit to represent these pixels then the image will look like this</p>
 <p><img src="libraries/opencv/img/7.04.gif" alt="7.04" /></p>
 <h3 id="additional-reference"><a class="header" href="#additional-reference">Additional Reference</a></h3>
 <ol>
 <li>https://www.youtube.com/watch?v=15aqFQQVBWU</li>
 </ol>
 <h1 id="color-space"><a class="header" href="#color-space">Color Space</a></h1>
-<p>Most used color spaces are </p>
+<p>Most used color spaces are</p>
 <ol>
 <li>RGB - All colors can be represented using Red Green and Blue</li>
-<li>YCbCr - RBG is not good for compression, and humans are more attuned to Brightness (luminance) and difference between 2 colors (Chrominance). </li>
+<li>YCbCr - RBG is not good for compression, and humans are more attuned to Brightness (luminance) and difference between 2 colors (Chrominance).</li>
 </ol>
-<p>Hence this creates a new color space where the image is Represented in YCbCr 
+<p>Hence this creates a new color space where the image is Represented in YCbCr
 instead of RBG.</p>
-<p>Where, Y is brightness and Cb, Cr is Chrominance 
+<p>Where, Y is brightness and Cb, Cr is Chrominance
 Y = 0.299r' + 0.587g' + 0.114b' (Brightness or luminance)
 Cb = (b'-y)/1.772 (Chrominance)
 Cr = (r'-y)/1.402 (Chrominance)</p>
 <h1 id="properties-of-image"><a class="header" href="#properties-of-image">Properties of Image</a></h1>
 <h2 id="image-resolution"><a class="header" href="#image-resolution">Image Resolution</a></h2>
-<p>Image Resolution is the detail that the image holds. More resolution more 
+<p>Image Resolution is the detail that the image holds. More resolution more
 detailed the image.</p>
 <p>It can also be translated to Pixel Resolution.</p>
 <p>Pixel Resolution is the number of pixels the image contains.
-Pixel resolution is represented in 2 formats </p>
+Pixel resolution is represented in 2 formats</p>
 <ol>
 <li>height x width i.e. 640 x 320 pixels or 1920 x 1080 pixels</li>
 <li>total number of pixels i.e 2 Mega pixels or 5MP etc..</li>
@@ -2833,7 +2833,7 @@ Eg : 1:1 (square image)</p>
 More bit depth that means more shades of colors are possible.</p>
 <h2 id="brightness"><a class="header" href="#brightness">Brightness</a></h2>
 <p>We all know what it is, but still for the sake of it.
-Brightness is the intensity of light in an image. </p>
+Brightness is the intensity of light in an image.</p>
 <h2 id="contrast"><a class="header" href="#contrast">Contrast</a></h2>
 <p>Contrast is difference in brightness and color of the objects in the same picture.</p>
 <p>Take this example.</p>
@@ -2847,9 +2847,9 @@ Brightness is the intensity of light in an image. </p>
 <p>The left side of the image is sharp while the right side of the image is soft.</p>
 <h1 id="image-storage-formats"><a class="header" href="#image-storage-formats">Image storage formats</a></h1>
 <h2 id="un-compressed"><a class="header" href="#un-compressed">Un-compressed</a></h2>
-<p>Image is stored 'as-is' without any changes </p>
+<p>Image is stored 'as-is' without any changes</p>
 <ol>
-<li>RAW -  Typically the output image from the camera </li>
+<li>RAW -  Typically the output image from the camera</li>
 </ol>
 <p><img src="libraries/opencv/img/Selection_028.jpg" alt="Selection_028" /></p>
 <h2 id="compressed"><a class="header" href="#compressed">Compressed</a></h2>
@@ -2869,10 +2869,10 @@ Brightness is the intensity of light in an image. </p>
 <li>Then these photons are converted into some electric signals having certain range of voltage say 0 to 5 V.</li>
 <li>The brighter the light, the more photons are collected, and a higher electrical charge is generated.</li>
 <li>Electric Voltage only denotes the brightness (light intensity) of the image.</li>
-<li>In order to make this image colorful a color filters are put on top of the sensor so that only one chosen colored light passes through. </li>
+<li>In order to make this image colorful a color filters are put on top of the sensor so that only one chosen colored light passes through.</li>
 <li>Hence each sensor provides brightness (light intensity) for one color as output.</li>
 <li>The RGB value of one pixel comes from combined outputs of 4 photodiodes.</li>
-<li>This is due to each pixel has 4 photodiodes in which 2 are of green filter and one of red filter and blue filter each. </li>
+<li>This is due to each pixel has 4 photodiodes in which 2 are of green filter and one of red filter and blue filter each.</li>
 <li>All Combined we get RGB output for each pixel.</li>
 </ol>
 <h1 id="parameters-to-measure-camera-sensor-performance"><a class="header" href="#parameters-to-measure-camera-sensor-performance">Parameters to measure camera sensor Performance</a></h1>
@@ -2881,27 +2881,27 @@ Brightness is the intensity of light in an image. </p>
 <p>For example :
 <img src="libraries/opencv/img/1dark.jpg" alt="1dark" /></p>
 <ol>
-<li>Sky is clear but the bushes are dark </li>
+<li>Sky is clear but the bushes are dark</li>
 </ol>
 <hr />
 <p><img src="libraries/opencv/img/2bright.jpg" alt="2bright" />
-2. Bushes are clear but the sky is very bright </p>
+2. Bushes are clear but the sky is very bright</p>
 <hr />
 <p><img src="libraries/opencv/img/3fixed.jpg" alt="3fixed" />
 3. Actually how it looks to the human eye.</p>
-<p>Dynamic Range is measured in <strong>stops</strong>. Human eye has Dynamic range of upto 20 
-stops, best camera has range upto 15 stops. </p>
+<p>Dynamic Range is measured in <strong>stops</strong>. Human eye has Dynamic range of upto 20
+stops, best camera has range upto 15 stops.</p>
 <p>Higher the better performance of the camera.</p>
 <h2 id="signal-to-noise-ratio"><a class="header" href="#signal-to-noise-ratio">Signal to Noise Ratio</a></h2>
 <p>Ratio of signal power to noise power. Where Signal means valuable data or info and noise means unused data or info.</p>
-<p>It is measured in db. </p>
+<p>It is measured in db.</p>
 <p>Higher the better performance of the camera.</p>
 <h2 id="low-light-sensitivity"><a class="header" href="#low-light-sensitivity">Low Light Sensitivity</a></h2>
-<p>Low-light sensitivity for cameras is defined as the lowest level of light that still provides reasonable image clarity. </p>
+<p>Low-light sensitivity for cameras is defined as the lowest level of light that still provides reasonable image clarity.</p>
 <p>It is measured in lux.</p>
 <p>Lower the better performance of the camera.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basics-of-photography"><a class="header" href="#basics-of-photography">Basics of Photography</a></h1>
-<p>These are key points of photography which allows you to take great photos </p>
+<p>These are key points of photography which allows you to take great photos</p>
 <h2 id="exposure"><a class="header" href="#exposure">Exposure</a></h2>
 <p>Exposure is the amount of light that is exposed to the camera sensor.</p>
 <p>If too much light is exposed the photo will be very bright and too little light is exposed then the photo will be too dark.</p>
@@ -2912,10 +2912,10 @@ stops, best camera has range upto 15 stops. </p>
 <hr />
 <p><img src="libraries/opencv/img/underexposure.jpg" alt="underexposure" /></p>
 <ol start="2">
-<li>Under exposed image </li>
+<li>Under exposed image</li>
 </ol>
 <hr />
-<p>Exposure can be controlled by two parameters </p>
+<p>Exposure can be controlled by two parameters</p>
 <ol>
 <li>ISO</li>
 <li>Shutter speed</li>
@@ -2930,19 +2930,19 @@ stops, best camera has range upto 15 stops. </p>
 </ol>
 <hr />
 <p><img src="libraries/opencv/img/dof-f8.jpg" alt="dof-f8" />
-2. Large Depth of Field </p>
+2. Large Depth of Field</p>
 <hr />
 <h2 id="white-balance"><a class="header" href="#white-balance">White Balance</a></h2>
 <p>White balance is removing unrealistic colors from the image. These unrealistic colors are added due to varying light conditions in the nature.</p>
 <hr />
 <p><img src="libraries/opencv/img/wb_sardmen-incorrect.jpg" alt="wb_sardmen-incorrect" /></p>
 <ol>
-<li>Incorrect White Balance </li>
+<li>Incorrect White Balance</li>
 </ol>
 <hr />
 <p><img src="libraries/opencv/img/wb_sardmen-correct.jpg" alt="wb_sardmen-correct" /></p>
 <ol start="2">
-<li>Correct White Balance </li>
+<li>Correct White Balance</li>
 </ol>
 <hr />
 <h1 id="camera-sensor-parameters"><a class="header" href="#camera-sensor-parameters">Camera Sensor Parameters</a></h1>
@@ -2952,7 +2952,7 @@ stops, best camera has range upto 15 stops. </p>
 <hr />
 <p><img src="libraries/opencv/img/shutter-fast.jpg" alt="shutter-fast" /></p>
 <ol>
-<li>Fast Shutter speed </li>
+<li>Fast Shutter speed</li>
 </ol>
 <hr />
 <p><img src="libraries/opencv/img/shutter-slow.jpg" alt="shutter-slow" /></p>
@@ -2964,28 +2964,28 @@ stops, best camera has range upto 15 stops. </p>
 <p>ISO is the sensitivity of the camera to light.</p>
 <p>Higher the ISO the more light gets captured. But it has a drawback it adds more noise to the image.</p>
 <p><img src="libraries/opencv/img/what-is-ISO-4.jpg" alt="what-is-ISO-4" /></p>
-<p>More ISO the image gets brighter, but the image will also get grainy. </p>
+<p>More ISO the image gets brighter, but the image will also get grainy.</p>
 <h1 id="lens-parameters"><a class="header" href="#lens-parameters">Lens parameters</a></h1>
 <h2 id="aperture"><a class="header" href="#aperture">Aperture</a></h2>
 <p>Aperture is the size of the hole in the lens through with light travels to the camera.</p>
-<p>Aperture is measured in focal lengths like f/32, f/16, f/11, etc.. </p>
+<p>Aperture is measured in focal lengths like f/32, f/16, f/11, etc..</p>
 <pre><code>f/32 - Hole size is small --&gt; Deep Depth of field 
 ...
 f/1.4 - Hole size is large  --&gt; Shallow Depth of field
 </code></pre>
 <p><img src="libraries/opencv/img/illustration-how-aperture-works-1.gif" alt="illustration-how-aperture-works-1" /></p>
 <h2 id="focal-length"><a class="header" href="#focal-length">Focal length</a></h2>
-<p>Focal length is the measure of the &quot;how wide the lens can capture an image.&quot; or angle of view of the image.</p>
+<p>Focal length is the measure of the "how wide the lens can capture an image." or angle of view of the image.</p>
 <p><img src="libraries/opencv/img/800px-Angle_of_view.svg.png" alt="800px-Angle_of_view.svg" /></p>
 <h1 id="choosing-the-best-options-for-all-of-these"><a class="header" href="#choosing-the-best-options-for-all-of-these">Choosing the Best options for all of these.</a></h1>
-<p>This Flow cart will help you choose the best suitable options 
+<p>This Flow cart will help you choose the best suitable options
 <img src="libraries/opencv/img/eddy-camera-settings-p1-s.jpg" alt="eddy-camera-settings-p1-s" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="opencv-basics"><a class="header" href="#opencv-basics">OpenCV Basics</a></h1>
 <h2 id="what-will-you-learn"><a class="header" href="#what-will-you-learn">What will you learn</a></h2>
 <ol>
-<li>Installation steps </li>
-<li>Intro to API </li>
-<li>Basic Data Types </li>
+<li>Installation steps</li>
+<li>Intro to API</li>
+<li>Basic Data Types</li>
 </ol>
 <h2 id="at-the-end-you-should-be-able-to"><a class="header" href="#at-the-end-you-should-be-able-to">At the end you should be able to</a></h2>
 <ol>
@@ -2994,10 +2994,10 @@ f/1.4 - Hole size is large  --&gt; Shallow Depth of field
 </ol>
 <hr />
 <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
-<p>I personally use Ubuntu 16.04 64 bit x86, Hence all these steps are tried and 
-tested on my system, I would suggest you to mirror my configuration for 
+<p>I personally use Ubuntu 16.04 64 bit x86, Hence all these steps are tried and
+tested on my system, I would suggest you to mirror my configuration for
 smoother experience with the course.</p>
-<p>Most online resources say to compile OpenCV 3 on Ubuntu, But since I am lazy 
+<p>Most online resources say to compile OpenCV 3 on Ubuntu, But since I am lazy
 I found out an ppa for OpenCV 3, ppa looks good, I just hope that it does not come back and bite me in my ass later.</p>
 <p>Here are the steps for installing openCV 3 on Ubuntu 16.04</p>
 <pre><code class="language-sh">sudo add-apt-repository ppa:lkoppel/opencv
@@ -3007,17 +3007,17 @@ sudo apt install libopencv-calib3d3.2 libopencv-core3.2 libopencv-features2d3.2 
 sudo apt install libopencv-calib3d-dev libopencv-core-dev libopencv-features2d-dev  libopencv-flann-dev libopencv-highgui-dev libopencv-imgcodecs-dev libopencv-imgproc-dev libopencv-ml-dev libopencv-objdetect-dev libopencv-photo-dev libopencv-shape-dev libopencv-stitching-dev libopencv-superres-dev libopencv-video-dev libopencv-videoio-dev libopencv-videostab-dev libopencv-viz-dev libopencv-contrib-dev libopencv-dev
 </code></pre>
 <h1 id="introduction-to-opencv-api"><a class="header" href="#introduction-to-opencv-api">Introduction to OpenCV API</a></h1>
-<p>OpenCV program is divided into modules each module is a collection of API's 
+<p>OpenCV program is divided into modules each module is a collection of API's
 related to one particular function in CV.</p>
-<p>Most common modules are </p>
+<p>Most common modules are</p>
 <ol>
 <li>core - Contains basic datatypes and Mat type.</li>
 <li>highgui - provides UI capabilities and video and image capturing capabilities</li>
 <li>imgproc - includes image processing functions like filtering, color space conversion etc.</li>
-<li>features2d - Contains API for feature detection, feature matching and feature description </li>
+<li>features2d - Contains API for feature detection, feature matching and feature description</li>
 <li>objdetect - Containd API for object detection and predefined classes for (face, eyes, smile etc..)</li>
 <li>video - Contains API for video analysis like motion and tracking.</li>
-<li>gpu - Contains API for gpu accelerated algorithms </li>
+<li>gpu - Contains API for gpu accelerated algorithms</li>
 <li>ml - Contains API for Machine learning tools like classification, regression and data clustering.</li>
 </ol>
 <h1 id="opencv-classes"><a class="header" href="#opencv-classes">OpenCV Classes</a></h1>
@@ -3025,19 +3025,19 @@ related to one particular function in CV.</p>
 <li>All opencv functions are in one class called <code>cv</code>.</li>
 </ol>
 <h1 id="opencv-datatypes"><a class="header" href="#opencv-datatypes">OpenCV DataTypes</a></h1>
-<p>All primitive (basic) datatypes for OpenCV are </p>
+<p>All primitive (basic) datatypes for OpenCV are</p>
 <ol>
 <li>bool</li>
-<li>unsigned char </li>
-<li>signed char </li>
-<li>unsigned short </li>
-<li>signed short </li>
+<li>unsigned char</li>
+<li>signed char</li>
+<li>unsigned short</li>
+<li>signed short</li>
 <li>int</li>
-<li>float </li>
-<li>double </li>
-<li>Tuple of any of the above data types </li>
+<li>float</li>
+<li>double</li>
+<li>Tuple of any of the above data types</li>
 </ol>
-<p>These datatypes are defined by </p>
+<p>These datatypes are defined by</p>
 <pre><code class="language-c">CV_&lt;bit depth&gt;{U|S|F}C(&lt;number of channels&gt;)
 </code></pre>
 <p>In the above line,  U, S, F Stand for unsigned, signed and float.</p>
@@ -3045,22 +3045,22 @@ related to one particular function in CV.</p>
 you will use this data type</p>
 <pre><code class="language-c">CV_8U 
 </code></pre>
-<p>Practically this data type would be used to represent an grayscale pixel </p>
-<p>Lets say you want to do the same for RBG then you would use a Tuple of 3 channels (one for R, G and B) of the 8 bit unsigned integer, so the data type becomes. </p>
+<p>Practically this data type would be used to represent an grayscale pixel</p>
+<p>Lets say you want to do the same for RBG then you would use a Tuple of 3 channels (one for R, G and B) of the 8 bit unsigned integer, so the data type becomes.</p>
 <pre><code class="language-c">CV_8UC(3)
 </code></pre>
 <h1 id="opencv-mat-class"><a class="header" href="#opencv-mat-class">OpenCV Mat Class</a></h1>
-<p>It is used to store n-dimensional single or multi-channel arrays. </p>
-<p>Practically it can be used to store </p>
+<p>It is used to store n-dimensional single or multi-channel arrays.</p>
+<p>Practically it can be used to store</p>
 <ol>
-<li>real valued vectors or matrices </li>
-<li>complex valued vectors ot matrices </li>
-<li>Colored images </li>
-<li>grayscale images </li>
-<li>Histograms </li>
+<li>real valued vectors or matrices</li>
+<li>complex valued vectors ot matrices</li>
+<li>Colored images</li>
+<li>grayscale images</li>
+<li>Histograms</li>
 </ol>
 <h2 id="create-mat-object"><a class="header" href="#create-mat-object">Create Mat object</a></h2>
-<p>Use constructor to create Mat objects, syntax for the same is </p>
+<p>Use constructor to create Mat objects, syntax for the same is</p>
 <pre><code class="language-c">Mat(nrows, ncols, type[, fillValue])
 </code></pre>
 <p>For example:
@@ -3076,44 +3076,44 @@ TODO : Study more of Scalar.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="reading-and-capturing-an-image"><a class="header" href="#reading-and-capturing-an-image">Reading and capturing an image</a></h1>
 <h2 id="reading-an-image-from-the-file"><a class="header" href="#reading-an-image-from-the-file">Reading an image from the file</a></h2>
 <p>OpenCV provides <code>imread()</code>  function to read a image from the storage (hardisk or SD).</p>
-<p>Usage: </p>
+<p>Usage:</p>
 <pre><code class="language-c">/* Read from the file */
-Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR);
+Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR);
         if (in_image.empty()) { 
                 /* Check if read successful */
-                cout &lt;&lt; &quot;Error! Input image cannot be read...\n&quot;;
+                cout &lt;&lt; "Error! Input image cannot be read...\n";
                 return -1;
         }
 </code></pre>
 <h2 id="writing-an-image-from-the-file"><a class="header" href="#writing-an-image-from-the-file">Writing an image from the file</a></h2>
 <p>OpenCV provides <code>imwrite()</code> function to write the image to a file.</p>
-<p>Usage: </p>
+<p>Usage:</p>
 <pre><code class="language-c">/* Write image to file */
-imwrite(&quot;out.png&quot;, out_image); 
+imwrite("out.png", out_image); 
 /* Note: the out_image is a Mat variable with some values */
 </code></pre>
 <h2 id="show-the-image-to-the-user"><a class="header" href="#show-the-image-to-the-user">Show the image to the user</a></h2>
 <p>OpenCV provides <code>imshow()</code> function to show the image to the user by creating a window. But this function is not persistent (the window closes before the user can see it). To make it persistent we use <code>waitkey()</code> function.</p>
-<p>Usage: </p>
+<p>Usage:</p>
 <pre><code class="language-c">/* Shows output image on window */
-imshow(&quot;Flipped&quot;, out_image); 
+imshow("Flipped", out_image); 
 
 /* Let the user know how to close the windows */
-cout &lt;&lt; &quot;Press any key to exit...\n&quot;;
+cout &lt;&lt; "Press any key to exit...\n";
 /* Wait infinitely for key press */
 waitKey(); 
 </code></pre>
 <h2 id="capture-a-live-video"><a class="header" href="#capture-a-live-video">Capture a live video</a></h2>
-<p>OpenCV provides <code>Videocapture</code> class function to capture a live video from 
-the webcam or any connected camera device. </p>
-<p>Usage: </p>
+<p>OpenCV provides <code>Videocapture</code> class function to capture a live video from
+the webcam or any connected camera device.</p>
+<p>Usage:</p>
 <pre><code class="language-c">// Create a VideoCapture object and open the input file
 // If the input is the web camera, pass 0 instead of the video file name
 VideoCapture cap(0); 
 
 // Check if camera opened successfully
 if(!cap.isOpened()){
-        cout &lt;&lt; &quot;Error opening video stream or file&quot; &lt;&lt; endl;
+        cout &lt;&lt; "Error opening video stream or file" &lt;&lt; endl;
         return -1;
 }
 
@@ -3135,48 +3135,48 @@ while(1){
 <p>OpenCV <code>Mat</code> class provides <code>.at()</code> operator through which you can access and change individual pixels of a particular channel(B, G, or R channel).</p>
 <p>Usage :</p>
 <pre><code class="language-c">/* Read the image */
-Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR);
+Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR);
 
 /* Define the datatype for one pixel */
 Vec3b pixel1 = in_image.at&lt;Vec3b&gt;(100,100));
 
 /* Print BGR values of the pixel at 100th row and 100th col of the image */ 
-cout &lt;&lt; &quot;Given pixel (B):&quot; &lt;&lt; (unsigned int)pixel1[0] &lt;&lt; endl;
-cout &lt;&lt; &quot;Given pixel (G):&quot; &lt;&lt; (unsigned int)pixel1[1] &lt;&lt; endl;
-cout &lt;&lt; &quot;Given pixel (R):&quot; &lt;&lt; (unsigned int)pixel1[2] &lt;&lt; endl;
+cout &lt;&lt; "Given pixel (B):" &lt;&lt; (unsigned int)pixel1[0] &lt;&lt; endl;
+cout &lt;&lt; "Given pixel (G):" &lt;&lt; (unsigned int)pixel1[1] &lt;&lt; endl;
+cout &lt;&lt; "Given pixel (R):" &lt;&lt; (unsigned int)pixel1[2] &lt;&lt; endl;
 </code></pre>
 <h2 id="get-the-size-of-the-image"><a class="header" href="#get-the-size-of-the-image">Get the Size of the image</a></h2>
 <p>OpenCV <code>Mat</code> class provides <code>.size()</code> operator through which you can get the size of the image.</p>
 <p>Usage :</p>
 <pre><code class="language-c">/* Read the image */
-Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR);
+Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR);
 
 /*Print size for the image read */
 Size siz = in_image.size();
 
-cout &lt;&lt; &quot;Size of the Image&quot; &lt;&lt; endl;
-cout &lt;&lt; &quot;Width:&quot; &lt;&lt; siz.width &lt;&lt; endl;
-cout &lt;&lt; &quot;Height:&quot; &lt;&lt; siz.height &lt;&lt; endl; 
+cout &lt;&lt; "Size of the Image" &lt;&lt; endl;
+cout &lt;&lt; "Width:" &lt;&lt; siz.width &lt;&lt; endl;
+cout &lt;&lt; "Height:" &lt;&lt; siz.height &lt;&lt; endl; 
 </code></pre>
-<p>img.size() - will tell you the size of the image read </p>
+<p>img.size() - will tell you the size of the image read</p>
 <h2 id="get-the-number-of-channels-in-an-image"><a class="header" href="#get-the-number-of-channels-in-an-image">Get the number of channels in an image</a></h2>
 <p>OpenCV <code>Mat</code> class provides <code>.channels()</code> operator through which you can get the channels of the image.</p>
 <pre><code class="language-c">/* Read the image */
-Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR);
+Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR);
 
 /*Print channels of the image read */
 int ch = in_image.channels();
-cout &lt;&lt; &quot;Image channels:&quot; &lt;&lt; ch &lt;&lt; endl;
+cout &lt;&lt; "Image channels:" &lt;&lt; ch &lt;&lt; endl;
 
 </code></pre>
 <h2 id="get-the-bit-depth-of-the-image"><a class="header" href="#get-the-bit-depth-of-the-image">Get the Bit depth of the image</a></h2>
 <p>OpenCV <code>Mat</code> class provides <code>.depth()</code> operator through which you can get the bit depth of the image in terms of the <code>CV_8U</code> datatypes.</p>
 <pre><code class="language-c">/* Read the image */
-Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR);
+Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR);
 
 /*Print pixel depth image read */
 int d = in_image.depth();
-cout &lt;&lt; &quot;Image depth:&quot; &lt;&lt; d &lt;&lt; endl;
+cout &lt;&lt; "Image depth:" &lt;&lt; d &lt;&lt; endl;
 </code></pre>
 <ol start="10">
 <li>.clone()</li>
@@ -3184,20 +3184,20 @@ cout &lt;&lt; &quot;Image depth:&quot; &lt;&lt; d &lt;&lt; endl;
 <h2 id="copy-the-image-to-another-variable"><a class="header" href="#copy-the-image-to-another-variable">Copy the image to another variable</a></h2>
 <p>OpenCV <code>Mat</code> class provides <code>.clone()</code> operator through which you can copy one image to another variable.</p>
 <pre><code class="language-c">/* Read the image */
-Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR);
+Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR);
 
 /* Copy Input image to out variable */
 Mat out = in_image.clone();
 </code></pre>
 <h1 id="color-space-conversion"><a class="header" href="#color-space-conversion">Color space conversion</a></h1>
-<p>OpenCV provides one function <code>cvtColor()</code> which can convert the colorspace of the image to predefined desired colorspaces. </p>
-<p>You only need to change the 3rd argument to get the same image in different color spaces. </p>
-<p>Usage : This example shows one image getting converted to 4 different color spaces </p>
+<p>OpenCV provides one function <code>cvtColor()</code> which can convert the colorspace of the image to predefined desired colorspaces.</p>
+<p>You only need to change the 3rd argument to get the same image in different color spaces.</p>
+<p>Usage : This example shows one image getting converted to 4 different color spaces</p>
 <pre><code class="language-c">// Define variables to store the image 
 Mat image, HSV, Luv, Lab, YCrCb, XYZ, Rimg, Bimg, Gimg;
 
 //Read image
-image = imread(&quot;02.jpg&quot;, CV_LOAD_IMAGE_COLOR);
+image = imread("02.jpg", CV_LOAD_IMAGE_COLOR);
 
 //Convert RGB image to different color spaces
 cvtColor(image, HSV, CV_BGR2HSV);
@@ -3207,9 +3207,9 @@ cvtColor(image, YCrCb, CV_BGR2YCrCb);
 cvtColor(image, XYZ, CV_BGR2XYZ);
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="image-arithmetic-transforms"><a class="header" href="#image-arithmetic-transforms">Image Arithmetic Transforms</a></h1>
-<p>Arithmetic transform changes the values of image pixel and is applied point to 
+<p>Arithmetic transform changes the values of image pixel and is applied point to
 point.</p>
-<p>Types of Arithmetic Transforms </p>
+<p>Types of Arithmetic Transforms</p>
 <ol>
 <li>
 <p>add()</p>
@@ -3261,16 +3261,16 @@ point.</p>
 </li>
 </ol>
 <h1 id="image-geometrical-transforms"><a class="header" href="#image-geometrical-transforms">Image Geometrical transforms</a></h1>
-<p>Geometrical transforms change the position of the pixel and not the value. 
+<p>Geometrical transforms change the position of the pixel and not the value.
 Hence after such transforms the position of the pixel changes to a new position.</p>
-<p>The examples of geometric transform is </p>
+<p>The examples of geometric transform is</p>
 <ol>
 <li>Scaling</li>
-<li>Cropping </li>
+<li>Cropping</li>
 <li>Wrap perspective</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cropping-an-image"><a class="header" href="#cropping-an-image">Cropping an image</a></h1>
-<p>OpenCV does not provide a direct function to crop the image. Rather it is done 
+<p>OpenCV does not provide a direct function to crop the image. Rather it is done
 using this logic.</p>
 <p>To crop the image we do,</p>
 <ol>
@@ -3278,25 +3278,25 @@ using this logic.</p>
 <li>Copy the defined area into another <code>Mat cropped_image</code></li>
 </ol>
 <h4 id="define-the-area-that-we-want-to-crop"><a class="header" href="#define-the-area-that-we-want-to-crop">Define the area that we want to crop</a></h4>
-<p>Typically the area is a rectangle, to define a rectangle area in our image we need </p>
+<p>Typically the area is a rectangle, to define a rectangle area in our image we need</p>
 <ol>
 <li>The x, y co-ordinates of the top-left point of the rectangle</li>
 <li>The height and width of the rectangle.</li>
 </ol>
-<p>To do this in OpenCv we use </p>
+<p>To do this in OpenCv we use</p>
 <pre><code class="language-c">/* Create an Rectangle area for cropping (region of interest) */
 Rect roi(x, y, width, height);
 </code></pre>
 <h4 id="copy-the-defined-area-into-another-mat-cropped_image"><a class="header" href="#copy-the-defined-area-into-another-mat-cropped_image">Copy the defined area into another <code>Mat cropped_image</code></a></h4>
-<p>To do this in OpenCV you use </p>
+<p>To do this in OpenCV you use</p>
 <pre><code class="language-c">/* Crop the image along the roi rectangle 
  * Store it in another Mat 
  */
 out_image = in_image(roi).clone();
 </code></pre>
-<p><strong>Usage</strong> : </p>
-<p>Lets say you want to crop a square of 80 pixels from point (pixel) (10,30) in the image , then you do </p>
-<pre><code class="language-c">Mat in_image = imread(&quot;logo.png&quot;, CV_LOAD_IMAGE_COLOR)
+<p><strong>Usage</strong> :</p>
+<p>Lets say you want to crop a square of 80 pixels from point (pixel) (10,30) in the image , then you do</p>
+<pre><code class="language-c">Mat in_image = imread("logo.png", CV_LOAD_IMAGE_COLOR)
 /* Create an Rectangle area for cropping (region of interest) */
 Rect roi(10, 30, 80, 80);
 
@@ -3306,26 +3306,26 @@ Rect roi(10, 30, 80, 80);
 out_image = in_image(roi).clone();
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="image-filtering"><a class="header" href="#image-filtering">Image Filtering</a></h1>
-<p>The principle of the Iamge filtering is that the center pixel is the average 
-of all the other adjacent/neighboring pixels. The <em>number of neighboring pixels</em> to average are defined by the <code>kernel size of the filter</code>. </p>
+<p>The principle of the Iamge filtering is that the center pixel is the average
+of all the other adjacent/neighboring pixels. The <em>number of neighboring pixels</em> to average are defined by the <code>kernel size of the filter</code>.</p>
 <p>The kernel value defines the weights by which each pixel gets
 multiplied and then the average of these pixels is taken.</p>
-<p>The difference between various filters in the Kernel values, these kernel 
-values can be generated using different Statical formulas like Gaussian, 
+<p>The difference between various filters in the Kernel values, these kernel
+values can be generated using different Statical formulas like Gaussian,
 Median, bilateral etc.</p>
-<p>To apply Filters there are 2 methods </p>
+<p>To apply Filters there are 2 methods</p>
 <ol>
 <li>Applying filters with predefined kernels</li>
-<li>Applying filters with user defined kernels </li>
+<li>Applying filters with user defined kernels</li>
 </ol>
 <h2 id="applying-filters-with-predefined-kernels"><a class="header" href="#applying-filters-with-predefined-kernels">Applying filters with predefined kernels</a></h2>
-<p>OpenCV Defines these filters by default </p>
+<p>OpenCV Defines these filters by default</p>
 <ol>
-<li>blur </li>
-<li>gaussianBlur </li>
+<li>blur</li>
+<li>gaussianBlur</li>
 <li>MedianBlur</li>
 <li>BoxFilter</li>
-<li>bilateralFilter </li>
+<li>bilateralFilter</li>
 </ol>
 <h2 id="applying-filters-with-user-defined-kernels"><a class="header" href="#applying-filters-with-user-defined-kernels">Applying filters with user defined kernels</a></h2>
 <p>I am finding it hard to explain via words hence check it out with code</p>
@@ -3358,32 +3358,32 @@ kernel.at&lt;float&gt;(1,2)= -1.0;
 //filter the image 
 filter2D(image,result,image.depth(),kernel); 
 
-namedWindow( &quot;Filtered 1&quot;, 0 );
+namedWindow( "Filtered 1", 0 );
 
 /* Show the image */
-imshow(&quot;Filtered 1&quot;, result); // Shows output image on window
+imshow("Filtered 1", result); // Shows output image on window
 </code></pre>
 <h2 id="practical-uses-of-filtering"><a class="header" href="#practical-uses-of-filtering">Practical uses of Filtering</a></h2>
 <ol>
-<li>Blur the image </li>
-<li>Sharpen the image </li>
+<li>Blur the image</li>
+<li>Sharpen the image</li>
 <li>Segmentation</li>
-<li>Filtering Edges </li>
-<li>Skin Detection </li>
+<li>Filtering Edges</li>
+<li>Skin Detection</li>
 <li>Pre-processing for thresholding</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="histogram"><a class="header" href="#histogram">Histogram</a></h1>
-<p>A histogram is representation of the frequency of the values of pixels. </p>
+<p>A histogram is representation of the frequency of the values of pixels.</p>
 <p>Mathematically A histogram is a Table where Entry 0 will contain number of pixels that have <code>0</code> value, Entry 1 will contain number of pixels that have <code>1</code> value, so on..</p>
 <h2 id="compute-histogram-in-opencv"><a class="header" href="#compute-histogram-in-opencv">Compute Histogram in OpenCV</a></h2>
-<p>OpenCV Provides a function to calculate Histogram of any one channel </p>
+<p>OpenCV Provides a function to calculate Histogram of any one channel</p>
 <pre><code class="language-c">calcHist(&amp;image, 1, 0, Mat(), hist, 1, &amp;histSize, 0);
 </code></pre>
 <p>Here is the snippet on how to use the function</p>
 <pre><code class="language-c">Mat hist, image;
 
 //Read original image
-Mat src = imread(&quot;img.jpg&quot;);
+Mat src = imread("img.jpg");
 
 //Convert color image to gray level image
 cvtColor(src, image, CV_RGB2GRAY);
@@ -3395,7 +3395,7 @@ calcHist(&amp;image, 1, 0, Mat(), hist, 1, &amp;histSize, 0);
 </code></pre>
 <p>To know more, <a href="https://docs.opencv.org/3.4.8/d6/dc7/group__imgproc__hist.html#ga4b2b5fd75503ff9e6844cc4dcdaed35d">click here</a>.</p>
 <h2 id="equalizing-the-histogram"><a class="header" href="#equalizing-the-histogram">Equalizing the Histogram</a></h2>
-<p>Equalizing means all the table entries of the Histogram must contain equal number of pixels. </p>
+<p>Equalizing means all the table entries of the Histogram must contain equal number of pixels.</p>
 <blockquote>
 <p><strong>Note</strong>: Practically this is not possible so practically the hidtogram equalization tries to do equalize the table entries at its best without deforming the image.</p>
 </blockquote>
@@ -3407,7 +3407,7 @@ equalizeHist( image, result );
 <pre><code class="language-c">Mat hist, image, result;
 
 //Read original image
-Mat src = imread(&quot;img.jpg&quot;);
+Mat src = imread("img.jpg");
 
 //Convert color image to gray level image
 cvtColor(src, image, CV_RGB2GRAY);
@@ -3418,37 +3418,37 @@ equalizeHist( image, result );
 <p>To know more, <a href="https://docs.opencv.org/3.4.8/d6/dc7/group__imgproc__hist.html#ga7e54091f0c937d49bf84152a16f76d6e">click here</a>.</p>
 <h2 id="practical-uses-of-histogram-equalization"><a class="header" href="#practical-uses-of-histogram-equalization">Practical uses of Histogram equalization</a></h2>
 <ol>
-<li>Enhance the image </li>
-<li>Adjust Brightness and Contrast </li>
+<li>Enhance the image</li>
+<li>Adjust Brightness and Contrast</li>
 <li>Pre-process the image for edge detection</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="contours"><a class="header" href="#contours">Contours</a></h1>
-<p>Contours define the boundary of a shapes </p>
+<p>Contours define the boundary of a shapes</p>
 <h2 id="detecting-contours"><a class="header" href="#detecting-contours">Detecting Contours</a></h2>
 <p>Contours can be detected using these methods</p>
 <ol>
-<li>Canny edge detectors </li>
-<li>Hough lines </li>
-<li>Hough circles </li>
+<li>Canny edge detectors</li>
+<li>Hough lines</li>
+<li>Hough circles</li>
 <li>Line Segment Detector</li>
 </ol>
 <h3 id="canny-edge-detector"><a class="header" href="#canny-edge-detector">Canny Edge Detector</a></h3>
-<p>Canny algorithm uses hysteresis thresholding 
-At its core it uses Sobel filters </p>
-<p>This is how I understand what Canny does </p>
-<p>Canny actually applies Sobel filter for the low 
-threshold </p>
+<p>Canny algorithm uses hysteresis thresholding
+At its core it uses Sobel filters</p>
+<p>This is how I understand what Canny does</p>
+<p>Canny actually applies Sobel filter for the low
+threshold</p>
 <p>Since the threshold is low, edges + some other noise will
-remain in the image after the filter. </p>
+remain in the image after the filter.</p>
 <p>Then it applies Sobel filter for the High threshold</p>
-<p>Which will still detect the edges but the noise will 
+<p>Which will still detect the edges but the noise will
 be gone (also these edges will start to fade)</p>
-<p>Then it combines the 2 edge maps outputs together to form the 
-actual map. </p>
-<p>It also does another trick to get the desired output fast and efficiently </p>
+<p>Then it combines the 2 edge maps outputs together to form the
+actual map.</p>
+<p>It also does another trick to get the desired output fast and efficiently</p>
 <p>It removes all the edge points whose gradients are not
 perpendicular to each other this makes the edge maps thin</p>
-<p>Syntax : </p>
+<p>Syntax :</p>
 <pre><code class="language-c">// Apply Canny algorithm
 Mat contours;
 Canny(input,      // gray-level image
@@ -3456,7 +3456,7 @@ Canny(input,      // gray-level image
       125,      // low threshold
       130);     // high threshold
 </code></pre>
-<p>Usage : </p>
+<p>Usage :</p>
 <pre><code class="language-c">// Apply Canny algorithm
 Mat contours;
 Canny(input,      // gray-level image
@@ -3466,20 +3466,20 @@ Canny(input,      // gray-level image
 </code></pre>
 <h2 id="extracting-components"><a class="header" href="#extracting-components">Extracting Components</a></h2>
 <p>OpenCv provides a function to extract components using <code>findContours()</code> function</p>
-<p>This systematically scans the image until it hits 
+<p>This systematically scans the image until it hits
 a contour.</p>
 <p>Then it follows the contour until it gets complete</p>
 <p>Then starts scanning again</p>
-<p>Thus by the end of the operation all the contours 
+<p>Thus by the end of the operation all the contours
 can be detected.</p>
-<p>Syntax: </p>
+<p>Syntax:</p>
 <pre><code class="language-c">/ Scan the image to find contours /
 findContours(input,                   // input image 
              contours,                  // a vector of contours
              CV_RETR_LIST,          // retrieve all contours
              CV_CHAIN_APPROX_NONE); // all pixels of each contours
 </code></pre>
-<p>Usage : </p>
+<p>Usage :</p>
 <pre><code class="language-c">/ Scan the image to find contours /
 findContours(tri,                   // input image 
              cont,                  // a vector of contours
@@ -3489,9 +3489,9 @@ findContours(tri,                   // input image
 <h2 id="drawing-contours"><a class="header" href="#drawing-contours">Drawing Contours</a></h2>
 <p>OpenCV provides an inbuilt function for drawing contours
 called <code>drawContours()</code>.</p>
-<p>We can use it to draw detected contours on an image and then 
+<p>We can use it to draw detected contours on an image and then
 show it to the user or use it for further processing.</p>
-<p>Syntax: </p>
+<p>Syntax:</p>
 <pre><code class="language-c">drawContours(result, // Result image
              Contours,   // Contours vector
              -1,     // draw all contours (how many contours to draw ?)
@@ -3512,14 +3512,14 @@ drawContours(result, // Result image
 
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="thresholding"><a class="header" href="#thresholding">Thresholding</a></h1>
-<p>Thresholding is where you apply a threshold and bring all the pixel values 
+<p>Thresholding is where you apply a threshold and bring all the pixel values
 above the threshold to one value and below the threshold to another value.</p>
 <p>If some one is from electronics then it is vary similar to Analog to Digital conversion, but in ADC there are many thresholds but here there is only one.</p>
 <p>OpenCV provides a function for thresholding called <code>threshold()</code></p>
 <pre><code class="language-c">threshold(input_image, output_image, threshold_value, max_value, type);
 </code></pre>
 <p>Where <code>type</code> argument determines the type of the threshold that is getting applied.</p>
-<p>Table for Types of threshold are </p>
+<p>Table for Types of threshold are</p>
 <div class="table-wrapper"><table><thead><tr><th><strong>Type</strong></th><th><strong>Result image</strong></th></tr></thead><tbody>
 <tr><td>THRESH_BINARY</td><td><code>max_value</code> if pixel(x,y) value is greater than <strong>threshold_value</strong> and else <code>0</code></td></tr>
 <tr><td>THRESH_BINARY_INV</td><td><code>0</code> if pixel(x,y) value is greater than <strong>threshold_value</strong> and else <code>max_value</code></td></tr>
@@ -3528,50 +3528,50 @@ above the threshold to one value and below the threshold to another value.</p>
 <tr><td>THRESH_TOZERO_INV</td><td><code>0</code> if pixel(x,y) is greater than <strong>threshold_value</strong> and else pixel(x,y) value is unchanged</td></tr>
 </tbody></table>
 </div>
-<p>Other Types of thresholding are </p>
+<p>Other Types of thresholding are</p>
 <ol>
-<li>Adaptive thresholding </li>
-<li>Otsu thresholding </li>
+<li>Adaptive thresholding</li>
+<li>Otsu thresholding</li>
 <li>Triangle Binarization</li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="features"><a class="header" href="#features">Features</a></h1>
 <h2 id="interest-points"><a class="header" href="#interest-points">Interest points</a></h2>
 <p>Interest points are sudden changes in intensity in the region.
-These local features are usually classified as edges, blobs or corners. </p>
+These local features are usually classified as edges, blobs or corners.</p>
 <h2 id="list-of-methods-to-detect-features"><a class="header" href="#list-of-methods-to-detect-features">List of methods to detect features</a></h2>
 <p>List of methods in OpenCV to detect features or interest points or key points</p>
 <h3 id="normal-feature-detectors"><a class="header" href="#normal-feature-detectors">Normal Feature detectors</a></h3>
 <ol>
-<li>Harris corner detector </li>
-<li>FAST feature detector </li>
-<li>feature detector class </li>
-<li>Adapted feature detection </li>
-<li>Grid Adapted feature detection </li>
-<li>Pyramid Adapted feature detection </li>
+<li>Harris corner detector</li>
+<li>FAST feature detector</li>
+<li>feature detector class</li>
+<li>Adapted feature detection</li>
+<li>Grid Adapted feature detection</li>
+<li>Pyramid Adapted feature detection</li>
 </ol>
 <h3 id="scale-invariance-feature-detectors"><a class="header" href="#scale-invariance-feature-detectors">Scale invariance Feature detectors</a></h3>
-<p>Detect same features regardless of scale of the image </p>
+<p>Detect same features regardless of scale of the image</p>
 <ol>
-<li>SIFT </li>
-<li>SURF </li>
-<li>BRISK (Binary Robust Invariant Scalable Keypoints) </li>
-<li>ORB (Oriented FAST Rotated BRISK) </li>
+<li>SIFT</li>
+<li>SURF</li>
+<li>BRISK (Binary Robust Invariant Scalable Keypoints)</li>
+<li>ORB (Oriented FAST Rotated BRISK)</li>
 </ol>
-<p>I have tried only 2 methods </p>
+<p>I have tried only 2 methods</p>
 <ol>
-<li>FAST </li>
-<li>BRISK </li>
+<li>FAST</li>
+<li>BRISK</li>
 </ol>
 <h4 id="fast-feature-detector"><a class="header" href="#fast-feature-detector">FAST Feature Detector</a></h4>
-<p><strong>Working</strong> : 
-It works by selecting a candidate point the forming a circle using radius of 3 pixels </p>
+<p><strong>Working</strong> :
+It works by selecting a candidate point the forming a circle using radius of 3 pixels</p>
 <p>then it tests all the pixels in the circle they should be either brighter or darker than the central point + threshold</p>
-<p>The speed is achieved by computing 4 points in the 
+<p>The speed is achieved by computing 4 points in the
 circle with 90 deg separation (top, bottom, left, right)</p>
-<p>if 3 of such points are either brighter or darker 
+<p>if 3 of such points are either brighter or darker
 than the central point then only it proceeds forward</p>
-<p>if the condition fails then the central point is changed </p>
-<p>Usage : </p>
+<p>if the condition fails then the central point is changed</p>
+<p>Usage :</p>
 <pre><code class="language-c">// vector of keypoints 
 std::vector&lt;cv::KeyPoint&gt; keypoints;
 // Construction of the Fast feature detector object  
@@ -3589,23 +3589,23 @@ cv::drawKeypoints(Resize,    // original image
 
 </code></pre>
 <h4 id="brisk-feature-detector"><a class="header" href="#brisk-feature-detector">BRISK Feature Detector</a></h4>
-<p><strong>Working</strong> : </p>
-<p>It creates a pyramid of images by down scaling 
+<p><strong>Working</strong> :</p>
+<p>It creates a pyramid of images by down scaling
 the input image by half each layer.
-In between these layers the image is again down 
-scaled by 1.5 </p>
+In between these layers the image is again down
+scaled by 1.5</p>
 <p>Then FAST feature extraction is applied to each image
 of the pyramid.</p>
-<p>Then the key points are applied this criteria </p>
+<p>Then the key points are applied this criteria</p>
 <ol>
-<li>The key point must be local maximum comparing its strength 
-with 8 spatial neighbors </li>
-<li>Then the key point is compared with neighboring 
-points in the layers above and below 
-if the score is higher in scale as well then it is accepted 
+<li>The key point must be local maximum comparing its strength
+with 8 spatial neighbors</li>
+<li>Then the key point is compared with neighboring
+points in the layers above and below
+if the score is higher in scale as well then it is accepted
 as an interest point.</li>
 </ol>
-<p>Usage : </p>
+<p>Usage :</p>
 <pre><code class="language-c">// vector of keypoints 
 std::vector&lt;cv::KeyPoint&gt; keypoints1;
 // Construction of the Fast feature detector object  
@@ -3623,23 +3623,23 @@ cv::drawKeypoints(Resize,    // original image
 </code></pre>
 <h1 id="feature-descriptors"><a class="header" href="#feature-descriptors">Feature Descriptors</a></h1>
 <p>Feature Descriptors are methods which describe the location and neighborhood<br />
-of the feature in vectors or binary form </p>
+of the feature in vectors or binary form</p>
 <p>Typically the Detectors themselves come with built-in descriptors.</p>
-<p>Few Descriptors are: </p>
+<p>Few Descriptors are:</p>
 <ol>
-<li>SURF </li>
-<li>SIFT </li>
+<li>SURF</li>
+<li>SIFT</li>
 </ol>
 <p>These descriptors are very rich and contain floating point vectors of dimension 64 or 128, These are costly, Hence I did not study them.</p>
-<p>There a new Descriptors called as binary descriptors 
-Examples are </p>
+<p>There a new Descriptors called as binary descriptors
+Examples are</p>
 <ol>
-<li>ORB </li>
-<li>BRISK </li>
+<li>ORB</li>
+<li>BRISK</li>
 </ol>
 <h1 id="feature-matching"><a class="header" href="#feature-matching">Feature Matching</a></h1>
-<p>Feature Matching matching descriptors by calculating distance between the 
-descriptors using different techniques. </p>
+<p>Feature Matching matching descriptors by calculating distance between the
+descriptors using different techniques.</p>
 <p>Various Methods for Matching Descriptors are :</p>
 <ol>
 <li>
@@ -3661,53 +3661,53 @@ descriptors using different techniques. </p>
 <p><strong>FlannBased</strong>: This is used for float descriptors and is faster than brute force at the cost of using more memory.</p>
 </li>
 </ol>
-<p>OpenCV encapsulates them all into one Function with various flags for 
+<p>OpenCV encapsulates them all into one Function with various flags for
 different methods</p>
 <h2 id="rejecting-matches"><a class="header" href="#rejecting-matches">Rejecting Matches</a></h2>
 <p>If we use simple Match then many key points get incorrectly matched.
 To reduce this we need to reject some matches</p>
 <ol>
 <li>
-<p>Cross-checking Matches 
-Match using all key points of 1st image to 2nd image 
-Repeat the match process with key points of 2nd image to the 1st image </p>
+<p>Cross-checking Matches
+Match using all key points of 1st image to 2nd image
+Repeat the match process with key points of 2nd image to the 1st image</p>
 </li>
 <li>
-<p>Ratio Test 
-Use knn to find the best 2 matches between the images </p>
+<p>Ratio Test
+Use knn to find the best 2 matches between the images</p>
 </li>
 <li>
-<p>Distance Thresholding 
-Reject Matches that have more distance between the vectors </p>
+<p>Distance Thresholding
+Reject Matches that have more distance between the vectors</p>
 </li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="detection"><a class="header" href="#detection">Detection</a></h2>
 <p>Detection in OpenCV can be used to detect objects and detect features.</p>
-<p>OpenCV actually provides various methods for Detection </p>
+<p>OpenCV actually provides various methods for Detection</p>
 <ol>
-<li>Cascade </li>
-<li>SVM </li>
+<li>Cascade</li>
+<li>SVM</li>
 </ol>
-<p>I have tried Cascade with example </p>
+<p>I have tried Cascade with example</p>
 <h2 id="cascade"><a class="header" href="#cascade">Cascade</a></h2>
-<p>Cascades are basically classifiers which are very simple to train. 
+<p>Cascades are basically classifiers which are very simple to train.
 Classifiers can be face, eye, sign board, text etc...</p>
 <p>Training them is simple and does not need a large dataset.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="motion-and-tracking"><a class="header" href="#motion-and-tracking">Motion and Tracking</a></h1>
 <h2 id="optical-flow"><a class="header" href="#optical-flow">Optical Flow</a></h2>
-<p>A picture is the representation of pattern of brightness observed by the image 
-sensor. </p>
-<p>So to track motion in a video we check the change in the brightness pattern from frame to frame of the video. </p>
-<p>The motion (direction) of the change in brightness pattern from frame to frame 
-is called as optical flow. </p>
+<p>A picture is the representation of pattern of brightness observed by the image
+sensor.</p>
+<p>So to track motion in a video we check the change in the brightness pattern from frame to frame of the video.</p>
+<p>The motion (direction) of the change in brightness pattern from frame to frame
+is called as optical flow.</p>
 <p>In simpler terms, Optical Flow is the direction of he pixel that moved in the new frame.</p>
 <p>There are many different methods of the Optical Flow.</p>
 <ol>
 <li>Lukas-Kanade Optical Flow</li>
-<li>Gunnar-Farneback Optical Flow </li>
+<li>Gunnar-Farneback Optical Flow</li>
 </ol>
 <h2 id="object-tracker"><a class="header" href="#object-tracker">Object Tracker</a></h2>
-<p>Object Tracker is tracking(estimating the position) the given object in the next frame. </p>
+<p>Object Tracker is tracking(estimating the position) the given object in the next frame.</p>
 <p>This is done by creating a grid over the object in the reference frame and then applying optical flow to track where all these points in the grid moved to.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="projection-matrix"><a class="header" href="#projection-matrix">Projection Matrix</a></h1>
 <pre><code>1/f = 1/do + 1/di
@@ -3716,7 +3716,7 @@ is called as optical flow. </p>
 f =&gt; Focal Length of the camera<br />
 d0 =&gt; Distance of the object from the lens<br />
 di =&gt; Distance b/w the lens and the image plane (camera sensor)</p>
-<p>since do &gt;&gt; di hence we can say that the image plane (camera sensor) is at the 
+<p>since do &gt;&gt; di hence we can say that the image plane (camera sensor) is at the
 focal length</p>
 <p>Hence by the law of similar triangles we can say that</p>
 <pre><code>hi = f x ho/do
@@ -3728,15 +3728,15 @@ ho = height of the object<br />
 do = distance of the object</p>
 <p>So we can say that the an point 3D in X,Y,Z co-ordinates gets converted to a point<br />
 in 2D co-ordinate as x,y.</p>
-<p>The Matrix that it forms is </p>
+<p>The Matrix that it forms is</p>
 <pre><code>  [x]   [f 0 0] [X]
 S [y] = [0 f 0] [Y] 
   [1]   [0 0 1] [Z]
                 [1]
 </code></pre>
-<p>This is projection matrix. 
+<p>This is projection matrix.
 And where the frame is not aligned with the focal point we add the rotation and translation matrix</p>
-<p>Hence we get camera intrinsic properties in (focal length etc) in one matrix and 
+<p>Hence we get camera intrinsic properties in (focal length etc) in one matrix and
 extrinsic properties (rotation and translation) in one matrix.</p>
 <h1 id="epipolar-geometry"><a class="header" href="#epipolar-geometry">Epipolar Geometry</a></h1>
 <p><img src="libraries/opencv/img/Epipolar_geometry.svg" alt="Epipolar_geometry.svg" /></p>
@@ -3745,7 +3745,7 @@ extrinsic properties (rotation and translation) in one matrix.</p>
 <p>OL =&gt; center of the left camera<br />
 OR =&gt; Center of the right camera</p>
 <p>And we are trying to capture the object X.</p>
-<p>Now we will discuss the terms </p>
+<p>Now we will discuss the terms</p>
 <ol>
 <li>
 <p>Epipolar plane - The plane getting formed by joining the centers of the cameras and the object is called as epipolar plane.</p>
@@ -3756,19 +3756,19 @@ OR =&gt; Center of the right camera</p>
 </ol>
 <h1 id="detecting-depth-from-stereo-images"><a class="header" href="#detecting-depth-from-stereo-images">Detecting Depth from Stereo images</a></h1>
 <p><img src="libraries/opencv/img/stereodepth.png" alt="stereodepth" /></p>
-<p>Lets say we have 2 cameras side by side with same 3D calibration (i.e 0 rotation and B translation X domain) </p>
-<p>Then the projection Matrix of the Right camera is 
+<p>Lets say we have 2 cameras side by side with same 3D calibration (i.e 0 rotation and B translation X domain)</p>
+<p>Then the projection Matrix of the Right camera is
 <img src="libraries/opencv/img/matrix.png" alt="matrix" /></p>
-<p>Where, 
-f - Focal length of the camera 
+<p>Where,
+f - Focal length of the camera
 X,Y,Z - Real World co-ordinates of the object
-B - Is the distance between the centers of the 2 cameras 
+B - Is the distance between the centers of the 2 cameras
 u0, v0 - are the x,y co-ordinates of the Principle point.
 x',y' - is the co-ordinates of the object in the image</p>
 <p>And the To calculate depth we can use this formula
 <img src="libraries/opencv/img/equation.png" alt="equation" /></p>
-<p>The term (x-x') is called as <code>disparity</code>. </p>
-<p>Disparity can be calculated using available OpenCV functions </p>
+<p>The term (x-x') is called as <code>disparity</code>.</p>
+<p>Disparity can be calculated using available OpenCV functions</p>
 <pre><code class="language-c">//Compute disparity 
 cv::Mat disparity; 
 cv::Ptr&lt;cv::StereoMatcher&gt; pStereo =  

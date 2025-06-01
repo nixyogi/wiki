@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="Site for Personal wiki">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../../favicon.svg">
         <link rel="shortcut icon" href="../../favicon.png">
@@ -24,26 +24,40 @@
         <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../../highlight.css">
-        <link rel="stylesheet" href="../../tomorrow-night.css">
-        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "../../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,79 +71,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = null;
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="../../kernel/debugging/index.html"><strong aria-hidden="true">1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.</strong> Understanding Kernel Oops</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html"><strong aria-hidden="true">1.2.</strong> Tools & Techniques to Debug a LinuxSystem</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.3.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.4.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.5.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Reproducing-bugs-from-syzkaller.html"><strong aria-hidden="true">1.6.</strong> Reproducing bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Solving-syzkaller-bugs.html" class="active"><strong aria-hidden="true">1.7.</strong> Solving bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Event-Tracing.html"><strong aria-hidden="true">1.8.</strong> Event tracing</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Event-tracing-for-debugging.html"><strong aria-hidden="true">1.9.</strong> Event tracing for Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/index.html"><strong aria-hidden="true">2.</strong> Camera Driver</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/camera-driver/03.html"><strong aria-hidden="true">2.1.</strong> Introduction to Gstreamer</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/04.html"><strong aria-hidden="true">2.2.</strong> Color Formats RGB vs YUV</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/05.html"><strong aria-hidden="true">2.3.</strong> Internal Working of the camera Sensor</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/06.html"><strong aria-hidden="true">2.4.</strong> Image Processing Pipeline</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/15.html"><strong aria-hidden="true">2.5.</strong> Introduction to MIPI/CSI ports</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/16.html"><strong aria-hidden="true">2.6.</strong> Study of camera sensors</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/01.html"><strong aria-hidden="true">2.7.</strong> Introduction to Device Drivers</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/09.html"><strong aria-hidden="true">2.8.</strong> Hello World Device Driver</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/10.html"><strong aria-hidden="true">2.9.</strong> Introduction to Char driver</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/02.html"><strong aria-hidden="true">2.10.</strong> Camera driver Architecture</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/11.html"><strong aria-hidden="true">2.11.</strong> Structure of the camera device driver</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/07.html"><strong aria-hidden="true">2.12.</strong> Introduction to Device Trees</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/12.html"><strong aria-hidden="true">2.13.</strong> Write Device Tree for the camera module</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/13.html"><strong aria-hidden="true">2.14.</strong> Camera driver power and startup block</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/14.html"><strong aria-hidden="true">2.15.</strong> Camera driver Initialization</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/17.html"><strong aria-hidden="true">2.16.</strong> Combining all blocks</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Programming</li><li class="chapter-item expanded "><a href="../../programming/rust/index.html"><strong aria-hidden="true">3.</strong> Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Data-Types.html"><strong aria-hidden="true">3.1.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Variables-and-Immutability.html"><strong aria-hidden="true">3.2.</strong> Variables & Imutability</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Functions.html"><strong aria-hidden="true">3.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Closures.html"><strong aria-hidden="true">3.4.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Strings.html"><strong aria-hidden="true">3.5.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Decision-Making.html"><strong aria-hidden="true">3.6.</strong> Decision Making</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Loops.html"><strong aria-hidden="true">3.7.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Struct.html"><strong aria-hidden="true">3.8.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Enums.html"><strong aria-hidden="true">3.9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Function-on-Types.html"><strong aria-hidden="true">3.10.</strong> Impl</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Collections.html"><strong aria-hidden="true">3.11.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Modules-imports-use-statements.html"><strong aria-hidden="true">3.12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Slices.html"><strong aria-hidden="true">3.13.</strong> Slices</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-iterators.html"><strong aria-hidden="true">3.14.</strong> Iterators</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Libraries</li><li class="chapter-item expanded "><a href="../../libraries/opencv/index.html"><strong aria-hidden="true">4.</strong> OpenCV</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../libraries/opencv/01.html"><strong aria-hidden="true">4.1.</strong> Understanding Types of Digital Image representation in computers</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/02.html"><strong aria-hidden="true">4.2.</strong> CMOS Camera Sensor and its performance parameters</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/03.html"><strong aria-hidden="true">4.3.</strong> Basics of Photography</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/04.html"><strong aria-hidden="true">4.4.</strong> OpenCV - Basics</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/05.html"><strong aria-hidden="true">4.5.</strong> Reading/Writing an Image</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/06.html"><strong aria-hidden="true">4.6.</strong> Image Processing - Accessing Pixels, Transform Color Spaces</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/15.html"><strong aria-hidden="true">4.7.</strong> Image Processing - Image Transforms</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/07.html"><strong aria-hidden="true">4.8.</strong> Image Processing - Scaling and Cropping</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/08.html"><strong aria-hidden="true">4.9.</strong> Image Processing - Filtering Images</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/09.html"><strong aria-hidden="true">4.10.</strong> Image Processing - Histograms</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/10.html"><strong aria-hidden="true">4.11.</strong> Contour detection</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/11.html"><strong aria-hidden="true">4.12.</strong> Thresholding</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/12.html"><strong aria-hidden="true">4.13.</strong> Features detection, extraction and matching</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/13.html"><strong aria-hidden="true">4.14.</strong> Object Detection</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/14.html"><strong aria-hidden="true">4.15.</strong> Motion and Tracking</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/16.html"><strong aria-hidden="true">4.16.</strong> Detecting Depth</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
-
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -170,71 +170,71 @@
 <h2 id="mistakes-i-made-while-choosing-bugs-to-solve-from-syzkaller"><a class="header" href="#mistakes-i-made-while-choosing-bugs-to-solve-from-syzkaller">Mistakes I made while choosing bugs to solve from syzkaller</a></h2>
 <ol>
 <li>
-<p>I started by choosing a subsystem and trying to solve bugs from that subsystem. </p>
+<p>I started by choosing a subsystem and trying to solve bugs from that subsystem.</p>
 <p><img src="assets/old-bug.png" alt="old-bug" /></p>
 <ul>
 <li>
 <p>The problem with approach is</p>
 <ol>
-<li>Some subsystems have very few bugs (eg: i2c) and most of these bugs are trivial or </li>
+<li>Some subsystems have very few bugs (eg: i2c) and most of these bugs are trivial or</li>
 <li>Some subsystems have very active contributers, who solve the bugs within few days of occuring,
-competing with them becomes hard. </li>
+competing with them becomes hard.</li>
 </ol>
 </li>
 <li>
-<p>Don't limit yourself to one subsystem, try to solve bugs and help improve the code. 
-You may have to learn and understand different subsystems, but that is what makes this fun. </p>
+<p>Don't limit yourself to one subsystem, try to solve bugs and help improve the code.
+You may have to learn and understand different subsystems, but that is what makes this fun.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs which do not have C or syz reproducers </p>
+<p>Choosing bugs which do not have C or syz reproducers</p>
 <p><img src="assets/noreproducers.png" alt="noreproducers" /></p>
 <ul>
-<li>It is very hard to reproduce a bug locally without C or syz reproducers. 
-If you cannot reproduce then chance of solving the bug becomes very small. </li>
+<li>It is very hard to reproduce a bug locally without C or syz reproducers.
+If you cannot reproduce then chance of solving the bug becomes very small.</li>
 </ul>
 </li>
 <li>
-<p>Reproducers are for old kernel versions </p>
+<p>Reproducers are for old kernel versions</p>
 <p><img src="assets/reproducer-old.png" alt="reproducer-old" /></p>
 <ul>
-<li>Again you may not be able to reproduce the bug. </li>
+<li>Again you may not be able to reproduce the bug.</li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs which last occured more than 30 days </p>
+<p>Choosing bugs which last occured more than 30 days</p>
 <p><img src="assets/old-bug.png" alt="old-bug" /></p>
 <ul>
-<li>If the bug is not occuring for more that 30 days then it is probably solved. </li>
+<li>If the bug is not occuring for more that 30 days then it is probably solved.</li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs which are marked WONTFIX or a false positive. </p>
+<p>Choosing bugs which are marked WONTFIX or a false positive.</p>
 <ul>
 <li>
-<p>Some bugs are false positives or some bugs the subsystem maintainer does not want to solve <code>WONTFIX</code>. </p>
+<p>Some bugs are false positives or some bugs the subsystem maintainer does not want to solve <code>WONTFIX</code>.</p>
 <p><img src="assets/wontfix1.png" alt="wont-fix1" /></p>
 <p><img src="assets/wontfix2.png" alt="wont-fix2" /></p>
 </li>
 <li>
-<p>False positive patches will get rejected. </p>
+<p>False positive patches will get rejected.</p>
 </li>
 <li>
-<p>For WONTFIX bug, you may have to give a solid reason why this patch needs to be accepted. </p>
+<p>For WONTFIX bug, you may have to give a solid reason why this patch needs to be accepted.</p>
 </li>
 </ul>
 </li>
 <li>
-<p>Choosing bugs for which the patches are work in progress or have been submitted but not accepted. </p>
+<p>Choosing bugs for which the patches are work in progress or have been submitted but not accepted.</p>
 <ul>
 <li>
-<p>You will see that someone has already test their patch in syzkaller and will most likely 
-submit the patch or the patch is in review. </p>
+<p>You will see that someone has already test their patch in syzkaller and will most likely
+submit the patch or the patch is in review.</p>
 <p><img src="assets/patched-bug.png" alt="patched-bug" /></p>
 </li>
 <li>
-<p>90 % times the patches will get accepted, hence treat these bugs as solved bugs. </p>
+<p>90 % times the patches will get accepted, hence treat these bugs as solved bugs.</p>
 </li>
 </ul>
 </li>
@@ -242,30 +242,30 @@ submit the patch or the patch is in review. </p>
 <h2 id="process-for-solving-a-syzkaller-bug"><a class="header" href="#process-for-solving-a-syzkaller-bug">Process for solving a syzkaller bug</a></h2>
 <ol>
 <li>
-<p>Choosing the right bug to solve </p>
+<p>Choosing the right bug to solve</p>
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
 Bug should be recent (Last &lt; 7d)</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Syz reproducer exists for the upstream (latest) version of the kernel. </li>
+Syz reproducer exists for the upstream (latest) version of the kernel.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Disk and kernel image exists for the bug. </li>
+Disk and kernel image exists for the bug.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-.config file exists for the bug. </li>
+.config file exists for the bug.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Last patch testing requests is empty or last patches testing all failed. </li>
+Last patch testing requests is empty or last patches testing all failed.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Check the Discussions to see if the bug is not marked as WONTFIX or NOTABUG </li>
+Check the Discussions to see if the bug is not marked as WONTFIX or NOTABUG</li>
 </ul>
 </li>
 <li>
-<p>Try to reproduce the bug on the latest kernel </p>
+<p>Try to reproduce the bug on the latest kernel</p>
 <ol>
 <li>
 <p>Download the .config file from <a href="https://syzkaller.appspot.com">syzkaller</a></p>
 </li>
 <li>
-<p>Download the latest kernel </p>
+<p>Download the latest kernel</p>
 <pre><code class="language-sh">git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git -b master
 </code></pre>
 </li>
@@ -276,7 +276,7 @@ Check the Discussions to see if the bug is not marked as WONTFIX or NOTABUG </li
 <p>Download the Disk image from <a href="https://syzkaller.appspot.com">syzkaller</a></p>
 </li>
 <li>
-<p>Run the kernel with disk image by using the script below </p>
+<p>Run the kernel with disk image by using the script below</p>
 <pre><code class="language-sh">#!/bin/bash
 
 KERNEL_IMG_PATH=$1
@@ -286,7 +286,7 @@ qemu-system-x86_64 \
     -m 2G \
     -smp 2 \
     -kernel ${KERNEL_IMG_PATH} \
-    -append &quot;console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0 nokaslr&quot; \
+    -append "console=ttyS0 root=/dev/sda1 earlyprintk=serial net.ifnames=0 nokaslr" \
     -drive file=${RFS_IMG_PATH},format=raw \
     -net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
     -net nic,model=e1000 \
@@ -300,28 +300,28 @@ qemu-system-x86_64 \
 </code></pre>
 </li>
 <li>
-<p>Follow the steps in the <a href="./Reproducing-bugs-from-syzkaller.html">doc</a> to reproduce the bug. </p>
+<p>Follow the steps in the <a href="./Reproducing-bugs-from-syzkaller.html">doc</a> to reproduce the bug.</p>
 <ul>
-<li>Syz reproducer is preffered over C reproducer. </li>
+<li>Syz reproducer is preffered over C reproducer.</li>
 </ul>
 </li>
 </ol>
 </li>
 <li>
-<p>Solve the bug, Use the tools and techniques from the <a href="./Tools-and-Techniques-to-Debug-an-Linux-System.html">doc</a> 
-to solve the bug. </p>
+<p>Solve the bug, Use the tools and techniques from the <a href="./Tools-and-Techniques-to-Debug-an-Linux-System.html">doc</a>
+to solve the bug.</p>
 </li>
 <li>
-<p>Test the patch localy, by following the step 2. </p>
+<p>Test the patch localy, by following the step 2.</p>
 </li>
 <li>
-<p>Send the patch for testing to syzkaller. </p>
+<p>Send the patch for testing to syzkaller.</p>
 <ol>
 <li>
-<p>Send an email to syzbot <code>syzbot+a6d6b8fffa294705dbd8@syzkaller.appspotmail.com</code> and syzkaller google groups (syzkaller-bugs@googlegroups.com). </p>
+<p>Send an email to syzbot <code>syzbot+a6d6b8fffa294705dbd8@syzkaller.appspotmail.com</code> and syzkaller google groups (syzkaller-bugs@googlegroups.com).</p>
 </li>
 <li>
-<p>Email body should have </p>
+<p>Email body should have</p>
 <pre><code class="language-sh">#syz test: &lt;git rep&gt; &lt;git repo branch&gt;
 
 =================================
@@ -329,7 +329,7 @@ to solve the bug. </p>
 Your patch 
 
 </code></pre>
-<p><strong>Note</strong>: It is better to send patch as attachment rather than inline, but I have not figured out how to do it yet. </p>
+<p><strong>Note</strong>: It is better to send patch as attachment rather than inline, but I have not figured out how to do it yet.</p>
 </li>
 </ol>
 </li>
@@ -349,7 +349,7 @@ Your patch
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../kernel/debugging/Event-Tracing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../kernel/debugging/Event-Tracing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -363,7 +363,7 @@ Your patch
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../kernel/debugging/Event-Tracing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../kernel/debugging/Event-Tracing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

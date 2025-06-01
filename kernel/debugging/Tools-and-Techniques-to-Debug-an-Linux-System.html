@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,10 +7,10 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="Site for Personal wiki">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../../favicon.svg">
         <link rel="shortcut icon" href="../../favicon.png">
@@ -24,26 +24,40 @@
         <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../../highlight.css">
-        <link rel="stylesheet" href="../../tomorrow-night.css">
-        <link rel="stylesheet" href="../../ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc.js"></script>
     </head>
     <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
     <div id="body-container">
-        <!-- Provide site root to javascript -->
-        <script>
-            var path_to_root = "../../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -57,79 +71,65 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
-            var sidebar = null;
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
+            sidebar_toggle.checked = sidebar === 'visible';
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Linux Kernel</li><li class="chapter-item expanded "><a href="../../kernel/debugging/index.html"><strong aria-hidden="true">1.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/debugging/Understanding-Linux-Kernel-Oops.html"><strong aria-hidden="true">1.1.</strong> Understanding Kernel Oops</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Tools-and-Techniques-to-Debug-an-Linux-System.html" class="active"><strong aria-hidden="true">1.2.</strong> Tools & Techniques to Debug a LinuxSystem</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Dynamic-program-analysis.html"><strong aria-hidden="true">1.3.</strong> Dynamic Program Analysis</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Fuzzing-Linux-Kernel.html"><strong aria-hidden="true">1.4.</strong> Fuzzing Linux Kernel</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/How-To-use-syzkaller.html"><strong aria-hidden="true">1.5.</strong> How to use syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Reproducing-bugs-from-syzkaller.html"><strong aria-hidden="true">1.6.</strong> Reproducing bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Solving-syzkaller-bugs.html"><strong aria-hidden="true">1.7.</strong> Solving bugs from syzkaller</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Event-Tracing.html"><strong aria-hidden="true">1.8.</strong> Event tracing</a></li><li class="chapter-item expanded "><a href="../../kernel/debugging/Event-tracing-for-debugging.html"><strong aria-hidden="true">1.9.</strong> Event tracing for Debugging</a></li></ol></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/index.html"><strong aria-hidden="true">2.</strong> Camera Driver</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kernel/camera-driver/03.html"><strong aria-hidden="true">2.1.</strong> Introduction to Gstreamer</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/04.html"><strong aria-hidden="true">2.2.</strong> Color Formats RGB vs YUV</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/05.html"><strong aria-hidden="true">2.3.</strong> Internal Working of the camera Sensor</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/06.html"><strong aria-hidden="true">2.4.</strong> Image Processing Pipeline</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/15.html"><strong aria-hidden="true">2.5.</strong> Introduction to MIPI/CSI ports</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/16.html"><strong aria-hidden="true">2.6.</strong> Study of camera sensors</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/01.html"><strong aria-hidden="true">2.7.</strong> Introduction to Device Drivers</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/09.html"><strong aria-hidden="true">2.8.</strong> Hello World Device Driver</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/10.html"><strong aria-hidden="true">2.9.</strong> Introduction to Char driver</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/02.html"><strong aria-hidden="true">2.10.</strong> Camera driver Architecture</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/11.html"><strong aria-hidden="true">2.11.</strong> Structure of the camera device driver</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/07.html"><strong aria-hidden="true">2.12.</strong> Introduction to Device Trees</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/12.html"><strong aria-hidden="true">2.13.</strong> Write Device Tree for the camera module</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/13.html"><strong aria-hidden="true">2.14.</strong> Camera driver power and startup block</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/14.html"><strong aria-hidden="true">2.15.</strong> Camera driver Initialization</a></li><li class="chapter-item expanded "><a href="../../kernel/camera-driver/17.html"><strong aria-hidden="true">2.16.</strong> Combining all blocks</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Programming</li><li class="chapter-item expanded "><a href="../../programming/rust/index.html"><strong aria-hidden="true">3.</strong> Rust</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Data-Types.html"><strong aria-hidden="true">3.1.</strong> Data Types</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Variables-and-Immutability.html"><strong aria-hidden="true">3.2.</strong> Variables & Imutability</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Functions.html"><strong aria-hidden="true">3.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Closures.html"><strong aria-hidden="true">3.4.</strong> Closures</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Strings.html"><strong aria-hidden="true">3.5.</strong> Strings</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Decision-Making.html"><strong aria-hidden="true">3.6.</strong> Decision Making</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Loops.html"><strong aria-hidden="true">3.7.</strong> Loops</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Struct.html"><strong aria-hidden="true">3.8.</strong> Struct</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Enums.html"><strong aria-hidden="true">3.9.</strong> Enums</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Function-on-Types.html"><strong aria-hidden="true">3.10.</strong> Impl</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Collections.html"><strong aria-hidden="true">3.11.</strong> Collections</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Modules-imports-use-statements.html"><strong aria-hidden="true">3.12.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-Slices.html"><strong aria-hidden="true">3.13.</strong> Slices</a></li><li class="chapter-item expanded "><a href="../../programming/rust/Rust-iterators.html"><strong aria-hidden="true">3.14.</strong> Iterators</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Libraries</li><li class="chapter-item expanded "><a href="../../libraries/opencv/index.html"><strong aria-hidden="true">4.</strong> OpenCV</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../libraries/opencv/01.html"><strong aria-hidden="true">4.1.</strong> Understanding Types of Digital Image representation in computers</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/02.html"><strong aria-hidden="true">4.2.</strong> CMOS Camera Sensor and its performance parameters</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/03.html"><strong aria-hidden="true">4.3.</strong> Basics of Photography</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/04.html"><strong aria-hidden="true">4.4.</strong> OpenCV - Basics</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/05.html"><strong aria-hidden="true">4.5.</strong> Reading/Writing an Image</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/06.html"><strong aria-hidden="true">4.6.</strong> Image Processing - Accessing Pixels, Transform Color Spaces</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/15.html"><strong aria-hidden="true">4.7.</strong> Image Processing - Image Transforms</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/07.html"><strong aria-hidden="true">4.8.</strong> Image Processing - Scaling and Cropping</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/08.html"><strong aria-hidden="true">4.9.</strong> Image Processing - Filtering Images</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/09.html"><strong aria-hidden="true">4.10.</strong> Image Processing - Histograms</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/10.html"><strong aria-hidden="true">4.11.</strong> Contour detection</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/11.html"><strong aria-hidden="true">4.12.</strong> Thresholding</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/12.html"><strong aria-hidden="true">4.13.</strong> Features detection, extraction and matching</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/13.html"><strong aria-hidden="true">4.14.</strong> Object Detection</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/14.html"><strong aria-hidden="true">4.15.</strong> Motion and Tracking</a></li><li class="chapter-item expanded "><a href="../../libraries/opencv/16.html"><strong aria-hidden="true">4.16.</strong> Detecting Depth</a></li></ol></li></ol>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
-
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -176,7 +176,7 @@
 <li>Test it. If fixed, celebrate! If not, go back to step 1.</li>
 </ol>
 <h2 id="types-of-problems-in-software"><a class="header" href="#types-of-problems-in-software">Types of problems in Software</a></h2>
-<p>We can classify them into 5 major categories </p>
+<p>We can classify them into 5 major categories</p>
 <ol>
 <li>Crash. - Fatal exceptions</li>
 <li>Lockup/Hang. - Race conditions, Deadlocks</li>
@@ -193,8 +193,8 @@
 <li>Debugging frameworks (eg: Valgrind).</li>
 </ol>
 <h2 id="post-mortem-analysis"><a class="header" href="#post-mortem-analysis">Post mortem analysis</a></h2>
-<p>This type of analysis is done using the information exported by the system i.e 
-logs, memory dumps etc. </p>
+<p>This type of analysis is done using the information exported by the system i.e
+logs, memory dumps etc.</p>
 <h3 id="for-kernel-crashes"><a class="header" href="#for-kernel-crashes">For Kernel Crashes</a></h3>
 <h4 id="method1-addr2line"><a class="header" href="#method1-addr2line">Method1: addr2line</a></h4>
 <ol>
@@ -207,18 +207,18 @@ can be used to get the line where kernel crashed.</p>
 </code></pre>
 </li>
 <li>
-<p>You need the <code>vmlinux</code> file which is in ELF format with debug info </p>
+<p>You need the <code>vmlinux</code> file which is in ELF format with debug info</p>
 <pre><code>file vmlinux
 vmlinux: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, BuildID[sha1]
 ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
 </code></pre>
 </li>
 <li>
-<p>Run the addr2line command with these inputs </p>
+<p>Run the addr2line command with these inputs</p>
 <pre><code class="language-sh">addr2line -f -p -e vmlinux 0xc06a21cc
 </code></pre>
-<p>This will give you the line number where the kernel crashed. </p>
-<p>for eg: </p>
+<p>This will give you the line number where the kernel crashed.</p>
+<p>for eg:</p>
 <p>storage_probe at /opt/labs/ex/linux/drivers/usb/storage/usb.c:1118</p>
 </li>
 </ol>
@@ -233,14 +233,14 @@ ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
 <p>i.e <code>storage_probe+0x60</code></p>
 </li>
 <li>
-<p>You need the <code>vmlinux</code> file which is in ELF format with debug info </p>
+<p>You need the <code>vmlinux</code> file which is in ELF format with debug info</p>
 <pre><code>file vmlinux
 vmlinux: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), statically linked, BuildID[sha1]
 ca2de68ea4e39ca0f11e688a5e9ff0002a9b7733, with debug_info, not stripped
 </code></pre>
 </li>
 <li>
-<p>Run gdb on the vmlinux file, inside gdb run the command </p>
+<p>Run gdb on the vmlinux file, inside gdb run the command</p>
 <pre><code>(gdb) list *(storage_probe+0x60)
 </code></pre>
 <p>This will show you the line where the kernel crashed.</p>
@@ -257,7 +257,7 @@ occurred.</p>
 </li>
 <li>
 <p>Run the program untill it crashes, the crash will generate a file called
-<code>core</code> which contains the core dump. </p>
+<code>core</code> which contains the core dump.</p>
 </li>
 <li>
 <p>Run the gdb on the core file and the program with debug symbols</p>
@@ -267,15 +267,15 @@ occurred.</p>
 <li>
 <p>In gdb run the command <code>list</code> to go to the line where the program crashed.</p>
 <ul>
-<li><code>p</code> to print the specific variables. </li>
+<li><code>p</code> to print the specific variables.</li>
 </ul>
 </li>
 </ol>
 <h2 id="tracing"><a class="header" href="#tracing">Tracing</a></h2>
 <p>Tracing is a special form of logging, where data about the state and execution of
 a program (or the kernel) is collected and stored for runtime (or later) analysis.</p>
-<p>Using print() or printk() statements to log the state and variables is also a 
-form of tracing. </p>
+<p>Using print() or printk() statements to log the state and variables is also a
+form of tracing.</p>
 <h3 id="for-kernel-crashes-1"><a class="header" href="#for-kernel-crashes-1">For kernel crashes</a></h3>
 <ol>
 <li>
@@ -297,7 +297,7 @@ CONFIG_TIMERLAT_TRACER=y
 </code></pre>
 </li>
 <li>
-<p>Mount the tracefs into the fs </p>
+<p>Mount the tracefs into the fs</p>
 <pre><code class="language-sh">mount -t tracefs tracefs /sys/kernel/tracing/
 </code></pre>
 </li>
@@ -307,35 +307,35 @@ CONFIG_TIMERLAT_TRACER=y
 </code></pre>
 </li>
 <li>
-<p>Generate the report of the tracing </p>
+<p>Generate the report of the tracing</p>
 <pre><code>trace-cmd report &gt; trace.log
 </code></pre>
 </li>
 <li>
-<p>Examine the trace.log to see the traces of the function. </p>
+<p>Examine the trace.log to see the traces of the function.</p>
 </li>
 </ol>
-<p><strong>Note</strong>: This is dynamic tracing i.e the tracing is enabled at runtime as long 
-as the kernel is compiled with the correct configuration. </p>
+<p><strong>Note</strong>: This is dynamic tracing i.e the tracing is enabled at runtime as long
+as the kernel is compiled with the correct configuration.</p>
 <h3 id="for-userspace-crashes-1"><a class="header" href="#for-userspace-crashes-1">For userspace crashes</a></h3>
 <h4 id="method-1-strace"><a class="header" href="#method-1-strace">Method 1: strace</a></h4>
 <p>Using strace we can trace all the system calls the program is running to debug
 the program.</p>
-<p>Run a userspace program with strace </p>
+<p>Run a userspace program with strace</p>
 <pre><code># strace &lt;program&gt;
 </code></pre>
 <h4 id="method-2-uprobe"><a class="header" href="#method-2-uprobe">Method 2: Uprobe</a></h4>
-<p>This is used to trace the functions in the program. </p>
+<p>This is used to trace the functions in the program.</p>
 <ol>
 <li>
-<p>Kernel needs to be configured with the below options </p>
+<p>Kernel needs to be configured with the below options</p>
 <pre><code>zcat /proc/config.gz | grep CONFIG_UPROBE
 CONFIG_UPROBES=y
 CONFIG_UPROBE_EVENTS=y
 </code></pre>
 </li>
 <li>
-<p>Add the tracepoints to all the functions </p>
+<p>Add the tracepoints to all the functions</p>
 <pre><code class="language-sh"># for f in `perf probe -F -x &lt;program&gt;`; \
     do perf probe -q -x &lt;program&gt; $f; done
 </code></pre>
@@ -346,7 +346,7 @@ CONFIG_UPROBE_EVENTS=y
 </code></pre>
 </li>
 <li>
-<p>Run the application and capture the tracepoints. </p>
+<p>Run the application and capture the tracepoints.</p>
 <pre><code># perf record -e &lt;tracepoint_name&gt;:* -aR -- &lt;program&gt; &lt;args&gt;
 </code></pre>
 </li>
@@ -360,24 +360,24 @@ CONFIG_UPROBE_EVENTS=y
 <p>An interactive debugging tool allows us to interact with the application at runtime.
 It can execute the code step-by-step, set breakpoints,
 display information (variables, stack, etc), list function call history (backtrace), etc.</p>
-<p>GDB is the go to tool for Interactive debugging. </p>
+<p>GDB is the go to tool for Interactive debugging.</p>
 <h3 id="for-kernel-space"><a class="header" href="#for-kernel-space">For kernel space</a></h3>
 <p><strong>Note</strong>: If running on embedded, you need a gdbserver running on the target device
-and a gdb client on the host device. </p>
+and a gdb client on the host device.</p>
 <ol>
 <li>
-<p>Enable KGDB in the kernel </p>
+<p>Enable KGDB in the kernel</p>
 <pre><code># zcat /proc/config.gz | grep ^CONFIG_KGDB
 CONFIG_KGDB=y
 CONFIG_KGDB_HONOUR_BLOCKLIST=y
 CONFIG_KGDB_SERIAL_CONSOLE=y
 </code></pre>
-<p>KGDB has registered serial console as the port for communication. But we 
-can use kgdb/agent-proxy to forward text console over IP. </p>
+<p>KGDB has registered serial console as the port for communication. But we
+can use kgdb/agent-proxy to forward text console over IP.</p>
 <p>Details on how to connect can be found here - https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy/+/refs/heads/master/README.TXT</p>
 </li>
 <li>
-<p>On target machine, Put the kernel in debugging mode </p>
+<p>On target machine, Put the kernel in debugging mode</p>
 <pre><code class="language-sh"># Enable the serial port for kgdb communication
 # echo ttymxc0 &gt; /sys/module/kgdboc/parameters/kgdboc
 # Put the kernel in debug mode
@@ -385,7 +385,7 @@ can use kgdb/agent-proxy to forward text console over IP. </p>
 </code></pre>
 </li>
 <li>
-<p>On host machine, run gdb with the kernel ELF </p>
+<p>On host machine, run gdb with the kernel ELF</p>
 <pre><code> gdb vmlinux -tui
 </code></pre>
 <ul>
@@ -399,12 +399,12 @@ can use kgdb/agent-proxy to forward text console over IP. </p>
 </li>
 <li>
 <p>This will connect and open up the gdb for debugging, now you can set breakpoints
-get backtraces using gdb commands. </p>
+get backtraces using gdb commands.</p>
 </li>
 </ol>
 <h3 id="for-userspace-crashes-2"><a class="header" href="#for-userspace-crashes-2">For userspace crashes</a></h3>
 <p><strong>Note</strong>: If running on embedded, you need a gdbserver running on the target device
-and a gdb client on the host device. </p>
+and a gdb client on the host device.</p>
 <ol>
 <li>
 <p>Start the gdbserver, on target device</p>
@@ -412,54 +412,54 @@ and a gdb client on the host device. </p>
 </code></pre>
 </li>
 <li>
-<p>On the host device, run gdb with the program in ELF format </p>
+<p>On the host device, run gdb with the program in ELF format</p>
 <pre><code>gdb &lt;program&gt; -tui
 </code></pre>
 </li>
 <li>
-<p>In gdb prompt, connect to the target device </p>
+<p>In gdb prompt, connect to the target device</p>
 <pre><code>(gdb) target remote &lt;IP&gt;:1234
 </code></pre>
 </li>
 <li>
-<p>Now we can set breakpoints and see the backtrace of the program running 
+<p>Now we can set breakpoints and see the backtrace of the program running
 on the target machine.</p>
 </li>
 </ol>
 <h2 id="debugging-frameworks"><a class="header" href="#debugging-frameworks">Debugging frameworks</a></h2>
-<p>Collection of tools when used to debug linux systems are called debugging frameworks. </p>
+<p>Collection of tools when used to debug linux systems are called debugging frameworks.</p>
 <p>Kernel has several debugging frameworks to identify memory leaks,
-lockups, etc (see the &quot;Kernel Hacking&quot; configuration menu)</p>
-<p>In user space, there is Valgrind for debugging memory leaks, race conditions 
+lockups, etc (see the "Kernel Hacking" configuration menu)</p>
+<p>In user space, there is Valgrind for debugging memory leaks, race conditions
 and profiling etc.</p>
 <h3 id="for-kernel-crashes-2"><a class="header" href="#for-kernel-crashes-2">For kernel crashes</a></h3>
 <ol>
 <li>
-<p>Enable the detections in the kernel configuration </p>
-<pre><code># zcat /proc/config.gz | grep &quot;CONFIG_SOFTLOCKUP_DETECTOR\|CONFIG_DETECT_HUNG_TASK&quot;
+<p>Enable the detections in the kernel configuration</p>
+<pre><code># zcat /proc/config.gz | grep "CONFIG_SOFTLOCKUP_DETECTOR\|CONFIG_DETECT_HUNG_TASK"
 CONFIG_SOFTLOCKUP_DETECTOR=y
 CONFIG_DETECT_HUNG_TASK=y
 </code></pre>
 </li>
 <li>
-<p>Once enabled, when something hangs for 30s or more, kernel will throw an 
-oops. </p>
+<p>Once enabled, when something hangs for 30s or more, kernel will throw an
+oops.</p>
 </li>
 <li>
-<p>After this we can use the steps in post mortem analysis to debug. </p>
+<p>After this we can use the steps in post mortem analysis to debug.</p>
 </li>
 </ol>
 <h3 id="for-userspace-crashes-3"><a class="header" href="#for-userspace-crashes-3">For userspace crashes</a></h3>
 <p>We use valgring to check for memory leaks, profiling , etc</p>
-<p>For eg: </p>
+<p>For eg:</p>
 <pre><code>valgrind --leak-check=full &lt;program&gt;
 </code></pre>
-<p>This will check for leaks etc.. </p>
+<p>This will check for leaks etc..</p>
 <h2 id="which-tool-to-use-while-debugging-"><a class="header" href="#which-tool-to-use-while-debugging-">Which tool to use while debugging ?</a></h2>
 <p>This depends on what type of problem you are debugging.</p>
 <p><img src="assets/which-tool-best-for-debugging.png" alt="summary2" /></p>
 <h4 id="references"><a class="header" href="#references">References</a></h4>
-<p>Ref: https://www.youtube.com/watch?v=Paf-1I7ZUTo </p>
+<p>Ref: https://www.youtube.com/watch?v=Paf-1I7ZUTo</p>
 
                     </main>
 
@@ -469,7 +469,7 @@ oops. </p>
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../kernel/debugging/Dynamic-program-analysis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../kernel/debugging/Dynamic-program-analysis.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -483,7 +483,7 @@ oops. </p>
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../kernel/debugging/Dynamic-program-analysis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../kernel/debugging/Dynamic-program-analysis.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
